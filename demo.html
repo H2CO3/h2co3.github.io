@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<title>Sparkling online demo</title>
+	<link rel="stylesheet" type="text/css" href="index.css" />
+	<link rel="stylesheet" type="text/css" href="demo.css" />
+	<script src="libspn.js" type="text/javascript"></script>
+  </head>
+  <body>
+	<h2 id="pagetitle">Sparkling live demo</h2>
+	<p>On this page, you can find an in-browser implementation of the Sparkling engine. The library has been compiled to JavaScript with Emscripten. Consequently, all code runs right in your browser. No server-side code execution is performed and no HTTP requests are necessary.</p>
+	<textarea id="code">
+/*
+ * Type code here.
+ * Click on the "Execute Code" button to execute it.
+ */
+
+let t = localtime(time());
+let tstr = fmtdate("%D %T", t);
+printf("Hello world at %s!\n", tstr);
+return 1337;
+</textarea>
+
+	<div id="runcontrols">
+	  <br />
+	  <div>
+		<input type="button" value="Execute Code" id="runbutton"/>
+		<input type="button" value="Clear Console" id="clrscr" />
+		<input type="button" value="Reset Interpreter" id="reset" />
+		<input type="button" value="Flush I/O Streams" id="flushio" />
+		<br /><br />
+	  </div>
+	  <div>
+		<span id="runtitle"><strong>Output:</strong></span>
+		<span class="consoleright">
+		  <input type="checkbox" id="always_reset" checked="checked" />
+		  <label for="always_reset">Reset before execution</label>
+		</span>
+		<span class="consoleright">
+		  <input type="checkbox" id="as_expr" />
+		  <label for="as_expr">Treat code as expression &nbsp;</label>
+		</span>
+		<br /><br />
+	  </div>
+	</div>
+	<textarea id="console" readonly="readonly"></textarea>
+	<script src="demo.js" type="text/javascript"></script>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+#code, #console {
+	font-family: Courier New, Courier, monospace;
+	font-size: 12pt;
+	width: 100%;
+	height: 300px;
+}
+
+#runcontrols {
+}
+
+.consoleright {
+	float: right;
+}
+
+#runtitle {
+	float: left;
+}
