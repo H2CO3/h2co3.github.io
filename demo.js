@@ -34,6 +34,7 @@
 		if (fn) {
 			try {
 				retVal = fn();
+				flushIOStreams();
 				console.value += "=> ";
 				if (typeof retVal === 'string') {
 					dbgprint(retVal);
