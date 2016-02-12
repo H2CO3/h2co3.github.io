@@ -4,26 +4,72 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="index.css" />
     <title>H2CO3's Sparkling</title>
+		<script src="libspn.js" type="text/javascript"></script>
   </head>
   <body>
     <h2 id="pagetitle">The Sparkling language</h2>
-    <p id="subtitle">Sparkling is a dynamic, lightweight, extensible, universal scripting language.<br />Watch the <a target="_blank" href="http://www.meetup.com/Prezi-Tech-Talks/events/164186052/">presentation</a> I gave at Prezi House of Ideas, on 12 March 2014:</p>
-    <iframe id="techtalk" width="560" height="315" src="https://www.youtube.com/embed/sZPjcF8naGg" frameborder="0" allowfullscreen></iframe>
+    <p id="subtitle" style="font-style: italic; font-size: 13pt; font-weight: 400">Sparkling is a dynamic, lightweight, extensible, universal scripting language.</p>
      <h3>Features</h3>
     <ul>
       <li><strong>Lightweight: </strong>The Sparkling engine is implemented in the form of a library, with compiled size less than 150 kB. It is easy to embed into another application and it has a small, friendly API.</li>
-      <li><strong>Fast: </strong>The speed of Sparkling is comparable to that of Lua, which is widely recognized as the fastest interpreted language.</li>
-      <li><strong>Productive: </strong>Sparkling is interpreted, dynamically typed, embeddable, and has a familiar syntax, so it's a joy to use. No more long compilation types, no more lengthy type declarations.</li>
-      <li><strong>Sane: </strong>Sparkling enforces strict typing. It does not attempt to make sense of constructs that are not immediately meaningful. <strong>This helps detecting and eliminating common programmer errors,</strong> which are hard (or even impossible) to catch in other languages (shall I point to JavaScript's implicit global variables?)</li>
+      <li><strong>Fast: </strong>The speed of Sparkling is comparable to that of Lua, which is widely recognized as one of the fastest interpreted languages.</li>
+      <li><strong>Productive: </strong>Sparkling has an interactive interpreter, it is dynamically typed, easy to embed, and has a familiar syntax, so it's a joy to use. No more long compilation types or verbose declarations.</li>
+      <li><strong>Sane: </strong>While highly dynamic, Sparkling still maintains strict typing. It does not attempt to make sense of language constructs that are not immediately meaningful. The syntax is carefully designed so that your code does what it looks like it's doing. <strong>These properties help detecting and eliminating common programmer errors,</strong> which are hard (or even impossible) to catch in other languages (shall I point to JavaScript's implicit global variables?)</li>
     </ul>
-    <h3>Download and install</h3>
+	<h3>Try Sparkling in your browser</h3>
+	<p>Are you interested in using Sparkling? Just start typing below. No installation is necessary.</p>
+	<div id="editor" style="width: 100%; height: 400px; font-size: 14pt">fn say_hello(name) {
+	let greeting = "Hello, %s!".format(name);
+	print(greeting);
+	// Look, we can even call into JavaScript!
+	jseval("alert('" .. greeting .. "')");
+}
+
+say_hello("friend");
+</div>
+	<br />
+	<input type="button" id="runbutton" value="Run Code" /><br /><br />
+	<textarea id="stdout" style="width: 100%; height: 160px; font-family: 'Source Code Pro', 'Lucida Console', 'Courier New', 'Courier', monospace; font-size: 14pt" readonly></textarea>
+	<script src="ace/ace.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+  editor = ace.edit("editor");
+	editor.setTheme("ace/theme/monokai");
+	editor.session.setMode("ace/mode/javascript");
+	editor.session.setOption("useWorker", false);
+
+
+	Module.print = Module.printErr = function(str) {
+		var console = document.getElementById("stdout");
+		console.value += str + "\n";
+		console.scrollTop = console.scrollHeight;
+	};
+
+	document.getElementById("runbutton").addEventListener("click", function() {
+		document.getElementById("stdout").value = "";
+
+		var fn = Sparkling.compile(editor.getValue());
+		if (typeof fn !== "function") {
+			alert("Compilation Error: at " + Sparkling.lastErrorLocation() + ": " + Sparkling.lastErrorMessage());
+		} else {
+			try {
+				fn();
+				var console = document.getElementById("stdout");
+				var stdout = Sparkling.getGlobal("stdout");
+				var flush = Sparkling.getGlobal("File").flush;
+				flush(stdout);
+			} catch (e) {
+				alert("Runtime Error: " + e + "\n\nStack trace: \n\n" + Sparkling.backtrace().join("\n"));
+			}
+		}
+	});
+
+</script>
+  <h3>Download and install</h3>
     <p>The reference implementation is hosted on <a target="_blank" href="https://github.com/H2CO3/Sparkling">GitHub</a>.</p>
-    <p>If you prefer snapshots:
+    <p>If you prefer snapshots: grab a
         <a href="https://github.com/H2CO3/Sparkling/archive/master.tar.gz">Tarball</a>
-      | <a href="https://github.com/H2CO3/Sparkling/archive/master.zip">Zipball</a>
+				| <a href="https://github.com/H2CO3/Sparkling/archive/master.zip">Zipball</a>
     </p>
-	<h3>Try Sparkling in the browser</h3>
-	<p><a target="_blank" href="demo.html">This live demo runs Sparkling right in your browser.</a></p>
     <h3>Documentation</h3>
     <ul>
       <li><a target="_blank" href="https://github.com/H2CO3/Sparkling/blob/master/doc/tutorial.md">Tutorial, Quick Start Guide</a></li>
@@ -31,6 +77,9 @@
       <li><a target="_blank" href="https://github.com/H2CO3/Sparkling/blob/master/doc/stdlib.md">Standard library reference</a></li>
       <li><a target="_blank" href="https://github.com/H2CO3/Sparkling/blob/master/doc/capi.md">Using the C API</a></li>
     </ul>
+		<h3>Want to know more?</h3>
+		<p>Watch the <a target="_blank" href="http://www.meetup.com/Prezi-Tech-Talks/events/164186052/">presentation</a> I gave at Prezi House of Ideas, on 12 March 2014:</p>
+    <iframe id="techtalk" width="640" height="360" src="https://www.youtube.com/embed/sZPjcF8naGg" frameborder="0" allowfullscreen style="margin-left: auto; margin-right: auto"></iframe>
     <h3>External resources</h3>
     <ul>
       <li><a target="_blank" href="https://twitter.com/H2CO3_iOS">Contact the author</a></li>
@@ -38,4 +87,3 @@
     </ul>
   </body>
 </html>
-
