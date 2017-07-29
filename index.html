@@ -3,87 +3,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="index.css" />
-    <title>H2CO3's Sparkling</title>
-		<script src="libspn.js" type="text/javascript"></script>
+    <title>H2CO3's Projects</title>
   </head>
   <body>
-    <h2 id="pagetitle">The Sparkling language</h2>
-    <p id="subtitle" style="font-style: italic; font-size: 13pt; font-weight: 400">Sparkling is a dynamic, lightweight, extensible, universal scripting language.</p>
-     <h3>Features</h3>
-    <ul>
-      <li><strong>Lightweight: </strong>The Sparkling engine is implemented in the form of a library, with compiled size less than 150 kB. It is easy to embed into another application and it has a small, friendly API.</li>
-      <li><strong>Fast: </strong>The speed of Sparkling is comparable to that of Lua, which is widely recognized as one of the fastest interpreted languages.</li>
-      <li><strong>Productive: </strong>Sparkling has an interactive interpreter, it is dynamically typed, easy to embed, and has a familiar syntax, so it's a joy to use. No more long compilation types or verbose declarations.</li>
-      <li><strong>Sane: </strong>While highly dynamic, Sparkling still maintains strict typing. It does not attempt to make sense of language constructs that are not immediately meaningful. The syntax is carefully designed so that your code does what it looks like it's doing. <strong>These properties help detecting and eliminating common programmer errors,</strong> which are hard (or even impossible) to catch in other languages (shall I point to JavaScript's implicit global variables?)</li>
-    </ul>
-	<h3>Try Sparkling in your browser</h3>
-	<p>Are you interested in using Sparkling? Just start typing below. No installation is necessary.</p>
-	<div id="editor" style="width: 100%; height: 400px; font-size: 14pt">fn say_hello(name) {
-	let greeting = "Hello, %s!".format(name);
-	print(greeting);
-	// Look, we can even call into JavaScript!
-	jseval("alert('" .. greeting .. "')");
-}
-
-say_hello("friend");
-</div>
-	<br />
-	<input type="button" id="runbutton" value="Run Code" /><br /><br />
-	<textarea id="stdout" style="width: 100%; height: 160px; font-family: 'Source Code Pro', 'Lucida Console', 'Courier New', 'Courier', monospace; font-size: 14pt" readonly></textarea>
-	<script src="ace/ace.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript">
-  editor = ace.edit("editor");
-	editor.setTheme("ace/theme/monokai");
-	editor.session.setMode("ace/mode/javascript");
-	editor.session.setOption("useWorker", false);
-
-
-	Module.print = Module.printErr = function(str) {
-		var console = document.getElementById("stdout");
-		console.value += str + "\n";
-		console.scrollTop = console.scrollHeight;
-	};
-
-	document.getElementById("runbutton").addEventListener("click", function() {
-		document.getElementById("stdout").value = "";
-
-		var fn = Sparkling.compile(editor.getValue());
-		if (typeof fn !== "function") {
-			alert("Compilation Error: at " + Sparkling.lastErrorLocation() + ": " + Sparkling.lastErrorMessage());
-		} else {
-			try {
-				fn();
-				var console = document.getElementById("stdout");
-				var stdout = Sparkling.getGlobal("stdout");
-				var flush = Sparkling.getGlobal("File").flush;
-				flush(stdout);
-			} catch (e) {
-				alert("Runtime Error: " + e + "\n\nStack trace: \n\n" + Sparkling.backtrace().join("\n"));
-			}
-		}
-	});
-
-</script>
-  <h3>Download and install</h3>
-    <p>The reference implementation is hosted on <a target="_blank" href="https://github.com/H2CO3/Sparkling">GitHub</a>.</p>
-    <p>If you prefer snapshots: grab a
-        <a href="https://github.com/H2CO3/Sparkling/archive/master.tar.gz">Tarball</a>
-				| <a href="https://github.com/H2CO3/Sparkling/archive/master.zip">Zipball</a>
-    </p>
-    <h3>Documentation</h3>
-    <ul>
-      <li><a target="_blank" href="https://github.com/H2CO3/Sparkling/blob/master/doc/tutorial.md">Tutorial, Quick Start Guide</a></li>
-      <li><a target="_blank" href="https://github.com/H2CO3/Sparkling/blob/master/examples/">Sample code</a></li>
-      <li><a target="_blank" href="https://github.com/H2CO3/Sparkling/blob/master/doc/stdlib.md">Standard library reference</a></li>
-      <li><a target="_blank" href="https://github.com/H2CO3/Sparkling/blob/master/doc/capi.md">Using the C API</a></li>
-    </ul>
-		<h3>Want to know more?</h3>
-		<p>Watch the <a target="_blank" href="http://www.meetup.com/Prezi-Tech-Talks/events/164186052/">presentation</a> I gave at Prezi House of Ideas, on 12 March 2014:</p>
-    <iframe id="techtalk" width="640" height="360" src="https://www.youtube.com/embed/sZPjcF8naGg" frameborder="0" allowfullscreen style="margin-left: auto; margin-right: auto"></iframe>
-    <h3>External resources</h3>
-    <ul>
-      <li><a target="_blank" href="https://twitter.com/H2CO3_iOS">Contact the author</a></li>
-      <li><a target="_blank" href="http://rosettacode.org/wiki/Category:Sparkling">Sparkling on RosettaCode</a></li>
-    </ul>
+    <h2 id="pagetitle">H2CO3's Projects</h2>
+    <p id="subtitle" style="font-style: italic; font-size: 13pt; font-weight: 400">Software I'm proud of</p>
+    <h3><a href="phile">PHiLe</a></h3>
+    <p>PHiLe (pronounced <em>fillet</em>), the Painless High-Level Persistence Engine, is a next-generation tool for easy programmatical database access.</p>
+    <p>Like an ORM, it provides a high-level interface that allows developers to operate on the right conceptual level rather than having to focus on the low-level specifics of the database engine being used.</p>
+    <p>Unlike an ORM, however, it is highly portable across several database engines and programming languages. Based on a clean, object-oriented, functional-declarative DSL with a strong, expressive type system for describing schemas and queries, PHiLe generates a Database Abstraction Layer for you automatically.</p>
+    <h3><a href="sparkling">Sparkling</a></h3>
+    <p>Sparkling is a simple, compact extension language with familiar syntax, dynamic typing, automatic memory management, and safe, sound semantics.</p>
+    <p>Designed to be a modern embeddable scripting language, it provides an easy-to-use C API so that you can write bindings to native code really fast. Its code footprint is small, making it an ideal alternative to e.g. Python and JavaScript, and it runs on a reasonably efficient bytecode interpreter, making its speed comparable to that of Lua.</p>
+    <p>Sparkling also attempts to avoid many design mistakes commonly found in other languages, such as implicit globals or non-obvious implicit type conversions.</p>
   </body>
 </html>

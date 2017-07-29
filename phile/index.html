@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <title>The Painless High-Level Persistence Engine</title>
+  </head>
+  <body>
+    <h2 id="pagetitle">PHiLe</h2>
+    <p id="subtitle" style="font-style: italic; font-size: 13pt; font-weight: 400">The Painless High-Level Persistence Engine</p>
+    <h3>What's PHiLe?</h3>
+    <p>PHiLe (pronounced <em>fillet</em>), the Painless High-Level Persistence Engine, is a next-generation database management tool and domain-specific language. It allows application developers to write what is basically a textual form of a conceptual or entity-relationship model, from which it automatically generates a Database Abstraction Layer for a variety of programming languages and database engines.</p>
+    <p>Unlike traditional ORMs, PHiLe has a strong, expressive type system. It allows programmers to work with many kinds of values, not only objects, therefore trivially eliminating many of the bottlenecks commonly associated with ORM solutions, such as having to retrieve the transitive closure of a list of objects only to discard all but a few of their attributes.</p>
+    <h3>How does it work?</h3>
+    <p>The DSL used by PHiLe is a statically-typed, object-oriented, functional-declarative language, which is capable of describing schemas (like a DDL) and queries/updates (like a DML). It brings the memory model programmers are familiar with to the world of persistent storage: relational tables become classes or structs, records and documents become objects, and relationships become arrays and pointers.</p>
+    <p>As rightfully expected from a modern functional language, the PHiLe DSL supports advanced and convenient features such as higher-order functions, pattern matching, and algebraic data types (including class, struct, tuple and enum types). The presence of enums, in particular, allows for type-safe data modeling in lieu of stringly-typed APIs, while proper optional types prevent errors related to <tt>NULL</tt> values.</p>
+    <p>PHiLe will support the following database flavors and programming languages:</p>
+    <h4>Database Engines:</h4>
+    <ul>
+      <li>SQLite3</li>
+      <li>MySQL / MariaDB</li>
+      <li>MongoDB</li>
+    </ul>
+    <h4>Programming Languages</h4>
+    <ul>
+      <li>Rust</li>
+      <li>C</li>
+      <li>C++</li>
+      <li>Objective-C</li>
+      <li>Swift</li>
+      <li>Python</li>
+      <li>Java</li>
+      <li>Go</li>
+      <li>JavaScript</li>
+    </ul>
+    <p>Support for other popular storage engines (e.g. Postgres, MS/SQL, Redis, &hellip;) and programming languages (e.g. Haskell, Ruby, C#, &hellip;) would be nice and is planned.</p>
+    <h3>Where can I download it?</h3>
+    <p>You can download PHiLe from <a href="https://github.com/H2CO3/PHiLe/">the official GitHub page</a> of the project.</p>
+    <h3>Is it documented?</h3>
+    <p>Sure, please see the <a href="docs">official documentation</a>.</p>
+  </body>
+</html>
