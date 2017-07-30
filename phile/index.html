@@ -7,13 +7,22 @@
   </head>
   <body>
     <h2 id="pagetitle">PHiLe</h2>
-    <p id="subtitle" style="font-style: italic; font-size: 13pt; font-weight: 400">The Painless High-Level Persistence Engine</p>
+    <p id="subtitle" style="font-style: italic; font-size: 13pt; font-weight: 400">The Painless High&#8209;Level Persistence Engine</p>
     <h3>What's PHiLe?</h3>
-    <p>PHiLe (pronounced <em>fillet</em>), the Painless High-Level Persistence Engine, is a next-generation database management tool and domain-specific language. It allows application developers to write what is basically a textual form of a conceptual or entity-relationship model, from which it automatically generates a Database Abstraction Layer for a variety of programming languages and database engines.</p>
-    <p>Unlike traditional ORMs, PHiLe has a strong, expressive type system. It allows programmers to work with many kinds of values, not only objects, therefore trivially eliminating many of the bottlenecks commonly associated with ORM solutions, such as having to retrieve the transitive closure of a list of objects only to discard all but a few of their attributes.</p>
+    <p>PHiLe (pronounced <em>fillet</em>), the Painless High&#8209;Level Persistence Engine, is a next&#8209;generation database management tool and domain&#8209;specific language. It allows application developers to write what is basically a textual form of a conceptual or entity relationship model, from which it automatically generates a Database Abstraction Layer.</p>
+    <p>Unlike traditional ORMs, it has a strong, expressive type system. It allows programmers to work with many kinds of values, not only objects, therefore trivially eliminating many of the bottlenecks commonly associated with ORM solutions, such as having to retrieve the transitive closure of an object, only to discard all but a few of its scalar attributes.</p>
+    <p>PHiLe also supports a wide spectrum of different languages and databases, therefore it cooperates well with many already-existing technology stacks. It includes tools for automatically migrating data of the same conceptual schema between different underlying database engines, and another DSL for refactoring the schema without loss of data or type safety.</p>
+    <h3>Where can I download it?</h3>
+    <ul>
+      <li>PHiLe is on <a href="https://crates.io/crates/phile">crates.io</a>. You can install it by issuing the following command:<br /><br /><tt>cargo install phile</tt></li>
+      <li>You can clone the source at <a href="https://github.com/H2CO3/PHiLe/">the official GitHub page</a> of the project using:<br /><br /><tt>git clone git://github.com/H2CO3/PHiLe.git</tt></li>
+    </ul>
+    <h3>Is it documented?</h3>
+    <p>Sure, please visit the <a href="docs">official documentation</a>.</p>
     <h3>How does it work?</h3>
-    <p>The DSL used by PHiLe is a statically-typed, object-oriented, functional-declarative language, which is capable of describing schemas (like a DDL) and queries/updates (like a DML). It brings the memory model programmers are familiar with to the world of persistent storage: relational tables become classes or structs, records and documents become objects, and relationships become arrays and pointers.</p>
-    <p>As rightfully expected from a modern functional language, the PHiLe DSL supports advanced and convenient features such as higher-order functions, pattern matching, and algebraic data types (including class, struct, tuple and enum types). The presence of enums, in particular, allows for type-safe data modeling in lieu of stringly-typed APIs, while proper optional types prevent errors related to <tt>NULL</tt> values.</p>
+    <p>The philosophy behind the design of PHiLe is explained in detail <a href="http://h2co3.org/blog/index.php/2017/04/10/join-considered-harmful/">on my blog</a>.</p>
+    <p>The PHiLe DSL is a statically&#8209;typed, object-oriented, functional-declarative language, which is capable of describing schemas (like a DDL) and queries/updates (like a DML). It brings the memory model that programmers are familiar with to the world of persistent storage: relational tables become classes or structs, records and documents become objects, and relationships become arrays and pointers.</p>
+    <p>As rightfully expected from a modern functional language, the PHiLe DSL supports advanced and convenient features such as higher&#8209;order functions, pattern matching, and algebraic data types (including class, struct, tuple, enum and optional types). Enums, in particular, are a type&#8209;safe alternative to stringly&#8209;typed fields, while proper optional types prevent errors related to <tt>NULL</tt> values.</p>
     <p>PHiLe will support the following database flavors and programming languages:</p>
     <h4>Database Engines:</h4>
     <ul>
@@ -21,22 +30,25 @@
       <li>MySQL / MariaDB</li>
       <li>MongoDB</li>
     </ul>
-    <h4>Programming Languages</h4>
+    <h4>Programming Languages:</h4>
     <ul>
       <li>Rust</li>
       <li>C</li>
       <li>C++</li>
-      <li>Objective-C</li>
+      <li>Objective&#8209;C</li>
       <li>Swift</li>
-      <li>Python</li>
-      <li>Java</li>
       <li>Go</li>
       <li>JavaScript</li>
+      <li>Python</li>
+      <li>Java</li>
     </ul>
     <p>Support for other popular storage engines (e.g. Postgres, MS/SQL, Redis, &hellip;) and programming languages (e.g. Haskell, Ruby, C#, &hellip;) would be nice and is planned.</p>
-    <h3>Where can I download it?</h3>
-    <p>You can download PHiLe from <a href="https://github.com/H2CO3/PHiLe/">the official GitHub page</a> of the project.</p>
-    <h3>Is it documented?</h3>
-    <p>Sure, please see the <a href="docs">official documentation</a>.</p>
+    <h3>I want to yell at you because it's crap!</h3>
+    <ul>
+      <li>Tweet to me <a href="https://twitter.com/H2CO3_iOS">@H2CO3_iOS</a></li>
+      <li>Open an issue on <a href="https://github.com/H2CO3/PHiLe/">GitHub</a></li>
+      <li>Leave a comment on <a href="http://h2co3.org/blog/">my blog</a></li>
+      <li>Mail me at <a href="mailto:h2co3@h2co3.org">h2co3@h2co3.org</a></li>
+    </ul>
   </body>
 </html>

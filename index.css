@@ -23,6 +23,10 @@ h3 {
     font-size: 24pt;
 }
 
+h4 {
+    font-weight: 400;
+}
+
 strong {
     font-weight: 500;
 }
@@ -39,6 +43,10 @@ a:hover {
 li {
     margin-top: 15px;
     margin-bottom: 15px;
+}
+
+tt {
+    color: #cc2255;
 }
 
 #pagetitle {
