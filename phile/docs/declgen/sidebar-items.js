@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["generate_declarations",""]],"mod":[["c",""],["cxx",""],["go",""],["java",""],["js",""],["objc",""],["python",""],["rust",""],["swift",""]]});

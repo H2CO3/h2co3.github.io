@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["generate_active_record",""],["generate_pod",""]]});

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `ExpKind` enum in crate `phile`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, ExpKind">
+
+    <title>phile::ast::ExpKind - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc enum">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'>Enum ExpKind</p><div class="block items"><ul><li><a href="#variants">Variants</a></li><li><a href="#implementations">Trait Implementations</a></li></ul></div><p class='location'><a href='../index.html'>phile</a>::<wbr><a href='index.html'>ast</a></p><script>window.sidebarCurrent = {name: 'ExpKind', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Enum <a href='../index.html'>phile</a>::<wbr><a href='index.html'>ast</a>::<wbr><a class="enum" href=''>ExpKind</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../src/phile/ast.rs.html#32-65' title='goto source code'>[src]</a></span></h1>
+<pre class='rust enum'>pub enum ExpKind&lt;'a&gt; {
+    CondExp(<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;<a class="struct" href="../../phile/ast/struct.CondExp.html" title="struct phile::ast::CondExp">CondExp</a>&lt;'a&gt;&gt;),
+    BinaryOp(<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;<a class="struct" href="../../phile/ast/struct.BinaryOp.html" title="struct phile::ast::BinaryOp">BinaryOp</a>&lt;'a&gt;&gt;),
+    Cast(<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;<a class="type" href="../../phile/ast/type.Exp.html" title="type phile::ast::Exp">Exp</a>&lt;'a&gt;&gt;,&nbsp;<a class="type" href="../../phile/ast/type.Ty.html" title="type phile::ast::Ty">Ty</a>&lt;'a&gt;),
+    UnaryPlus(<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;<a class="type" href="../../phile/ast/type.Exp.html" title="type phile::ast::Exp">Exp</a>&lt;'a&gt;&gt;),
+    UnaryMinus(<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;<a class="type" href="../../phile/ast/type.Exp.html" title="type phile::ast::Exp">Exp</a>&lt;'a&gt;&gt;),
+    LogicNot(<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;<a class="type" href="../../phile/ast/type.Exp.html" title="type phile::ast::Exp">Exp</a>&lt;'a&gt;&gt;),
+    Subscript(<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;<a class="struct" href="../../phile/ast/struct.Subscript.html" title="struct phile::ast::Subscript">Subscript</a>&lt;'a&gt;&gt;),
+    MemberAccess(<a class="struct" href="../../phile/ast/struct.MemberAccess.html" title="struct phile::ast::MemberAccess">MemberAccess</a>&lt;'a&gt;),
+    QualAccess(<a class="struct" href="../../phile/ast/struct.QualAccess.html" title="struct phile::ast::QualAccess">QualAccess</a>&lt;'a&gt;),
+    FuncCall(<a class="struct" href="../../phile/ast/struct.FuncCall.html" title="struct phile::ast::FuncCall">FuncCall</a>&lt;'a&gt;),
+    NilLiteral,
+    BoolLiteral(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>),
+    IntLiteral(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a>),
+    FloatLiteral(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>),
+    StringLiteral(<a class="struct" href="https://doc.rust-lang.org/nightly/collections/string/struct.String.html" title="struct collections::string::String">String</a>),
+    Identifier(&amp;'a <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>),
+    TupleLiteral(<a class="struct" href="https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html" title="struct collections::vec::Vec">Vec</a>&lt;<a class="type" href="../../phile/ast/type.Exp.html" title="type phile::ast::Exp">Exp</a>&lt;'a&gt;&gt;),
+    ArrayLiteral(<a class="struct" href="https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html" title="struct collections::vec::Vec">Vec</a>&lt;<a class="type" href="../../phile/ast/type.Exp.html" title="type phile::ast::Exp">Exp</a>&lt;'a&gt;&gt;),
+    StructLiteral(<a class="struct" href="../../phile/ast/struct.StructLiteral.html" title="struct phile::ast::StructLiteral">StructLiteral</a>&lt;'a&gt;),
+    If(<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;<a class="struct" href="../../phile/ast/struct.If.html" title="struct phile::ast::If">If</a>&lt;'a&gt;&gt;),
+    Match(<a class="struct" href="../../phile/ast/struct.Match.html" title="struct phile::ast::Match">Match</a>&lt;'a&gt;),
+    Block(<a class="struct" href="https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html" title="struct collections::vec::Vec">Vec</a>&lt;<a class="type" href="../../phile/ast/type.Exp.html" title="type phile::ast::Exp">Exp</a>&lt;'a&gt;&gt;),
+    FuncExp(<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;<a class="struct" href="../../phile/ast/struct.Function.html" title="struct phile::ast::Function">Function</a>&lt;'a&gt;&gt;),
+    VarDecl(<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;<a class="struct" href="../../phile/ast/struct.VarDecl.html" title="struct phile::ast::VarDecl">VarDecl</a>&lt;'a&gt;&gt;),
+    Semi(<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;<a class="type" href="../../phile/ast/type.Exp.html" title="type phile::ast::Exp">Exp</a>&lt;'a&gt;&gt;),
+    Empty,
+}</pre><h2 id='variants' class='variants'>Variants</h2>
+<span id='variant.CondExp' class='variant'><span id='CondExp.v' class='invisible'><code>CondExp(<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;<a class="struct" href="../../phile/ast/struct.CondExp.html" title="struct phile::ast::CondExp">CondExp</a>&lt;'a&gt;&gt;)</code></span></span><span id='variant.BinaryOp' class='variant'><span id='BinaryOp.v' class='invisible'><code>BinaryOp(<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;<a class="struct" href="../../phile/ast/struct.BinaryOp.html" title="struct phile::ast::BinaryOp">BinaryOp</a>&lt;'a&gt;&gt;)</code></span></span><span id='variant.Cast' class='variant'><span id='Cast.v' class='invisible'><code>Cast(<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;<a class="type" href="../../phile/ast/type.Exp.html" title="type phile::ast::Exp">Exp</a>&lt;'a&gt;&gt;,&nbsp;<a class="type" href="../../phile/ast/type.Ty.html" title="type phile::ast::Ty">Ty</a>&lt;'a&gt;)</code></span></span><span id='variant.UnaryPlus' class='variant'><span id='UnaryPlus.v' class='invisible'><code>UnaryPlus(<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;<a class="type" href="../../phile/ast/type.Exp.html" title="type phile::ast::Exp">Exp</a>&lt;'a&gt;&gt;)</code></span></span><span id='variant.UnaryMinus' class='variant'><span id='UnaryMinus.v' class='invisible'><code>UnaryMinus(<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;<a class="type" href="../../phile/ast/type.Exp.html" title="type phile::ast::Exp">Exp</a>&lt;'a&gt;&gt;)</code></span></span><span id='variant.LogicNot' class='variant'><span id='LogicNot.v' class='invisible'><code>LogicNot(<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;<a class="type" href="../../phile/ast/type.Exp.html" title="type phile::ast::Exp">Exp</a>&lt;'a&gt;&gt;)</code></span></span><span id='variant.Subscript' class='variant'><span id='Subscript.v' class='invisible'><code>Subscript(<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;<a class="struct" href="../../phile/ast/struct.Subscript.html" title="struct phile::ast::Subscript">Subscript</a>&lt;'a&gt;&gt;)</code></span></span><span id='variant.MemberAccess' class='variant'><span id='MemberAccess.v' class='invisible'><code>MemberAccess(<a class="struct" href="../../phile/ast/struct.MemberAccess.html" title="struct phile::ast::MemberAccess">MemberAccess</a>&lt;'a&gt;)</code></span></span><span id='variant.QualAccess' class='variant'><span id='QualAccess.v' class='invisible'><code>QualAccess(<a class="struct" href="../../phile/ast/struct.QualAccess.html" title="struct phile::ast::QualAccess">QualAccess</a>&lt;'a&gt;)</code></span></span><span id='variant.FuncCall' class='variant'><span id='FuncCall.v' class='invisible'><code>FuncCall(<a class="struct" href="../../phile/ast/struct.FuncCall.html" title="struct phile::ast::FuncCall">FuncCall</a>&lt;'a&gt;)</code></span></span><span id='variant.NilLiteral' class='variant'><span id='NilLiteral.v' class='invisible'><code>NilLiteral</code></span></span><span id='variant.BoolLiteral' class='variant'><span id='BoolLiteral.v' class='invisible'><code>BoolLiteral(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</code></span></span><span id='variant.IntLiteral' class='variant'><span id='IntLiteral.v' class='invisible'><code>IntLiteral(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a>)</code></span></span><span id='variant.FloatLiteral' class='variant'><span id='FloatLiteral.v' class='invisible'><code>FloatLiteral(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>)</code></span></span><span id='variant.StringLiteral' class='variant'><span id='StringLiteral.v' class='invisible'><code>StringLiteral(<a class="struct" href="https://doc.rust-lang.org/nightly/collections/string/struct.String.html" title="struct collections::string::String">String</a>)</code></span></span><span id='variant.Identifier' class='variant'><span id='Identifier.v' class='invisible'><code>Identifier(&amp;'a <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</code></span></span><span id='variant.TupleLiteral' class='variant'><span id='TupleLiteral.v' class='invisible'><code>TupleLiteral(<a class="struct" href="https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html" title="struct collections::vec::Vec">Vec</a>&lt;<a class="type" href="../../phile/ast/type.Exp.html" title="type phile::ast::Exp">Exp</a>&lt;'a&gt;&gt;)</code></span></span><span id='variant.ArrayLiteral' class='variant'><span id='ArrayLiteral.v' class='invisible'><code>ArrayLiteral(<a class="struct" href="https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html" title="struct collections::vec::Vec">Vec</a>&lt;<a class="type" href="../../phile/ast/type.Exp.html" title="type phile::ast::Exp">Exp</a>&lt;'a&gt;&gt;)</code></span></span><span id='variant.StructLiteral' class='variant'><span id='StructLiteral.v' class='invisible'><code>StructLiteral(<a class="struct" href="../../phile/ast/struct.StructLiteral.html" title="struct phile::ast::StructLiteral">StructLiteral</a>&lt;'a&gt;)</code></span></span><span id='variant.If' class='variant'><span id='If.v' class='invisible'><code>If(<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;<a class="struct" href="../../phile/ast/struct.If.html" title="struct phile::ast::If">If</a>&lt;'a&gt;&gt;)</code></span></span><span id='variant.Match' class='variant'><span id='Match.v' class='invisible'><code>Match(<a class="struct" href="../../phile/ast/struct.Match.html" title="struct phile::ast::Match">Match</a>&lt;'a&gt;)</code></span></span><span id='variant.Block' class='variant'><span id='Block.v' class='invisible'><code>Block(<a class="struct" href="https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html" title="struct collections::vec::Vec">Vec</a>&lt;<a class="type" href="../../phile/ast/type.Exp.html" title="type phile::ast::Exp">Exp</a>&lt;'a&gt;&gt;)</code></span></span><span id='variant.FuncExp' class='variant'><span id='FuncExp.v' class='invisible'><code>FuncExp(<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;<a class="struct" href="../../phile/ast/struct.Function.html" title="struct phile::ast::Function">Function</a>&lt;'a&gt;&gt;)</code></span></span><span id='variant.VarDecl' class='variant'><span id='VarDecl.v' class='invisible'><code>VarDecl(<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;<a class="struct" href="../../phile/ast/struct.VarDecl.html" title="struct phile::ast::VarDecl">VarDecl</a>&lt;'a&gt;&gt;)</code></span></span><span id='variant.Semi' class='variant'><span id='Semi.v' class='invisible'><code>Semi(<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;<a class="type" href="../../phile/ast/type.Exp.html" title="type phile::ast::Exp">Exp</a>&lt;'a&gt;&gt;)</code></span></span><span id='variant.Empty' class='variant'><span id='Empty.v' class='invisible'><code>Empty</code></span></span><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl&lt;'a&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="enum" href="../../phile/ast/enum.ExpKind.html" title="enum phile::ast::ExpKind">ExpKind</a>&lt;'a&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/phile/ast.rs.html#31' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class="method"><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html" title="type core::fmt::Result">Result</a></code></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter.</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "phile";
+    </script>
+    <script src="../../main.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>
