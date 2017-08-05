@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="Source to the Rust file `/Users/H2CO3/Projects/PHiLe/src/util.rs`.">
+    <meta name="description" content="Source to the Rust file `util.rs`.">
     <meta name="keywords" content="rust, rustlang, rust-lang">
 
     <title>util.rs.html -- source</title>
@@ -226,12 +226,6 @@
 <span id="181">181</span>
 <span id="182">182</span>
 <span id="183">183</span>
-<span id="184">184</span>
-<span id="185">185</span>
-<span id="186">186</span>
-<span id="187">187</span>
-<span id="188">188</span>
-<span id="189">189</span>
 </pre><pre class="rust ">
 <span class="comment">//</span>
 <span class="comment">// util.rs</span>
@@ -264,13 +258,6 @@
     })
 }
 
-<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">hash_map</span> {
-    ($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">k</span>: <span class="ident">expr</span> <span class="op">=&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">v</span>: <span class="ident">expr</span>),<span class="kw-2">*</span>) <span class="op">=&gt;</span> {
-        <span class="macro">assoc_map</span><span class="macro">!</span>(<span class="ident">HashMap</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">k</span> <span class="op">=&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">v</span>),<span class="kw-2">*</span>)
-    };
-    ($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">k</span>: <span class="ident">expr</span> <span class="op">=&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">v</span>: <span class="ident">expr</span>),<span class="op">+</span>,) <span class="op">=&gt;</span> { <span class="macro">hash_map</span><span class="macro">!</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">k</span> <span class="op">=&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">v</span>),<span class="op">+</span>) };
-}
-
 <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">btree_map</span> {
     ($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">k</span>: <span class="ident">expr</span> <span class="op">=&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">v</span>: <span class="ident">expr</span>),<span class="kw-2">*</span>) <span class="op">=&gt;</span> {
         <span class="macro">assoc_map</span><span class="macro">!</span>(<span class="ident">BTreeMap</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">k</span> <span class="op">=&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">v</span>),<span class="kw-2">*</span>)
@@ -296,18 +283,15 @@
     <span class="kw">pub</span> <span class="ident">error</span>:     <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RcCell</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="question-mark">?</span><span class="ident">Sized</span><span class="op">&gt;</span> {
     <span class="ident">ptr</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;&gt;</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WkCell</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="question-mark">?</span><span class="ident">Sized</span><span class="op">&gt;</span> {
     <span class="ident">ptr</span>: <span class="ident">Weak</span><span class="op">&lt;</span><span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;&gt;</span>,
 }
-
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WeakDisplay</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>: <span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="kw">pub</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">WkCell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
 
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PACKAGE_INFO</span>: <span class="ident">PackageInfo</span> <span class="op">=</span> <span class="ident">PackageInfo</span> {
     <span class="ident">name</span>:        <span class="macro">env</span><span class="macro">!</span>[<span class="string">&quot;CARGO_PKG_NAME&quot;</span>],
@@ -372,19 +356,29 @@
 <span class="comment">// TODO(H2CO3): implement this once { Unsize, CoerceUnsized } are stable</span>
 <span class="comment">// impl&lt;T: ?Sized + Unsize&lt;U&gt;, U: ?Sized&gt; CoerceUnsized&lt;RcCell&lt;U&gt;&gt; for RcCell&lt;T&gt; {}</span>
 
-<span class="comment">// Tests equality based on pointer identity</span>
+<span class="doccomment">/// Tests equality based on pointer identity</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">PartialEq</span> <span class="kw">for</span> <span class="ident">RcCell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">ptr</span>.<span class="ident">as_ptr</span>() <span class="op">==</span> <span class="ident">other</span>.<span class="ident">ptr</span>.<span class="ident">as_ptr</span>()
+        <span class="ident">Rc</span>::<span class="ident">ptr_eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">ptr</span>, <span class="kw-2">&amp;</span><span class="ident">other</span>.<span class="ident">ptr</span>)
     }
 }
 
+<span class="doccomment">/// Tests equality based on pointer identity</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">Eq</span> <span class="kw">for</span> <span class="ident">RcCell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {}
 
-<span class="comment">// Hashes the pointer address itself</span>
+<span class="doccomment">/// Hashes the pointer address itself</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">Hash</span> <span class="kw">for</span> <span class="ident">RcCell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">hash</span><span class="op">&lt;</span><span class="ident">H</span>: <span class="ident">Hasher</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">hasher</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">H</span>) {
         <span class="self">self</span>.<span class="ident">ptr</span>.<span class="ident">as_ptr</span>().<span class="ident">hash</span>(<span class="ident">hasher</span>)
+    }
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">Display</span> <span class="kw">for</span> <span class="ident">RcCell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">Display</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Formatter</span>) <span class="op">-&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">borrow</span>() {
+            <span class="prelude-val">Ok</span>(<span class="ident">ptr</span>) <span class="op">=&gt;</span> <span class="ident">ptr</span>.<span class="ident">fmt</span>(<span class="ident">f</span>),
+            <span class="prelude-val">Err</span>(_)  <span class="op">=&gt;</span> <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="string">&quot;&lt;cannot borrow RcCell&gt;&quot;</span>),
+        }
     }
 }
 
@@ -408,18 +402,12 @@
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span> <span class="ident">Display</span> <span class="kw">for</span> <span class="ident">WeakDisplay</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span> <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">Display</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">Display</span> <span class="kw">for</span> <span class="ident">WkCell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="kw">where</span> <span class="ident">RcCell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>: <span class="ident">Display</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Formatter</span>) <span class="op">-&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
-        <span class="kw">let</span> <span class="ident">rc</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="number">0</span>.<span class="ident">as_rc</span>() {
-            <span class="prelude-val">Ok</span>(<span class="ident">rc</span>) <span class="op">=&gt;</span> <span class="ident">rc</span>,
-            <span class="prelude-val">Err</span>(_) <span class="op">=&gt;</span> <span class="kw">return</span> <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="string">&quot;&lt;cannot strongify&gt;&quot;</span>),
-        };
-        <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">rc</span>.<span class="ident">borrow</span>() {
-            <span class="prelude-val">Ok</span>(<span class="ident">ptr</span>) <span class="op">=&gt;</span> <span class="ident">ptr</span>,
-            <span class="prelude-val">Err</span>(_)  <span class="op">=&gt;</span> <span class="kw">return</span> <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="string">&quot;&lt;cannot borrow&gt;&quot;</span>),
-        };
-
-        <span class="ident">Display</span>::<span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">ptr</span>, <span class="ident">f</span>)
+        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">as_rc</span>() {
+            <span class="prelude-val">Ok</span>(<span class="ident">rc</span>) <span class="op">=&gt;</span> <span class="ident">rc</span>.<span class="ident">fmt</span>(<span class="ident">f</span>),
+            <span class="prelude-val">Err</span>(_) <span class="op">=&gt;</span> <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="string">&quot;&lt;cannot strongify WkCell&gt;&quot;</span>),
+        }
     }
 }
 </pre>

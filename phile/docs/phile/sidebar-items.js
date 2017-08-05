@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["ast",""],["codegen",""],["dalgen",""],["declgen",""],["error",""],["lexer",""],["parser",""],["sqir",""],["sqirgen",""],["sqiropt",""],["util",""]]});
+initSidebarItems({"mod":[["ast",""],["codegen",""],["dalgen",""],["error",""],["lexer",""],["parser",""],["sqir",""],["sqirgen",""],["sqiropt",""],["util",""]]});

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="Source to the Rust file `/Users/H2CO3/Projects/PHiLe/src/parser.rs`.">
+    <meta name="description" content="Source to the Rust file `parser.rs`.">
     <meta name="keywords" content="rust, rustlang, rust-lang">
 
     <title>parser.rs.html -- source</title>
@@ -940,6 +940,43 @@
 <span id="895">895</span>
 <span id="896">896</span>
 <span id="897">897</span>
+<span id="898">898</span>
+<span id="899">899</span>
+<span id="900">900</span>
+<span id="901">901</span>
+<span id="902">902</span>
+<span id="903">903</span>
+<span id="904">904</span>
+<span id="905">905</span>
+<span id="906">906</span>
+<span id="907">907</span>
+<span id="908">908</span>
+<span id="909">909</span>
+<span id="910">910</span>
+<span id="911">911</span>
+<span id="912">912</span>
+<span id="913">913</span>
+<span id="914">914</span>
+<span id="915">915</span>
+<span id="916">916</span>
+<span id="917">917</span>
+<span id="918">918</span>
+<span id="919">919</span>
+<span id="920">920</span>
+<span id="921">921</span>
+<span id="922">922</span>
+<span id="923">923</span>
+<span id="924">924</span>
+<span id="925">925</span>
+<span id="926">926</span>
+<span id="927">927</span>
+<span id="928">928</span>
+<span id="929">929</span>
+<span id="930">930</span>
+<span id="931">931</span>
+<span id="932">932</span>
+<span id="933">933</span>
+<span id="934">934</span>
 </pre><pre class="rust ">
 <span class="comment">//</span>
 <span class="comment">// parser.rs</span>
@@ -956,15 +993,16 @@
 <span class="kw">use</span> <span class="ident">util</span>::<span class="ident">unescape_string_literal</span>;
 
 
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">struct</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="ident">tokens</span>: <span class="ident">slice</span>::<span class="ident">Iter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Token</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;&gt;</span>,
 }
 
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ProgResult</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Prog</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;&gt;</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ItemResult</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Item</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;&gt;</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ExpResult</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>  <span class="op">=</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Exp</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;&gt;</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">TyResult</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>   <span class="op">=</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Ty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;&gt;</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LexResult</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>  <span class="op">=</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">Token</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;&gt;</span>;
+<span class="kw">type</span> <span class="ident">ProgResult</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Prog</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;&gt;</span>;
+<span class="kw">type</span> <span class="ident">ItemResult</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Item</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;&gt;</span>;
+<span class="kw">type</span> <span class="ident">ExpResult</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>  <span class="op">=</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Exp</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;&gt;</span>;
+<span class="kw">type</span> <span class="ident">TyResult</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>   <span class="op">=</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Ty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;&gt;</span>;
+<span class="kw">type</span> <span class="ident">LexResult</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>  <span class="op">=</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">Token</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;&gt;</span>;
 
 
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="ident">tokens</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">Token</span>]) <span class="op">-&gt;</span> <span class="ident">ProgResult</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
@@ -1520,16 +1558,8 @@
             <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident">Exp</span> { <span class="ident">kind</span>, <span class="ident">range</span> });
         }
 
-        <span class="comment">// If the lexeme contains a decimal point or an exponent,</span>
-        <span class="comment">// then it&#39;s floating-point, otherwise it&#39;s an integer.</span>
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">token</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">accept_of_kind</span>(<span class="ident">TokenKind</span>::<span class="ident">NumericLiteral</span>) {
-            <span class="kw">let</span> <span class="ident">range</span> <span class="op">=</span> <span class="ident">token</span>.<span class="ident">range</span>;
-            <span class="kw">let</span> <span class="ident">kind</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">token</span>.<span class="ident">value</span>.<span class="ident">contains</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="string">&quot;eE.&quot;</span>.<span class="ident">contains</span>(<span class="ident">c</span>)) {
-                <span class="ident">ExpKind</span>::<span class="ident">FloatLiteral</span>(<span class="ident">token</span>.<span class="ident">value</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>)
-            } <span class="kw">else</span> {
-                <span class="ident">ExpKind</span>::<span class="ident">IntLiteral</span>(<span class="ident">token</span>.<span class="ident">value</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>)
-            };
-            <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident">Exp</span> { <span class="ident">kind</span>, <span class="ident">range</span> });
+            <span class="kw">return</span> <span class="self">Self</span>::<span class="ident">parse_numeric_literal</span>(<span class="ident">token</span>);
         }
 
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">token</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">accept_of_kind</span>(<span class="ident">TokenKind</span>::<span class="ident">StringLiteral</span>) {
@@ -1548,6 +1578,72 @@
         <span class="prelude-val">Err</span>(<span class="self">self</span>.<span class="ident">expectation_error</span>(<span class="string">&quot;literal or identifier&quot;</span>))
     }
 
+    <span class="comment">// Helper for parse_atomic_expr</span>
+    <span class="kw">fn</span> <span class="ident">parse_numeric_literal</span>(<span class="ident">token</span>: <span class="kw-2">&amp;</span><span class="ident">Token</span>) <span class="op">-&gt;</span> <span class="ident">ExpResult</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">token</span>.<span class="ident">kind</span> <span class="op">==</span> <span class="ident">TokenKind</span>::<span class="ident">NumericLiteral</span>);
+
+        <span class="comment">// If the lexeme contains a decimal point or an exponent,</span>
+        <span class="comment">// then it&#39;s floating-point, otherwise it&#39;s an integer.</span>
+        <span class="kw">let</span> <span class="ident">float_chars</span>: <span class="kw-2">&amp;</span>[<span class="ident">char</span>] <span class="op">=</span> <span class="kw-2">&amp;</span>[<span class="string">&#39;.&#39;</span>, <span class="string">&#39;e&#39;</span>, <span class="string">&#39;E&#39;</span>];
+
+        <span class="kw">let</span> <span class="ident">kind</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">token</span>.<span class="ident">value</span>.<span class="ident">contains</span>(<span class="ident">float_chars</span>) {
+            <span class="self">Self</span>::<span class="ident">parse_float_literal</span>(<span class="ident">token</span>)<span class="question-mark">?</span>
+        } <span class="kw">else</span> {
+            <span class="self">Self</span>::<span class="ident">parse_int_literal</span>(<span class="ident">token</span>)<span class="question-mark">?</span>
+        };
+
+        <span class="kw">let</span> <span class="ident">range</span> <span class="op">=</span> <span class="ident">token</span>.<span class="ident">range</span>;
+
+        <span class="prelude-val">Ok</span>(<span class="ident">Exp</span> { <span class="ident">kind</span>, <span class="ident">range</span> })
+    }
+
+    <span class="comment">// Helper for parse_numeric_literal</span>
+    <span class="kw">fn</span> <span class="ident">parse_float_literal</span>(<span class="ident">token</span>: <span class="kw-2">&amp;</span><span class="ident">Token</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ExpKind</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;&gt;</span> {
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">token</span>.<span class="ident">kind</span> <span class="op">==</span> <span class="ident">TokenKind</span>::<span class="ident">NumericLiteral</span>);
+
+        <span class="kw">let</span> <span class="ident">lexeme</span> <span class="op">=</span> <span class="ident">token</span>.<span class="ident">value</span>;
+
+        <span class="ident">lexeme</span>.<span class="ident">parse</span>()
+            .<span class="ident">map</span>(<span class="ident">ExpKind</span>::<span class="ident">FloatLiteral</span>)
+            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">Error</span>::<span class="ident">Syntax</span> {
+                <span class="ident">message</span>: <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;Cannot parse float literal &#39;{}&#39;: {}&quot;</span>, <span class="ident">lexeme</span>, <span class="ident">err</span>),
+                <span class="ident">range</span>: <span class="prelude-val">Some</span>(<span class="ident">token</span>.<span class="ident">range</span>),
+            })
+    }
+
+    <span class="comment">// Helper for parse_numeric_literal</span>
+    <span class="kw">fn</span> <span class="ident">parse_int_literal</span>(<span class="ident">token</span>: <span class="kw-2">&amp;</span><span class="ident">Token</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ExpKind</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;&gt;</span> {
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">token</span>.<span class="ident">kind</span> <span class="op">==</span> <span class="ident">TokenKind</span>::<span class="ident">NumericLiteral</span>);
+
+        <span class="kw">let</span> <span class="ident">radix_map</span> <span class="op">=</span> [
+            (<span class="string">&quot;0b&quot;</span>,  <span class="number">2</span>),
+            (<span class="string">&quot;0B&quot;</span>,  <span class="number">2</span>),
+            (<span class="string">&quot;0o&quot;</span>,  <span class="number">8</span>),
+            (<span class="string">&quot;0O&quot;</span>,  <span class="number">8</span>),
+            (<span class="string">&quot;0x&quot;</span>, <span class="number">16</span>),
+            (<span class="string">&quot;0X&quot;</span>, <span class="number">16</span>),
+        ];
+
+        <span class="kw">for</span> <span class="kw-2">&amp;</span>(<span class="ident">prefix</span>, <span class="ident">radix</span>) <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">radix_map</span> {
+            <span class="kw">if</span> <span class="ident">token</span>.<span class="ident">value</span>.<span class="ident">starts_with</span>(<span class="ident">prefix</span>) {
+                <span class="kw">let</span> <span class="ident">lexeme</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">token</span>.<span class="ident">value</span>[<span class="ident">prefix</span>.<span class="ident">len</span>()..];
+                <span class="kw">return</span> <span class="self">Self</span>::<span class="ident">parse_int_with_radix</span>(<span class="ident">lexeme</span>, <span class="ident">radix</span>, <span class="ident">token</span>.<span class="ident">range</span>);
+            }
+        }
+
+        <span class="self">Self</span>::<span class="ident">parse_int_with_radix</span>(<span class="ident">token</span>.<span class="ident">value</span>, <span class="number">10</span>, <span class="ident">token</span>.<span class="ident">range</span>)
+    }
+
+    <span class="comment">// helper for parse_int_literal</span>
+    <span class="kw">fn</span> <span class="ident">parse_int_with_radix</span>(<span class="ident">lexeme</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">radix</span>: <span class="ident">u32</span>, <span class="ident">range</span>: <span class="ident">Range</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ExpKind</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;&gt;</span> {
+        <span class="ident">u64</span>::<span class="ident">from_str_radix</span>(<span class="ident">lexeme</span>, <span class="ident">radix</span>)
+            .<span class="ident">map</span>(<span class="ident">ExpKind</span>::<span class="ident">IntLiteral</span>)
+            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">Error</span>::<span class="ident">Syntax</span> {
+                <span class="ident">message</span>: <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;Cannot parse integer literal &#39;{}&#39;: {}&quot;</span>, <span class="ident">lexeme</span>, <span class="ident">err</span>),
+                <span class="ident">range</span>: <span class="prelude-val">Some</span>(<span class="ident">range</span>),
+            })
+    }
+
     <span class="kw">fn</span> <span class="ident">parse_tuple_expr</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">ExpResult</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
         <span class="kw">let</span> (<span class="ident">exprs</span>, <span class="ident">range</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">parse_paren_delim</span>(<span class="string">&quot;(&quot;</span>, <span class="self">Self</span>::<span class="ident">parse_expr</span>, <span class="string">&quot;,&quot;</span>, <span class="string">&quot;)&quot;</span>)<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">kind</span> <span class="op">=</span> <span class="ident">ExpKind</span>::<span class="ident">TupleLiteral</span>(<span class="ident">exprs</span>);
@@ -1558,10 +1654,6 @@
         <span class="kw">let</span> (<span class="ident">exprs</span>, <span class="ident">range</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">parse_paren_delim</span>(<span class="string">&quot;[&quot;</span>, <span class="self">Self</span>::<span class="ident">parse_expr</span>, <span class="string">&quot;,&quot;</span>, <span class="string">&quot;]&quot;</span>)<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">kind</span> <span class="op">=</span> <span class="ident">ExpKind</span>::<span class="ident">ArrayLiteral</span>(<span class="ident">exprs</span>);
         <span class="prelude-val">Ok</span>(<span class="ident">Exp</span> { <span class="ident">kind</span>, <span class="ident">range</span> })
-    }
-
-    <span class="kw">fn</span> <span class="ident">parse_struct_expr</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">ExpResult</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="macro">unimplemented</span><span class="macro">!</span>()
     }
 
     <span class="kw">fn</span> <span class="ident">parse_func_expr</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">ExpResult</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
@@ -1652,24 +1744,6 @@
         }
 
         <span class="prelude-val">Ok</span>(<span class="ident">lhs</span>)
-    }
-
-    <span class="kw">fn</span> <span class="ident">parse_binop_rightassoc</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tokens</span>: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="ident">str</span>], <span class="ident">subexpr</span>: <span class="ident">F</span>) <span class="op">-&gt;</span> <span class="ident">ExpResult</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>
-        <span class="kw">where</span> <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span>) <span class="op">-&gt;</span> <span class="ident">ExpResult</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-
-        <span class="kw">let</span> <span class="ident">lhs</span> <span class="op">=</span> <span class="ident">subexpr</span>(<span class="self">self</span>)<span class="question-mark">?</span>;
-
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">token</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">accept_one_of</span>(<span class="ident">tokens</span>) {
-            <span class="kw">let</span> <span class="ident">rhs</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">parse_binop_rightassoc</span>(<span class="ident">tokens</span>, <span class="ident">subexpr</span>)<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">range</span> <span class="op">=</span> <span class="ident">make_range</span>(<span class="kw-2">&amp;</span><span class="ident">lhs</span>, <span class="kw-2">&amp;</span><span class="ident">rhs</span>);
-            <span class="kw">let</span> <span class="ident">op</span> <span class="op">=</span> <span class="ident">token</span>.<span class="ident">value</span>;
-            <span class="kw">let</span> <span class="ident">expr</span> <span class="op">=</span> <span class="ident">BinaryOp</span> { <span class="ident">op</span>, <span class="ident">lhs</span>, <span class="ident">rhs</span> };
-            <span class="kw">let</span> <span class="ident">kind</span> <span class="op">=</span> <span class="ident">ExpKind</span>::<span class="ident">BinaryOp</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">expr</span>));
-
-            <span class="prelude-val">Ok</span>(<span class="ident">Exp</span> { <span class="ident">kind</span>, <span class="ident">range</span> })
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Ok</span>(<span class="ident">lhs</span>)
-        }
     }
 
     <span class="kw">fn</span> <span class="ident">parse_binop_noassoc</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tokens</span>: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="ident">str</span>], <span class="ident">subexpr</span>: <span class="ident">F</span>) <span class="op">-&gt;</span> <span class="ident">ExpResult</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>

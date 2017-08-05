@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["parse",""]],"type":[["ExpResult",""],["ItemResult",""],["LexResult",""],["ProgResult",""],["TyResult",""]]});
+initSidebarItems({"fn":[["parse",""]]});

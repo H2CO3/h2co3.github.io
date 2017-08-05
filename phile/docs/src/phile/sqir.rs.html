@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="Source to the Rust file `/Users/H2CO3/Projects/PHiLe/src/sqir.rs`.">
+    <meta name="description" content="Source to the Rust file `sqir.rs`.">
     <meta name="keywords" content="rust, rustlang, rust-lang">
 
     <title>sqir.rs.html -- source</title>
@@ -562,6 +562,11 @@
 <span id="517">517</span>
 <span id="518">518</span>
 <span id="519">519</span>
+<span id="520">520</span>
+<span id="521">521</span>
+<span id="522">522</span>
+<span id="523">523</span>
+<span id="524">524</span>
 </pre><pre class="rust ">
 <span class="comment">//</span>
 <span class="comment">// sqir.rs</span>
@@ -607,6 +612,9 @@
     <span class="ident">date_name</span>:    <span class="string">&quot;Date&quot;</span>,
 };
 
+<span class="doccomment">/// `Type` is deliberately not Clone, PartialEq and Eq:</span>
+<span class="doccomment">/// it is meant to be used only with RcCell/WkCell,</span>
+<span class="doccomment">/// and its instances should be compared by address.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Type</span> {
     <span class="comment">// Numeric and Complex Built-in Types</span>
@@ -643,7 +651,7 @@
     },
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">PlaceholderKind</span> {
     <span class="ident">Struct</span>,
     <span class="ident">Class</span>,
@@ -664,7 +672,7 @@
 <span class="comment">// * Value types are enums, structs, and tuples.</span>
 <span class="comment">// * Entity types are only classes (for now).</span>
 <span class="comment">// * Function types are... function types, obviously.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ComplexTypeKind</span> {
     <span class="ident">Value</span>,
     <span class="ident">Entity</span>,
@@ -706,7 +714,7 @@
     <span class="kw">pub</span> <span class="ident">cardinality</span>: <span class="ident">Cardinality</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Cardinality</span> {
     <span class="ident">ZeroOrOne</span>,
     <span class="ident">One</span>,
@@ -837,7 +845,9 @@
     <span class="ident">Max</span>(<span class="ident">RcType</span>, <span class="ident">String</span>),
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="doccomment">/// `ExprId` is deliberately not Clone:</span>
+<span class="doccomment">/// there should never be any two identical ExprIds.</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ExprId</span> {
     <span class="ident">Temp</span>(<span class="ident">usize</span>),
     <span class="ident">Local</span>(<span class="ident">String</span>),
@@ -898,7 +908,7 @@
 <span class="comment">//</span>
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SQIR</span> {
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Sqir</span> {
     <span class="kw">pub</span> <span class="ident">named_types</span>:    <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">RcType</span><span class="op">&gt;</span>,
     <span class="kw">pub</span> <span class="ident">decimal_types</span>:  <span class="ident">HashMap</span><span class="op">&lt;</span>(<span class="ident">usize</span>, <span class="ident">usize</span>), <span class="ident">RcType</span><span class="op">&gt;</span>,
     <span class="kw">pub</span> <span class="ident">optional_types</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">RcType</span>, <span class="ident">RcType</span><span class="op">&gt;</span>,
@@ -916,7 +926,7 @@
 
     <span class="kw">for</span> (<span class="ident">index</span>, <span class="ident">ty</span>) <span class="kw">in</span> <span class="ident">types</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
         <span class="kw">let</span> <span class="ident">sep</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">index</span> <span class="op">&gt;</span> <span class="number">0</span> { <span class="string">&quot;, &quot;</span> } <span class="kw">else</span> { <span class="string">&quot;&quot;</span> };
-        <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;{}{}&quot;</span>, <span class="ident">sep</span>, <span class="ident">WeakDisplay</span>(<span class="ident">ty</span>))<span class="question-mark">?</span>
+        <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;{}{}&quot;</span>, <span class="ident">sep</span>, <span class="ident">ty</span>)<span class="question-mark">?</span>
     }
 
     <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="string">&quot;)&quot;</span>)
@@ -946,17 +956,17 @@
                 <span class="ident">write_decimal_type</span>(<span class="ident">f</span>, <span class="ident">integral</span>, <span class="ident">fractional</span>)
             },
             <span class="ident">Type</span>::<span class="ident">Optional</span>(<span class="kw-2">ref</span> <span class="ident">wrapped</span>) <span class="op">=&gt;</span> {
-                <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;({})?&quot;</span>, <span class="ident">WeakDisplay</span>(<span class="ident">wrapped</span>))
+                <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;({})?&quot;</span>, <span class="ident">wrapped</span>)
             },
             <span class="ident">Type</span>::<span class="ident">Pointer</span>(<span class="kw-2">ref</span> <span class="ident">pointed</span>) <span class="op">=&gt;</span> {
-                <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;&amp;({})&quot;</span>, <span class="ident">WeakDisplay</span>(<span class="ident">pointed</span>))
+                <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;&amp;({})&quot;</span>, <span class="ident">pointed</span>)
             },
             <span class="ident">Type</span>::<span class="ident">Array</span>(<span class="kw-2">ref</span> <span class="ident">element</span>) <span class="op">=&gt;</span> {
-                <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;[{}]&quot;</span>, <span class="ident">WeakDisplay</span>(<span class="ident">element</span>))
+                <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;[{}]&quot;</span>, <span class="ident">element</span>)
             },
             <span class="ident">Type</span>::<span class="ident">Function</span>(<span class="kw-2">ref</span> <span class="ident">ty</span>) <span class="op">=&gt;</span> {
                 <span class="ident">write_many_types</span>(<span class="ident">f</span>, <span class="kw-2">&amp;</span><span class="ident">ty</span>.<span class="ident">arg_types</span>)<span class="question-mark">?</span>;
-                <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot; -&gt; {}&quot;</span>, <span class="ident">WeakDisplay</span>(<span class="kw-2">&amp;</span><span class="ident">ty</span>.<span class="ident">ret_type</span>))
+                <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot; -&gt; {}&quot;</span>, <span class="ident">ty</span>.<span class="ident">ret_type</span>)
             },
             <span class="ident">Type</span>::<span class="ident">Placeholder</span> { <span class="kw-2">ref</span> <span class="ident">name</span>, <span class="ident">kind</span> } <span class="op">=&gt;</span> {
                 <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;Placeholder({}, kind: {})&quot;</span>, <span class="ident">name</span>, <span class="ident">kind</span>)
@@ -1046,8 +1056,8 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">SQIR</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="ident">SQIR</span> {
+<span class="kw">impl</span> <span class="ident">Sqir</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="ident">Sqir</span> {
         <span class="kw">let</span> <span class="ident">named_types</span> <span class="op">=</span> <span class="macro">btree_map</span><span class="macro">!</span>[
             <span class="ident">BUILTIN_NAME</span>.<span class="ident">bool_name</span>   <span class="op">=&gt;</span> <span class="ident">RcCell</span>::<span class="ident">new</span>(<span class="ident">Type</span>::<span class="ident">Bool</span>),
             <span class="ident">BUILTIN_NAME</span>.<span class="ident">int_name</span>    <span class="op">=&gt;</span> <span class="ident">RcCell</span>::<span class="ident">new</span>(<span class="ident">Type</span>::<span class="ident">Int</span>),
@@ -1057,7 +1067,7 @@
             <span class="ident">BUILTIN_NAME</span>.<span class="ident">date_name</span>   <span class="op">=&gt;</span> <span class="ident">RcCell</span>::<span class="ident">new</span>(<span class="ident">Type</span>::<span class="ident">Date</span>),
         ];
 
-        <span class="ident">SQIR</span> {
+        <span class="ident">Sqir</span> {
             <span class="ident">named_types</span>:    <span class="ident">named_types</span>,
             <span class="ident">decimal_types</span>:  <span class="ident">HashMap</span>::<span class="ident">new</span>(),
             <span class="ident">optional_types</span>: <span class="ident">HashMap</span>::<span class="ident">new</span>(),

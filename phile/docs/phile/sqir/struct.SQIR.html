@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="API documentation for the Rust `SQIR` struct in crate `phile`.">
-    <meta name="keywords" content="rust, rustlang, rust-lang, SQIR">
+    <meta name="description" content="API documentation for the Rust `Sqir` struct in crate `phile`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Sqir">
 
-    <title>phile::sqir::SQIR - Rust</title>
+    <title>phile::sqir::Sqir - Rust</title>
 
     <link rel="stylesheet" type="text/css" href="../../normalize.css">
     <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
@@ -29,7 +29,7 @@
 
     <nav class="sidebar">
         
-        <p class='location'>Struct SQIR</p><div class="block items"><ul><li><a href="#fields">Fields</a></li><li><a href="#methods">Methods</a></li><li><a href="#implementations">Trait Implementations</a></li></ul></div><p class='location'><a href='../index.html'>phile</a>::<wbr><a href='index.html'>sqir</a></p><script>window.sidebarCurrent = {name: 'SQIR', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+        <p class='location'>Struct Sqir</p><div class="block items"><ul><li><a href="#fields">Fields</a></li><li><a href="#methods">Methods</a></li><li><a href="#implementations">Trait Implementations</a></li></ul></div><p class='location'><a href='../index.html'>phile</a>::<wbr><a href='index.html'>sqir</a></p><script>window.sidebarCurrent = {name: 'Sqir', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
     </nav>
 
     <nav class="sub">
@@ -44,12 +44,12 @@
     </nav>
 
     <section id='main' class="content">
-<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>phile</a>::<wbr><a href='index.html'>sqir</a>::<wbr><a class="struct" href=''>SQIR</a></span><span class='out-of-band'><span id='render-detail'>
+<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>phile</a>::<wbr><a href='index.html'>sqir</a>::<wbr><a class="struct" href=''>Sqir</a></span><span class='out-of-band'><span id='render-detail'>
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../../src/phile/sqir.rs.html#336-346' title='goto source code'>[src]</a></span></h1>
-<pre class='rust struct'>pub struct SQIR {
+               </span><a class='srclink' href='../../src/phile/sqir.rs.html#341-351' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Sqir {
     pub named_types: <a class="struct" href="https://doc.rust-lang.org/nightly/collections/btree/map/struct.BTreeMap.html" title="struct collections::btree::map::BTreeMap">BTreeMap</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/collections/string/struct.String.html" title="struct collections::string::String">String</a>, <a class="type" href="../../phile/sqir/type.RcType.html" title="type phile::sqir::RcType">RcType</a>&gt;,
     pub decimal_types: <a class="struct" href="https://doc.rust-lang.org/nightly/std/collections/hash/map/struct.HashMap.html" title="struct std::collections::hash::map::HashMap">HashMap</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>, <a class="type" href="../../phile/sqir/type.RcType.html" title="type phile::sqir::RcType">RcType</a>&gt;,
     pub optional_types: <a class="struct" href="https://doc.rust-lang.org/nightly/std/collections/hash/map/struct.HashMap.html" title="struct std::collections::hash::map::HashMap">HashMap</a>&lt;<a class="type" href="../../phile/sqir/type.RcType.html" title="type phile::sqir::RcType">RcType</a>, <a class="type" href="../../phile/sqir/type.RcType.html" title="type phile::sqir::RcType">RcType</a>&gt;,
@@ -86,10 +86,10 @@
                            </span></span><span id='structfield.globals' class="structfield">
                            <span id='globals.v' class='invisible'>
                            <code>globals: <a class="struct" href="https://doc.rust-lang.org/nightly/collections/btree/map/struct.BTreeMap.html" title="struct collections::btree::map::BTreeMap">BTreeMap</a>&lt;<a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/collections/string/struct.String.html" title="struct collections::string::String">String</a>&gt;, <a class="struct" href="https://doc.rust-lang.org/nightly/collections/btree/map/struct.BTreeMap.html" title="struct collections::btree::map::BTreeMap">BTreeMap</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/collections/string/struct.String.html" title="struct collections::string::String">String</a>, <a class="type" href="../../phile/sqir/type.RcExpr.html" title="type phile::sqir::RcExpr">RcExpr</a>&gt;&gt;</code>
-                           </span></span><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class="struct" href="../../phile/sqir/struct.SQIR.html" title="struct phile::sqir::SQIR">SQIR</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/phile/sqir.rs.html#484-519' title='goto source code'>[src]</a></span></h3>
-<div class='impl-items'><h4 id='method.new' class="method"><span id='new.v' class='invisible'><code>fn <a href='#method.new' class='fnname'>new</a>() -&gt; <a class="struct" href="../../phile/sqir/struct.SQIR.html" title="struct phile::sqir::SQIR">SQIR</a></code></span></h4>
+                           </span></span><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class="struct" href="../../phile/sqir/struct.Sqir.html" title="struct phile::sqir::Sqir">Sqir</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/phile/sqir.rs.html#489-524' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.new' class="method"><span id='new.v' class='invisible'><code>fn <a href='#method.new' class='fnname'>new</a>() -&gt; <a class="struct" href="../../phile/sqir/struct.Sqir.html" title="struct phile::sqir::Sqir">Sqir</a></code></span></h4>
 <h4 id='method.unique_relations' class="method"><span id='unique_relations.v' class='invisible'><code>fn <a href='#method.unique_relations' class='fnname'>unique_relations</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/collections/btree/set/struct.BTreeSet.html" title="struct collections::btree::set::BTreeSet">BTreeSet</a>&lt;&amp;<a class="struct" href="../../phile/sqir/struct.Relation.html" title="struct phile::sqir::Relation">Relation</a>&gt;</code></span></h4>
-</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="../../phile/sqir/struct.SQIR.html" title="struct phile::sqir::SQIR">SQIR</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/phile/sqir.rs.html#335' title='goto source code'>[src]</a></span></h3>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="../../phile/sqir/struct.Sqir.html" title="struct phile::sqir::Sqir">Sqir</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/phile/sqir.rs.html#340' title='goto source code'>[src]</a></span></h3>
 <div class='impl-items'><h4 id='method.fmt' class="method"><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html" title="type core::fmt::Result">Result</a></code></span></h4>
 <div class='docblock'><p>Formats the value using the given formatter.</p>
 </div></div></section>

@@ -48,7 +48,7 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../../src/phile/sqir.rs.html#9-519' title='goto source code'>[src]</a></span></h1>
+               </span><a class='srclink' href='../../src/phile/sqir.rs.html#9-524' title='goto source code'>[src]</a></span></h1>
 <h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
                        <tr class=' module-item'>
@@ -150,15 +150,15 @@
                            </td>
                        </tr>
                        <tr class=' module-item'>
-                           <td><a class="struct" href="struct.SQIR.html"
-                                  title='struct phile::sqir::SQIR'>SQIR</a></td>
+                           <td><a class="struct" href="struct.Sort.html"
+                                  title='struct phile::sqir::Sort'>Sort</a></td>
                            <td class='docblock-short'>
                                 
                            </td>
                        </tr>
                        <tr class=' module-item'>
-                           <td><a class="struct" href="struct.Sort.html"
-                                  title='struct phile::sqir::Sort'>Sort</a></td>
+                           <td><a class="struct" href="struct.Sqir.html"
+                                  title='struct phile::sqir::Sqir'>Sqir</a></td>
                            <td class='docblock-short'>
                                 
                            </td>
@@ -189,7 +189,8 @@
                            <td><a class="enum" href="enum.ExprId.html"
                                   title='enum phile::sqir::ExprId'>ExprId</a></td>
                            <td class='docblock-short'>
-                                
+                                <p><code>ExprId</code> is deliberately not Clone:
+there should never be any two identical ExprIds.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
@@ -203,7 +204,9 @@
                            <td><a class="enum" href="enum.Type.html"
                                   title='enum phile::sqir::Type'>Type</a></td>
                            <td class='docblock-short'>
-                                
+                                <p><code>Type</code> is deliberately not Clone, PartialEq and Eq:
+it is meant to be used only with RcCell/WkCell,
+and its instances should be compared by address.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
