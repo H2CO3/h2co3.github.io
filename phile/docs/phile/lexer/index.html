@@ -48,28 +48,29 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../../src/phile/lexer.rs.html#9-176' title='goto source code'>[src]</a></span></h1>
+               </span><a class='srclink' href='../../src/phile/lexer.rs.html#9-211' title='goto source code'>[src]</a></span></h1>
 <h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.Location.html"
                                   title='struct phile::lexer::Location'>Location</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Represents the location of a single extended grapheme cluster
+in the sources fed to the lexer.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.Range.html"
                                   title='struct phile::lexer::Range'>Range</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>A half-open range representing a source span.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.Token.html"
                                   title='struct phile::lexer::Token'>Token</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Represents a lexeme and its associated type and location information as an abstract token.</p>
                            </td>
                        </tr></table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
 <table>
@@ -77,7 +78,7 @@
                            <td><a class="enum" href="enum.TokenKind.html"
                                   title='enum phile::lexer::TokenKind'>TokenKind</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Describes the type of a single token or lexeme.</p>
                            </td>
                        </tr></table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
 <table>
@@ -85,7 +86,9 @@
                            <td><a class="trait" href="trait.Ranged.html"
                                   title='trait phile::lexer::Ranged'>Ranged</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>This trait is to be implemented by entities that correspond
+to some range in the source. This is used for generating
+location information in user-visible error messages.</p>
                            </td>
                        </tr></table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
 <table>
@@ -93,7 +96,9 @@
                            <td><a class="fn" href="fn.lex.html"
                                   title='fn phile::lexer::lex'>lex</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Given an array of source strings, returns an array of tokens
+extracted from those strings, or an error if there is a syntactic
+(more precisely, lexical) error in any of the source strings.</p>
                            </td>
                        </tr></table></section>
     <section id='search' class="content hidden"></section>

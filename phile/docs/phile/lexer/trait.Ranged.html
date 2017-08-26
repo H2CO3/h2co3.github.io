@@ -48,13 +48,17 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../../src/phile/lexer.rs.html#28-30' title='goto source code'>[src]</a></span></h1>
+               </span><a class='srclink' href='../../src/phile/lexer.rs.html#39-42' title='goto source code'>[src]</a></span></h1>
 <pre class='rust trait'>pub trait Ranged {
     fn <a href='#tymethod.range' class='fnname'>range</a>(&amp;self) -&gt; <a class="struct" href="../../phile/lexer/struct.Range.html" title="struct phile::lexer::Range">Range</a>;
-}</pre>
+}</pre><div class='docblock'><p>This trait is to be implemented by entities that correspond
+to some range in the source. This is used for generating
+location information in user-visible error messages.</p>
+</div>
             <h2 id='required-methods'>Required Methods</h2>
             <div class='methods'>
-        <h3 id='tymethod.range' class='method'><span id='range.v' class='invisible'><code>fn <a href='#tymethod.range' class='fnname'>range</a>(&amp;self) -&gt; <a class="struct" href="../../phile/lexer/struct.Range.html" title="struct phile::lexer::Range">Range</a></code></span></h3></div>
+        <h3 id='tymethod.range' class='method'><span id='range.v' class='invisible'><code>fn <a href='#tymethod.range' class='fnname'>range</a>(&amp;self) -&gt; <a class="struct" href="../../phile/lexer/struct.Range.html" title="struct phile::lexer::Range">Range</a></code></span></h3><div class='docblock'><p>Returns the range <code>self</code> was generated from.</p>
+</div></div>
         <h2 id='implementors'>Implementors</h2>
         <ul class='item-list' id='implementors-list'>
     <li><code>impl Ranged for <a class="struct" href="../../phile/lexer/struct.Range.html" title="struct phile::lexer::Range">Range</a></code></li>

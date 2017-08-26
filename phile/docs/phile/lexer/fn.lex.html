@@ -48,8 +48,22 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../../src/phile/lexer.rs.html#58-60' title='goto source code'>[src]</a></span></h1>
-<pre class='rust fn'>pub fn lex&lt;'a, S:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;&gt;(sources: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;'a [</a>S<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a>) -&gt; <a class="type" href="../../phile/error/type.Result.html" title="type phile::error::Result">Result</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html" title="struct collections::vec::Vec">Vec</a>&lt;<a class="struct" href="../../phile/lexer/struct.Token.html" title="struct phile::lexer::Token">Token</a>&lt;'a&gt;&gt;&gt;</pre></section>
+               </span><a class='srclink' href='../../src/phile/lexer.rs.html#93-95' title='goto source code'>[src]</a></span></h1>
+<pre class='rust fn'>pub fn lex&lt;'a, S:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;&gt;(sources: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;'a [</a>S<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a>) -&gt; <a class="type" href="../../phile/error/type.Result.html" title="type phile::error::Result">Result</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html" title="struct collections::vec::Vec">Vec</a>&lt;<a class="struct" href="../../phile/lexer/struct.Token.html" title="struct phile::lexer::Token">Token</a>&lt;'a&gt;&gt;&gt;</pre><div class='docblock'><p>Given an array of source strings, returns an array of tokens
+extracted from those strings, or an error if there is a syntactic
+(more precisely, lexical) error in any of the source strings.</p>
+
+<h1 id='arguments' class='section-header'><a href='#arguments'>Arguments</a></h1>
+<ul>
+<li><code>sources</code>: a slice of <code>str</code>-convertible source strings.</li>
+</ul>
+
+<h1 id='return-value' class='section-header'><a href='#return-value'>Return value</a></h1>
+<ul>
+<li><code>Ok(Vec&lt;Token&gt;)</code> if the source files were lexically correct.</li>
+<li><code>Err(Error::Syntax)</code> if there was a lexical error in the input.</li>
+</ul>
+</div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="Source to the Rust file `sqir.rs`.">
+    <meta name="description" content="Source to the Rust file `src/sqir.rs`.">
     <meta name="keywords" content="rust, rustlang, rust-lang">
 
     <title>sqir.rs.html -- source</title>
@@ -567,6 +567,12 @@
 <span id="522">522</span>
 <span id="523">523</span>
 <span id="524">524</span>
+<span id="525">525</span>
+<span id="526">526</span>
+<span id="527">527</span>
+<span id="528">528</span>
+<span id="529">529</span>
+<span id="530">530</span>
 </pre><pre class="rust ">
 <span class="comment">//</span>
 <span class="comment">// sqir.rs</span>
@@ -1090,6 +1096,12 @@
     <span class="comment">// is the RHS.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">unique_relations</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">BTreeSet</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Relation</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">relations</span>.<span class="ident">values</span>().<span class="ident">collect</span>()
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Sqir</span> {
+    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-&gt;</span> <span class="ident">Sqir</span> {
+        <span class="ident">Sqir</span>::<span class="ident">new</span>()
     }
 }
 </pre>

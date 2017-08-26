@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="Source to the Rust file `lexer.rs`.">
+    <meta name="description" content="Source to the Rust file `src/lexer.rs`.">
     <meta name="keywords" content="rust, rustlang, rust-lang">
 
     <title>lexer.rs.html -- source</title>
@@ -219,6 +219,41 @@
 <span id="174">174</span>
 <span id="175">175</span>
 <span id="176">176</span>
+<span id="177">177</span>
+<span id="178">178</span>
+<span id="179">179</span>
+<span id="180">180</span>
+<span id="181">181</span>
+<span id="182">182</span>
+<span id="183">183</span>
+<span id="184">184</span>
+<span id="185">185</span>
+<span id="186">186</span>
+<span id="187">187</span>
+<span id="188">188</span>
+<span id="189">189</span>
+<span id="190">190</span>
+<span id="191">191</span>
+<span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
+<span id="195">195</span>
+<span id="196">196</span>
+<span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
+<span id="211">211</span>
 </pre><pre class="rust ">
 <span class="comment">//</span>
 <span class="comment">// lexer.rs</span>
@@ -231,40 +266,63 @@
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>::{ <span class="self">self</span>, <span class="ident">Display</span>, <span class="ident">Formatter</span> };
 <span class="kw">use</span> <span class="ident">regex</span>::<span class="ident">Regex</span>;
 <span class="kw">use</span> <span class="ident">error</span>::{ <span class="ident">Error</span>, <span class="prelude-ty">Result</span> };
-<span class="kw">use</span> <span class="ident">util</span>::<span class="ident">grapheme_count</span>;
+<span class="kw">use</span> <span class="ident">util</span>::{ <span class="ident">grapheme_count</span>, <span class="ident">grapheme_count_by</span> };
 
 
+<span class="doccomment">/// Represents the location of a single extended grapheme cluster</span>
+<span class="doccomment">/// in the sources fed to the lexer.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Default</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Location</span> {
-    <span class="kw">pub</span> <span class="ident">src_idx</span>: <span class="ident">usize</span>, <span class="comment">// index of the source `self` points into</span>
+    <span class="doccomment">/// 0-based index of the source that this location points into.</span>
+    <span class="kw">pub</span> <span class="ident">src_idx</span>: <span class="ident">usize</span>,
+    <span class="doccomment">/// 1-based line index within the aforementioned source.</span>
     <span class="kw">pub</span> <span class="ident">line</span>:    <span class="ident">usize</span>,
+    <span class="doccomment">/// 1-based character index within the line.</span>
     <span class="kw">pub</span> <span class="ident">column</span>:  <span class="ident">usize</span>,
 }
 
+<span class="doccomment">/// A half-open range representing a source span.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Default</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Range</span> {
+    <span class="doccomment">/// Location at the beginning of the source range.</span>
     <span class="kw">pub</span> <span class="ident">begin</span>: <span class="ident">Location</span>,
+    <span class="doccomment">/// Location one past the end of the source range.</span>
     <span class="kw">pub</span> <span class="ident">end</span>:   <span class="ident">Location</span>,
 }
 
+<span class="doccomment">/// This trait is to be implemented by entities that correspond</span>
+<span class="doccomment">/// to some range in the source. This is used for generating</span>
+<span class="doccomment">/// location information in user-visible error messages.</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Ranged</span> {
+    <span class="doccomment">/// Returns the range `self` was generated from.</span>
     <span class="kw">fn</span> <span class="ident">range</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Range</span>;
 }
 
+<span class="doccomment">/// Describes the type of a single token or lexeme.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">TokenKind</span> {
+    <span class="doccomment">/// Horizontal and vertical (e.g. newline) whitespace. Unicode-aware.</span>
     <span class="ident">Whitespace</span>,
+    <span class="doccomment">/// Currently, a line comment, beginning with &#39;#&#39; and ending with vertical whitespace or end-of-source.</span>
     <span class="ident">Comment</span>,
-    <span class="ident">Word</span>, <span class="comment">// identifier or keyword</span>
+    <span class="doccomment">/// An identifier or a keyword.</span>
+    <span class="ident">Word</span>,
+    <span class="doccomment">/// Operators and other punctuation characters, e.g. semicolons.</span>
     <span class="ident">Punctuation</span>,
+    <span class="doccomment">/// String literal.</span>
     <span class="ident">StringLiteral</span>,
+    <span class="doccomment">/// Integer or floating-point literal.</span>
     <span class="ident">NumericLiteral</span>,
 }
 
+<span class="doccomment">/// Represents a lexeme and its associated type and location information as an abstract token.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Token</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+    <span class="doccomment">/// The kind associated with the recognized lexeme.</span>
     <span class="kw">pub</span> <span class="ident">kind</span>:  <span class="ident">TokenKind</span>,
+    <span class="doccomment">/// A pointer into the source where the underlying lexeme was found.</span>
     <span class="kw">pub</span> <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
+    <span class="doccomment">/// Human-readable range information for the underlying lexeme.</span>
     <span class="kw">pub</span> <span class="ident">range</span>: <span class="ident">Range</span>,
 }
 
@@ -277,6 +335,18 @@
 }
 
 
+<span class="doccomment">/// Given an array of source strings, returns an array of tokens</span>
+<span class="doccomment">/// extracted from those strings, or an error if there is a syntactic</span>
+<span class="doccomment">/// (more precisely, lexical) error in any of the source strings.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// # Arguments</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// * `sources`: a slice of `str`-convertible source strings.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// # Return value</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// * `Ok(Vec&lt;Token&gt;)` if the source files were lexically correct.</span>
+<span class="doccomment">/// * `Err(Error::Syntax)` if there was a lexical error in the input.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">lex</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">S</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;&gt;</span>(<span class="ident">sources</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">S</span>]) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Token</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;&gt;</span><span class="op">&gt;</span> {
     <span class="ident">Lexer</span>::<span class="ident">new</span>().<span class="ident">lex</span>(<span class="ident">sources</span>)
 }
@@ -289,14 +359,14 @@
             <span class="comment">// -1 because the \n itself doesn&#39;t count,</span>
             <span class="comment">// +1 because humans start counting at 1.</span>
             <span class="prelude-val">Some</span>(<span class="ident">index</span>) <span class="op">=&gt;</span> <span class="ident">Location</span> {
-                <span class="ident">line</span>:    <span class="self">self</span>.<span class="ident">line</span> <span class="op">+</span> <span class="ident">lexeme</span>.<span class="ident">matches</span>(<span class="ident">line_breaks</span>).<span class="ident">count</span>(),
-                <span class="ident">column</span>:  <span class="ident">grapheme_count</span>(<span class="kw-2">&amp;</span><span class="ident">lexeme</span>[<span class="ident">index</span>..]) <span class="op">-</span> <span class="number">1</span> <span class="op">+</span> <span class="number">1</span>,
                 <span class="ident">src_idx</span>: <span class="self">self</span>.<span class="ident">src_idx</span>,
+                <span class="ident">line</span>:    <span class="self">self</span>.<span class="ident">line</span> <span class="op">+</span> <span class="ident">grapheme_count_by</span>(<span class="ident">lexeme</span>, <span class="op">|</span><span class="ident">g</span><span class="op">|</span> <span class="ident">g</span>.<span class="ident">contains</span>(<span class="ident">line_breaks</span>)),
+                <span class="ident">column</span>:  <span class="ident">grapheme_count</span>(<span class="kw-2">&amp;</span><span class="ident">lexeme</span>[<span class="ident">index</span>..]) <span class="op">-</span> <span class="number">1</span> <span class="op">+</span> <span class="number">1</span>,
             },
             <span class="prelude-val">None</span> <span class="op">=&gt;</span> <span class="ident">Location</span> {
+                <span class="ident">src_idx</span>: <span class="self">self</span>.<span class="ident">src_idx</span>,
                 <span class="ident">line</span>:    <span class="self">self</span>.<span class="ident">line</span>,
                 <span class="ident">column</span>:  <span class="self">self</span>.<span class="ident">column</span> <span class="op">+</span> <span class="ident">grapheme_count</span>(<span class="ident">lexeme</span>),
-                <span class="ident">src_idx</span>: <span class="self">self</span>.<span class="ident">src_idx</span>,
             },
         }
     }
@@ -334,11 +404,11 @@
             <span class="ident">tokens</span>:   <span class="ident">Vec</span>::<span class="ident">new</span>(),
             <span class="ident">regexes</span>:  [
                 (<span class="ident">TokenKind</span>::<span class="ident">Whitespace</span>,     <span class="ident">Regex</span>::<span class="ident">new</span>(<span class="string">r#&quot;^\s+&quot;#</span>).<span class="ident">unwrap</span>()),
-                (<span class="ident">TokenKind</span>::<span class="ident">Comment</span>,        <span class="ident">Regex</span>::<span class="ident">new</span>(<span class="string">r#&quot;^#[^\n\v\f\r\x{0085}\x{2028}\x{2029}]*[\n\v\f\r\x{0085}\x{2028}\x{2029}]?&quot;#</span>).<span class="ident">unwrap</span>()),
-                (<span class="ident">TokenKind</span>::<span class="ident">Word</span>,           <span class="ident">Regex</span>::<span class="ident">new</span>(<span class="string">r#&quot;^[^\W0-9][\w]*&quot;#</span>).<span class="ident">unwrap</span>()),
+                (<span class="ident">TokenKind</span>::<span class="ident">Comment</span>,        <span class="ident">Regex</span>::<span class="ident">new</span>(<span class="string">r#&quot;^#[^\n\v\f\r\x{0085}\x{2028}\x{2029}]*(\r\n|[\n\v\f\r\x{0085}\x{2028}\x{2029}])?&quot;#</span>).<span class="ident">unwrap</span>()),
+                (<span class="ident">TokenKind</span>::<span class="ident">Word</span>,           <span class="ident">Regex</span>::<span class="ident">new</span>(<span class="string">r#&quot;^[_\p{XID_Start}]\p{XID_Continue}*&quot;#</span>).<span class="ident">unwrap</span>()),
                 (<span class="ident">TokenKind</span>::<span class="ident">NumericLiteral</span>, <span class="ident">Regex</span>::<span class="ident">new</span>(<span class="string">r#&quot;^((0[bB][0-1]+)|(0[oO][0-7]+)|(0[xX][[:xdigit:]]+)|([0-9]+(\.[0-9]+([eE][\+\-]?[0-9]+)?)?))&quot;#</span>).<span class="ident">unwrap</span>()),
                 (<span class="ident">TokenKind</span>::<span class="ident">Punctuation</span>,    <span class="ident">Regex</span>::<span class="ident">new</span>(<span class="string">r#&quot;^([!\?\*\+]?&lt;\-&gt;[!\?\*\+]?|\.{1,3}|[&lt;&gt;]=?|[=!]=|\-&gt;|=&gt;?|::?|[\(\)\[\]\{\}\+\-\*/%&amp;\|~\?,;])&quot;#</span>).<span class="ident">unwrap</span>()),
-                (<span class="ident">TokenKind</span>::<span class="ident">StringLiteral</span>,  <span class="ident">Regex</span>::<span class="ident">new</span>(<span class="string">r#&quot;^&quot;([^\\&quot;]|\\[\\&quot;nrtb]|\\x[[:xdigit:]]{2}|\\u[[:xdigit:]]{4}|\\U[[:xdigit:]]{8})*&quot;&quot;#</span>).<span class="ident">unwrap</span>()),
+                (<span class="ident">TokenKind</span>::<span class="ident">StringLiteral</span>,  <span class="ident">Regex</span>::<span class="ident">new</span>(<span class="string">r#&quot;^&quot;([^\\&quot;]|\\[\\&quot;nrt]|\\x[[:xdigit:]]{2}|\\u\{[[:xdigit:]]+\})*&quot;&quot;#</span>).<span class="ident">unwrap</span>()),
             ],
         }
     }
