@@ -48,14 +48,18 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../../src/phile/error.rs.html#9-183' title='goto source code'>[src]</a></span></h1>
+               </span><a class='srclink' href='../../src/phile/error.rs.html#9-216' title='goto source code'>[src]</a></span></h1>
 <h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
 <table>
                        <tr class=' module-item'>
                            <td><a class="enum" href="enum.Error.html"
                                   title='enum phile::error::Error'>Error</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>An error that may occur while compiling PHiLe source code.
+This can be either a user-induced error (e.g. syntax error),
+or an Internal Compiler Error (abbreviated ICE), i.e. a bug.
+TODO(H2CO3): storing a stacktrace at the point of the failed
+borrow, strongification, or unreachable code would be nice.</p>
                            </td>
                        </tr></table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
 <table>
@@ -63,7 +67,7 @@
                            <td><a class="type" href="type.Result.html"
                                   title='type phile::error::Result'>Result</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Convenience type alias for expressing <code>Result</code>s of PHiLe <code>Error</code>s.</p>
                            </td>
                        </tr></table></section>
     <section id='search' class="content hidden"></section>

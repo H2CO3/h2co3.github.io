@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["Error",""]],"type":[["Result",""]]});
+initSidebarItems({"enum":[["Error","An error that may occur while compiling PHiLe source code. This can be either a user-induced error (e.g. syntax error), or an Internal Compiler Error (abbreviated ICE), i.e. a bug. TODO(H2CO3): storing a stacktrace at the point of the failed borrow, strongification, or unreachable code would be nice."]],"type":[["Result","Convenience type alias for expressing `Result`s of PHiLe `Error`s."]]});

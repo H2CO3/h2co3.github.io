@@ -48,35 +48,43 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../../src/phile/util.rs.html#9-187' title='goto source code'>[src]</a></span></h1>
+               </span><a class='srclink' href='../../src/phile/util.rs.html#9-299' title='goto source code'>[src]</a></span></h1>
 <h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.Color.html"
                                   title='struct phile::util::Color'>Color</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>A struct that contains escape sequences for ANSI terminal color
+codes. This is used for maintaining a uniform and consistent
+color scheme across diagnostic messages printed by the PHiLe
+compiler and 3rd-party tools.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.PackageInfo.html"
                                   title='struct phile::util::PackageInfo'>PackageInfo</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Type of a global descriptor that holds information about
+the current version of the PHiLe package (library and compiler).
+The purpose of a global instance of this struct is to provide
+user-readable version information in a uniform manner throughout
+the code base, and for potential 3rd-party tooling.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.RcCell.html"
                                   title='struct phile::util::RcCell'>RcCell</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>A reference counted, dynamically borrow checked smart pointer.
+Like <code>Rc&lt;RefCell&lt;T&gt;&gt;</code>, but with a more convenient interface.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.WkCell.html"
                                   title='struct phile::util::WkCell'>WkCell</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Weak counterpart of <code>RcCell&lt;T&gt;</code>.</p>
                            </td>
                        </tr></table><h2 id='statics' class='section-header'><a href="#statics">Statics</a></h2>
 <table>
@@ -84,14 +92,14 @@
                            <td><a class="static" href="static.COLOR.html"
                                   title='static phile::util::COLOR'>COLOR</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>The definition of the PHiLe diagnostic color scheme.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="static" href="static.PACKAGE_INFO.html"
                                   title='static phile::util::PACKAGE_INFO'>PACKAGE_INFO</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Holds metadata about the PHiLe package as defined in the Cargo manifest.</p>
                            </td>
                        </tr></table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
 <table>
@@ -99,21 +107,26 @@
                            <td><a class="fn" href="fn.grapheme_count.html"
                                   title='fn phile::util::grapheme_count'>grapheme_count</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Returns the number of extended grapheme clusters in <code>string</code>.
+Useful for counting &#39;characters&#39; in accordance with a user&#39;s
+notion of a &#39;character&#39; or grapheme. Mainly used by the lexer
+for generating visually accurate source location data.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="fn" href="fn.grapheme_count_by.html"
                                   title='fn phile::util::grapheme_count_by'>grapheme_count_by</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Counts the grapheme clusters in a string that satisfy a condition.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="fn" href="fn.unescape_string_literal.html"
                                   title='fn phile::util::unescape_string_literal'>unescape_string_literal</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Parses escape sequences in a string literal and returns the
+&#39;raw&#39; string that is represented by the (escaped) input.
+Also removes the leading and trailing quotation marks.</p>
                            </td>
                        </tr></table></section>
     <section id='search' class="content hidden"></section>

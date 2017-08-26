@@ -230,6 +230,118 @@
 <span id="185">185</span>
 <span id="186">186</span>
 <span id="187">187</span>
+<span id="188">188</span>
+<span id="189">189</span>
+<span id="190">190</span>
+<span id="191">191</span>
+<span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
+<span id="195">195</span>
+<span id="196">196</span>
+<span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
+<span id="211">211</span>
+<span id="212">212</span>
+<span id="213">213</span>
+<span id="214">214</span>
+<span id="215">215</span>
+<span id="216">216</span>
+<span id="217">217</span>
+<span id="218">218</span>
+<span id="219">219</span>
+<span id="220">220</span>
+<span id="221">221</span>
+<span id="222">222</span>
+<span id="223">223</span>
+<span id="224">224</span>
+<span id="225">225</span>
+<span id="226">226</span>
+<span id="227">227</span>
+<span id="228">228</span>
+<span id="229">229</span>
+<span id="230">230</span>
+<span id="231">231</span>
+<span id="232">232</span>
+<span id="233">233</span>
+<span id="234">234</span>
+<span id="235">235</span>
+<span id="236">236</span>
+<span id="237">237</span>
+<span id="238">238</span>
+<span id="239">239</span>
+<span id="240">240</span>
+<span id="241">241</span>
+<span id="242">242</span>
+<span id="243">243</span>
+<span id="244">244</span>
+<span id="245">245</span>
+<span id="246">246</span>
+<span id="247">247</span>
+<span id="248">248</span>
+<span id="249">249</span>
+<span id="250">250</span>
+<span id="251">251</span>
+<span id="252">252</span>
+<span id="253">253</span>
+<span id="254">254</span>
+<span id="255">255</span>
+<span id="256">256</span>
+<span id="257">257</span>
+<span id="258">258</span>
+<span id="259">259</span>
+<span id="260">260</span>
+<span id="261">261</span>
+<span id="262">262</span>
+<span id="263">263</span>
+<span id="264">264</span>
+<span id="265">265</span>
+<span id="266">266</span>
+<span id="267">267</span>
+<span id="268">268</span>
+<span id="269">269</span>
+<span id="270">270</span>
+<span id="271">271</span>
+<span id="272">272</span>
+<span id="273">273</span>
+<span id="274">274</span>
+<span id="275">275</span>
+<span id="276">276</span>
+<span id="277">277</span>
+<span id="278">278</span>
+<span id="279">279</span>
+<span id="280">280</span>
+<span id="281">281</span>
+<span id="282">282</span>
+<span id="283">283</span>
+<span id="284">284</span>
+<span id="285">285</span>
+<span id="286">286</span>
+<span id="287">287</span>
+<span id="288">288</span>
+<span id="289">289</span>
+<span id="290">290</span>
+<span id="291">291</span>
+<span id="292">292</span>
+<span id="293">293</span>
+<span id="294">294</span>
+<span id="295">295</span>
+<span id="296">296</span>
+<span id="297">297</span>
+<span id="298">298</span>
+<span id="299">299</span>
 </pre><pre class="rust ">
 <span class="comment">//</span>
 <span class="comment">// util.rs</span>
@@ -247,7 +359,7 @@
 <span class="kw">use</span> <span class="ident">unicode_segmentation</span>::<span class="ident">UnicodeSegmentation</span>;
 
 
-<span class="comment">// Generic macro for building an associated container literal</span>
+<span class="doccomment">/// Generic macro for building an associated container literal.</span>
 <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">assoc_map</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span>: <span class="ident">ident</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">k</span>: <span class="ident">expr</span> <span class="op">=&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">v</span>: <span class="ident">expr</span>),<span class="kw-2">*</span>) <span class="op">=&gt;</span> ({
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">_tmp</span> <span class="op">=</span> ::<span class="ident">std</span>::<span class="ident">collections</span>::<span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span>::<span class="ident">new</span>();
@@ -262,6 +374,11 @@
     })
 }
 
+<span class="doccomment">/// Builds an `std::collections::BTreeMap&lt;K, V&gt;` from keys and values</span>
+<span class="doccomment">/// so that `K: From&lt;KeyType&gt;` and `V: From&lt;ValueType&gt;` for the types</span>
+<span class="doccomment">/// of each key and value, respectively. A key-value pair must have</span>
+<span class="doccomment">/// the format `key =&gt; value`, and key-value pairs are separated by</span>
+<span class="doccomment">/// commas. A trailing comma is permitted and will be ignored.</span>
 <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">btree_map</span> {
     ($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">k</span>: <span class="ident">expr</span> <span class="op">=&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">v</span>: <span class="ident">expr</span>),<span class="kw-2">*</span>) <span class="op">=&gt;</span> {
         <span class="macro">assoc_map</span><span class="macro">!</span>(<span class="ident">BTreeMap</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">k</span> <span class="op">=&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">v</span>),<span class="kw-2">*</span>)
@@ -269,34 +386,57 @@
     ($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">k</span>: <span class="ident">expr</span> <span class="op">=&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">v</span>: <span class="ident">expr</span>),<span class="op">+</span>,) <span class="op">=&gt;</span> { <span class="macro">btree_map</span><span class="macro">!</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">k</span> <span class="op">=&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">v</span>),<span class="op">+</span>) };
 }
 
+<span class="doccomment">/// Type of a global descriptor that holds information about</span>
+<span class="doccomment">/// the current version of the PHiLe package (library and compiler).</span>
+<span class="doccomment">/// The purpose of a global instance of this struct is to provide</span>
+<span class="doccomment">/// user-readable version information in a uniform manner throughout</span>
+<span class="doccomment">/// the code base, and for potential 3rd-party tooling.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PackageInfo</span> {
+    <span class="doccomment">/// The name of the PHiLe package.</span>
     <span class="kw">pub</span> <span class="ident">name</span>:        <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>,
+    <span class="doccomment">/// The version of the PHiLe package.</span>
     <span class="kw">pub</span> <span class="ident">version</span>:     <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>,
+    <span class="doccomment">/// The list of authors of PHiLe.</span>
     <span class="kw">pub</span> <span class="ident">authors</span>:     <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>,
+    <span class="doccomment">/// A short summary of this package.</span>
     <span class="kw">pub</span> <span class="ident">description</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>,
+    <span class="doccomment">/// URL of the PHiLe home page.</span>
     <span class="kw">pub</span> <span class="ident">home_page</span>:   <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>,
 }
 
+<span class="doccomment">/// A struct that contains escape sequences for ANSI terminal color</span>
+<span class="doccomment">/// codes. This is used for maintaining a uniform and consistent</span>
+<span class="doccomment">/// color scheme across diagnostic messages printed by the PHiLe</span>
+<span class="doccomment">/// compiler and 3rd-party tools.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Color</span> {
+    <span class="doccomment">/// ANSI escape sequence for resetting all color settings.</span>
     <span class="kw">pub</span> <span class="ident">reset</span>:     <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>,
+    <span class="doccomment">/// ANSI escape sequence for displaying informative messages.</span>
     <span class="kw">pub</span> <span class="ident">info</span>:      <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>,
+    <span class="doccomment">/// ANSI escape sequence for displaying highlighted messages.</span>
     <span class="kw">pub</span> <span class="ident">highlight</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>,
+    <span class="doccomment">/// ANSI escape sequence for indicating successful compilation.</span>
     <span class="kw">pub</span> <span class="ident">success</span>:   <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>,
+    <span class="doccomment">/// ANSI escape sequence for reporting errors.</span>
     <span class="kw">pub</span> <span class="ident">error</span>:     <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>,
 }
 
+<span class="doccomment">/// A reference counted, dynamically borrow checked smart pointer.</span>
+<span class="doccomment">/// Like `Rc&lt;RefCell&lt;T&gt;&gt;`, but with a more convenient interface.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RcCell</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="question-mark">?</span><span class="ident">Sized</span><span class="op">&gt;</span> {
     <span class="ident">ptr</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;&gt;</span>,
 }
 
+<span class="doccomment">/// Weak counterpart of `RcCell&lt;T&gt;`.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WkCell</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="question-mark">?</span><span class="ident">Sized</span><span class="op">&gt;</span> {
     <span class="ident">ptr</span>: <span class="ident">Weak</span><span class="op">&lt;</span><span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;&gt;</span>,
 }
 
+<span class="doccomment">/// Holds metadata about the PHiLe package as defined in the Cargo manifest.</span>
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PACKAGE_INFO</span>: <span class="ident">PackageInfo</span> <span class="op">=</span> <span class="ident">PackageInfo</span> {
     <span class="ident">name</span>:        <span class="macro">env</span><span class="macro">!</span>[<span class="string">&quot;CARGO_PKG_NAME&quot;</span>],
     <span class="ident">version</span>:     <span class="macro">env</span><span class="macro">!</span>[<span class="string">&quot;CARGO_PKG_VERSION&quot;</span>],
@@ -305,6 +445,7 @@
     <span class="ident">home_page</span>:   <span class="macro">env</span><span class="macro">!</span>[<span class="string">&quot;CARGO_PKG_HOMEPAGE&quot;</span>],
 };
 
+<span class="doccomment">/// The definition of the PHiLe diagnostic color scheme.</span>
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">COLOR</span>: <span class="ident">Color</span> <span class="op">=</span> <span class="ident">Color</span> {
     <span class="ident">reset</span>:     <span class="string">&quot;\x1b[0m&quot;</span>,
     <span class="ident">info</span>:      <span class="string">&quot;\x1b[1;33m&quot;</span>,
@@ -314,14 +455,52 @@
 };
 
 
+<span class="doccomment">/// Returns the number of extended grapheme clusters in `string`.</span>
+<span class="doccomment">/// Useful for counting &#39;characters&#39; in accordance with a user&#39;s</span>
+<span class="doccomment">/// notion of a &#39;character&#39; or grapheme. Mainly used by the lexer</span>
+<span class="doccomment">/// for generating visually accurate source location data.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// # Arguments:</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// * `string`: a string slice.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// # Return value:</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// The number of extended grapheme clusters in `string`.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">grapheme_count</span>(<span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
     <span class="ident">string</span>.<span class="ident">graphemes</span>(<span class="bool-val">true</span>).<span class="ident">count</span>()
 }
 
+<span class="doccomment">/// Counts the grapheme clusters in a string that satisfy a condition.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// # Arguments:</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// * `string`: a string slice.</span>
+<span class="doccomment">/// * `pred`: a predicate function invoked for each extended grapheme</span>
+<span class="doccomment">///   cluster in `string`.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// # Return value:</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// The number of extended grapheme clusters in `string`</span>
+<span class="doccomment">/// for which `pred` returned `true`.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">grapheme_count_by</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">bool</span><span class="op">&gt;</span>(<span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">pred</span>: <span class="ident">P</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
     <span class="ident">string</span>.<span class="ident">graphemes</span>(<span class="bool-val">true</span>).<span class="ident">filter</span>(<span class="op">|</span><span class="ident">g</span><span class="op">|</span> <span class="ident">pred</span>(<span class="kw-2">*</span><span class="ident">g</span>)).<span class="ident">count</span>()
 }
 
+<span class="doccomment">/// Parses escape sequences in a string literal and returns the</span>
+<span class="doccomment">/// &#39;raw&#39; string that is represented by the (escaped) input.</span>
+<span class="doccomment">/// Also removes the leading and trailing quotation marks.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// # Arguments:</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// * `string`: a potentially-escaped string literal in PHiLe syntax.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// # Return value:</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// * `Ok(String)`: The unescaped, quote-trimmed raw string if</span>
+<span class="doccomment">///   the string literal is in the correct format.</span>
+<span class="doccomment">/// * `Err(Error::Syntax)`, if the string literal contained an</span>
+<span class="doccomment">///   invalid escape sequence (or any other syntactic error).</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">unescape_string_literal</span>(<span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
     <span class="kw">if</span> <span class="ident">string</span>.<span class="ident">contains</span>(<span class="string">&#39;\\&#39;</span>) {
         <span class="macro">unimplemented</span><span class="macro">!</span>() <span class="comment">// TODO(H2CO3): unescape string literals</span>
@@ -332,27 +511,55 @@
 
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">RcCell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="doccomment">/// Creates an `RcCell` owning the `value`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">value</span>: <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">RcCell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
         <span class="ident">RcCell</span> {
             <span class="ident">ptr</span>: <span class="ident">Rc</span>::<span class="ident">new</span>(<span class="ident">RefCell</span>::<span class="ident">new</span>(<span class="ident">value</span>))
         }
     }
 
+    <span class="doccomment">/// Attempts to immutably borrow the pointed value.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Return value:</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// * `Ok(Ref&lt;T&gt;)`, if an immutable borrow is dynamically possible.</span>
+    <span class="doccomment">/// * `Err(Error::Borrow)`, if an immutable borrow is dynamically</span>
+    <span class="doccomment">/// impossible, e.g. because there is outstanding mutable loan.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">borrow</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Ref</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;&gt;</span> {
         <span class="self">self</span>.<span class="ident">ptr</span>.<span class="ident">try_borrow</span>().<span class="ident">map_err</span>(<span class="ident">From</span>::<span class="ident">from</span>)
     }
 
+    <span class="doccomment">/// Attempts to mutably borrow the pointed value.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Return value:</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// * `Ok(Ref&lt;T&gt;)`, if a mutable borrow is dynamically possible.</span>
+    <span class="doccomment">/// * `Err(Error::BorrowMut)`, if a mutable borrow is dynamically</span>
+    <span class="doccomment">/// impossible, e.g. because there is outstanding immutable loan.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">borrow_mut</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">RefMut</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;&gt;</span> {
         <span class="self">self</span>.<span class="ident">ptr</span>.<span class="ident">try_borrow_mut</span>().<span class="ident">map_err</span>(<span class="ident">From</span>::<span class="ident">from</span>)
     }
 
+    <span class="doccomment">/// Converts the strong pointer to a weak pointer.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_weak</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">WkCell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
         <span class="ident">WkCell</span> {
             <span class="ident">ptr</span>: <span class="ident">Rc</span>::<span class="ident">downgrade</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">ptr</span>)
         }
     }
+
+    <span class="doccomment">/// Returns the number of strong pointers pointing to the inner value.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">strong_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
+        <span class="ident">Rc</span>::<span class="ident">strong_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">ptr</span>)
+    }
+
+    <span class="doccomment">/// Returns the number of weak pointers pointing to the inner value.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">weak_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
+        <span class="ident">Rc</span>::<span class="ident">weak_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">ptr</span>)
+    }
 }
 
+<span class="doccomment">/// Clones the pointer only, such that the returned strong</span>
+<span class="doccomment">/// pointer points to the same value as `self`.</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">Clone</span> <span class="kw">for</span> <span class="ident">RcCell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">RcCell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
         <span class="ident">RcCell</span> {
@@ -364,17 +571,17 @@
 <span class="comment">// TODO(H2CO3): implement this once { Unsize, CoerceUnsized } are stable</span>
 <span class="comment">// impl&lt;T: ?Sized + Unsize&lt;U&gt;, U: ?Sized&gt; CoerceUnsized&lt;RcCell&lt;U&gt;&gt; for RcCell&lt;T&gt; {}</span>
 
-<span class="doccomment">/// Tests equality based on pointer identity</span>
+<span class="doccomment">/// Tests equality based on pointer identity.</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">PartialEq</span> <span class="kw">for</span> <span class="ident">RcCell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
         <span class="ident">Rc</span>::<span class="ident">ptr_eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">ptr</span>, <span class="kw-2">&amp;</span><span class="ident">other</span>.<span class="ident">ptr</span>)
     }
 }
 
-<span class="doccomment">/// Tests equality based on pointer identity</span>
+<span class="doccomment">/// Tests equality based on pointer identity.</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">Eq</span> <span class="kw">for</span> <span class="ident">RcCell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {}
 
-<span class="doccomment">/// Hashes the pointer address itself</span>
+<span class="doccomment">/// Hashes the pointer address itself.</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">Hash</span> <span class="kw">for</span> <span class="ident">RcCell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">hash</span><span class="op">&lt;</span><span class="ident">H</span>: <span class="ident">Hasher</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">hasher</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">H</span>) {
         <span class="self">self</span>.<span class="ident">ptr</span>.<span class="ident">as_ptr</span>().<span class="ident">hash</span>(<span class="ident">hasher</span>)
@@ -390,18 +597,35 @@
     }
 }
 
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">RcCell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">value</span>: <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">RcCell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+        <span class="ident">RcCell</span>::<span class="ident">new</span>(<span class="ident">value</span>)
+    }
+}
+
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">WkCell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="doccomment">/// Creates a `WkCell` that doesn&#39;t refer to any value.</span>
+    <span class="doccomment">/// `as_rc()` will always return an `Err` for such `WkCell`s.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="ident">WkCell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
         <span class="ident">WkCell</span> {
             <span class="ident">ptr</span>: <span class="ident">Weak</span>::<span class="ident">new</span>()
         }
     }
 
+    <span class="doccomment">/// Converts a weak pointer to a strong pointer if possible.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Return value:</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// * `Ok(RcCell&lt;T&gt;)` if `self` points to a still-existing value.</span>
+    <span class="doccomment">/// * `Err(Error::Strongify)` if `self` pointed to a now-deallocated value.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_rc</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">RcCell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;&gt;</span> {
         <span class="self">self</span>.<span class="ident">ptr</span>.<span class="ident">upgrade</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">rc</span><span class="op">|</span> <span class="ident">RcCell</span> { <span class="ident">ptr</span>: <span class="ident">rc</span> }).<span class="ident">ok_or</span>(<span class="ident">Error</span>::<span class="ident">Strongify</span>)
     }
 }
 
+<span class="doccomment">/// Clones the weak pointer so that the returned result points to</span>
+<span class="doccomment">/// the same value as `self` does, if any. If `self` doesn&#39;t point</span>
+<span class="doccomment">/// anywhere, the clone will not be able to be strongified either.</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">Clone</span> <span class="kw">for</span> <span class="ident">WkCell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">WkCell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
         <span class="ident">WkCell</span> {
