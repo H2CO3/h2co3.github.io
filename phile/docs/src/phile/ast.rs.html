@@ -432,6 +432,13 @@
 <span id="387">387</span>
 <span id="388">388</span>
 <span id="389">389</span>
+<span id="390">390</span>
+<span id="391">391</span>
+<span id="392">392</span>
+<span id="393">393</span>
+<span id="394">394</span>
+<span id="395">395</span>
+<span id="396">396</span>
 </pre><pre class="rust ">
 <span class="comment">//</span>
 <span class="comment">// ast.rs</span>
@@ -440,6 +447,13 @@
 <span class="comment">// Created by Arpad Goretity (H2CO3)</span>
 <span class="comment">// on 07/04/2017</span>
 <span class="comment">//</span>
+
+<span class="doccomment">//! This module contains types for building Abstract Syntax Trees</span>
+<span class="doccomment">//! (ASTs). ASTs describe the syntactic structure of PHiLe programs.</span>
+<span class="doccomment">//! Defined here are various kinds of AST nodes that the `parser`</span>
+<span class="doccomment">//! module emits from a sequence of tokens produced by the `lexer`</span>
+<span class="doccomment">//! module. AST nodes, like tokens, contain source location data</span>
+<span class="doccomment">//! in order to easily map them to the original source code.</span>
 
 <span class="kw">use</span> <span class="ident">lexer</span>::{ <span class="ident">Range</span>, <span class="ident">Ranged</span> };
 

@@ -254,6 +254,11 @@
 <span id="209">209</span>
 <span id="210">210</span>
 <span id="211">211</span>
+<span id="212">212</span>
+<span id="213">213</span>
+<span id="214">214</span>
+<span id="215">215</span>
+<span id="216">216</span>
 </pre><pre class="rust ">
 <span class="comment">//</span>
 <span class="comment">// lexer.rs</span>
@@ -262,6 +267,11 @@
 <span class="comment">// Created by Arpad Goretity (H2CO3)</span>
 <span class="comment">// on 07/04/2017</span>
 <span class="comment">//</span>
+
+<span class="doccomment">//! This module contains type definitions and functions for</span>
+<span class="doccomment">//! breaking up unstructured source text into lexemes and tokens.</span>
+<span class="doccomment">//! It also provides types for mapping tokens to their original</span>
+<span class="doccomment">//! location within the source code in a human-readable manner.</span>
 
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>::{ <span class="self">self</span>, <span class="ident">Display</span>, <span class="ident">Formatter</span> };
 <span class="kw">use</span> <span class="ident">regex</span>::<span class="ident">Regex</span>;

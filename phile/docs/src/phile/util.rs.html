@@ -342,6 +342,12 @@
 <span id="297">297</span>
 <span id="298">298</span>
 <span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
+<span id="304">304</span>
+<span id="305">305</span>
 </pre><pre class="rust ">
 <span class="comment">//</span>
 <span class="comment">// util.rs</span>
@@ -350,6 +356,12 @@
 <span class="comment">// Created by Arpad Goretity (H2CO3)</span>
 <span class="comment">// on 02/05/2017</span>
 <span class="comment">//</span>
+
+<span class="doccomment">//! The `util` module provides various useful helper functions,</span>
+<span class="doccomment">//! types and macros, used extensively throughout the PHiLe</span>
+<span class="doccomment">//! source tree. Generic reference-counted smart pointers,</span>
+<span class="doccomment">//! string manipulation specific to the syntax of PHiLe, and</span>
+<span class="doccomment">//! commonly-used constants are all part of this file.</span>
 
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">rc</span>::{ <span class="ident">Rc</span>, <span class="ident">Weak</span> };
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">cell</span>::{ <span class="ident">RefCell</span>, <span class="ident">Ref</span>, <span class="ident">RefMut</span> };
