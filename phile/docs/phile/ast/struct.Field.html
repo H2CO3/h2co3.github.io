@@ -48,28 +48,33 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../../src/phile/ast.rs.html#102-107' title='goto source code'>[src]</a></span></h1>
+               </span><a class='srclink' href='../../src/phile/ast.rs.html#160-169' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct Field&lt;'a&gt; {
     pub range: <a class="struct" href="../../phile/lexer/struct.Range.html" title="struct phile::lexer::Range">Range</a>,
     pub name: &amp;'a <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
     pub ty: <a class="type" href="../../phile/ast/type.Ty.html" title="type phile::ast::Ty">Ty</a>&lt;'a&gt;,
     pub relation: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../phile/ast/struct.RelDecl.html" title="struct phile::ast::RelDecl">RelDecl</a>&lt;'a&gt;&gt;,
-}</pre><h2 id='fields' class='fields'>Fields</h2><span id='structfield.range' class="structfield">
+}</pre><div class='docblock'><p>A field specification within a struct or class type definition.</p>
+</div><h2 id='fields' class='fields'>Fields</h2><span id='structfield.range' class="structfield">
                            <span id='range.v' class='invisible'>
                            <code>range: <a class="struct" href="../../phile/lexer/struct.Range.html" title="struct phile::lexer::Range">Range</a></code>
-                           </span></span><span id='structfield.name' class="structfield">
+                           </span></span><div class='docblock'><p>The source range of the field definition.</p>
+</div><span id='structfield.name' class="structfield">
                            <span id='name.v' class='invisible'>
                            <code>name: &amp;'a <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a></code>
-                           </span></span><span id='structfield.ty' class="structfield">
+                           </span></span><div class='docblock'><p>The name of the field.</p>
+</div><span id='structfield.ty' class="structfield">
                            <span id='ty.v' class='invisible'>
                            <code>ty: <a class="type" href="../../phile/ast/type.Ty.html" title="type phile::ast::Ty">Ty</a>&lt;'a&gt;</code>
-                           </span></span><span id='structfield.relation' class="structfield">
+                           </span></span><div class='docblock'><p>The declared type of the field.</p>
+</div><span id='structfield.relation' class="structfield">
                            <span id='relation.v' class='invisible'>
                            <code>relation: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../phile/ast/struct.RelDecl.html" title="struct phile::ast::RelDecl">RelDecl</a>&lt;'a&gt;&gt;</code>
-                           </span></span><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl&lt;'a&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="../../phile/ast/struct.Field.html" title="struct phile::ast::Field">Field</a>&lt;'a&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/phile/ast.rs.html#101' title='goto source code'>[src]</a></span></h3>
+                           </span></span><div class='docblock'><p>Optional explicit relation specification for the field.</p>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl&lt;'a&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="../../phile/ast/struct.Field.html" title="struct phile::ast::Field">Field</a>&lt;'a&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/phile/ast.rs.html#159' title='goto source code'>[src]</a></span></h3>
 <div class='impl-items'><h4 id='method.fmt' class="method"><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html" title="type core::fmt::Result">Result</a></code></span></h4>
 <div class='docblock'><p>Formats the value using the given formatter.</p>
-</div></div><h3 class='impl'><span class='in-band'><code>impl&lt;'a&gt; <a class="trait" href="../../phile/lexer/trait.Ranged.html" title="trait phile::lexer::Ranged">Ranged</a> for <a class="struct" href="../../phile/ast/struct.Field.html" title="struct phile::ast::Field">Field</a>&lt;'a&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/phile/ast.rs.html#230-234' title='goto source code'>[src]</a></span></h3>
+</div></div><h3 class='impl'><span class='in-band'><code>impl&lt;'a&gt; <a class="trait" href="../../phile/lexer/trait.Ranged.html" title="trait phile::lexer::Ranged">Ranged</a> for <a class="struct" href="../../phile/ast/struct.Field.html" title="struct phile::ast::Field">Field</a>&lt;'a&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/phile/ast.rs.html#353-357' title='goto source code'>[src]</a></span></h3>
 <div class='impl-items'><h4 id='method.range' class="method"><span id='range.v-1' class='invisible'><code>fn <a href='../../phile/lexer/trait.Ranged.html#tymethod.range' class='fnname'>range</a>(&amp;self) -&gt; <a class="struct" href="../../phile/lexer/struct.Range.html" title="struct phile::lexer::Range">Range</a></code></span></h4>
 <div class='docblock'><p>Returns the range <code>self</code> was generated from.</p>
 </div></div></section>

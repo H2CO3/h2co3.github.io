@@ -48,17 +48,21 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../../src/phile/ast.rs.html#202-205' title='goto source code'>[src]</a></span></h1>
+               </span><a class='srclink' href='../../src/phile/ast.rs.html#315-321' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct Match&lt;'a&gt; {
     pub discriminant: <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;<a class="type" href="../../phile/ast/type.Exp.html" title="type phile::ast::Exp">Exp</a>&lt;'a&gt;&gt;,
     pub arms: <a class="struct" href="https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html" title="struct collections::vec::Vec">Vec</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="type" href="../../phile/ast/type.Exp.html" title="type phile::ast::Exp">Exp</a>&lt;'a&gt;, <a class="type" href="../../phile/ast/type.Exp.html" title="type phile::ast::Exp">Exp</a>&lt;'a&gt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>&gt;,
-}</pre><h2 id='fields' class='fields'>Fields</h2><span id='structfield.discriminant' class="structfield">
+}</pre><div class='docblock'><p>A match statement or expression.</p>
+</div><h2 id='fields' class='fields'>Fields</h2><span id='structfield.discriminant' class="structfield">
                            <span id='discriminant.v' class='invisible'>
                            <code>discriminant: <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;<a class="type" href="../../phile/ast/type.Exp.html" title="type phile::ast::Exp">Exp</a>&lt;'a&gt;&gt;</code>
-                           </span></span><span id='structfield.arms' class="structfield">
+                           </span></span><div class='docblock'><p>The value to match.</p>
+</div><span id='structfield.arms' class="structfield">
                            <span id='arms.v' class='invisible'>
                            <code>arms: <a class="struct" href="https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html" title="struct collections::vec::Vec">Vec</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="type" href="../../phile/ast/type.Exp.html" title="type phile::ast::Exp">Exp</a>&lt;'a&gt;, <a class="type" href="../../phile/ast/type.Exp.html" title="type phile::ast::Exp">Exp</a>&lt;'a&gt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>&gt;</code>
-                           </span></span><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl&lt;'a&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="../../phile/ast/struct.Match.html" title="struct phile::ast::Match">Match</a>&lt;'a&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/phile/ast.rs.html#201' title='goto source code'>[src]</a></span></h3>
+                           </span></span><div class='docblock'><p>The list of patterns and the expressions that are evaluated
+when one of them matches: <code>(pattern, expression)</code>.</p>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl&lt;'a&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="../../phile/ast/struct.Match.html" title="struct phile::ast::Match">Match</a>&lt;'a&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/phile/ast.rs.html#314' title='goto source code'>[src]</a></span></h3>
 <div class='impl-items'><h4 id='method.fmt' class="method"><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html" title="type core::fmt::Result">Result</a></code></span></h4>
 <div class='docblock'><p>Formats the value using the given formatter.</p>
 </div></div></section>

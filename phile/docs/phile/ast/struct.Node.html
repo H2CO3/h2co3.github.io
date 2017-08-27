@@ -48,20 +48,23 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../../src/phile/ast.rs.html#17-20' title='goto source code'>[src]</a></span></h1>
+               </span><a class='srclink' href='../../src/phile/ast.rs.html#22-27' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct Node&lt;T&gt; {
     pub kind: T,
     pub range: <a class="struct" href="../../phile/lexer/struct.Range.html" title="struct phile::lexer::Range">Range</a>,
-}</pre><h2 id='fields' class='fields'>Fields</h2><span id='structfield.kind' class="structfield">
+}</pre><div class='docblock'><p>Generic AST node (helper for Exp, Ty, etc.)</p>
+</div><h2 id='fields' class='fields'>Fields</h2><span id='structfield.kind' class="structfield">
                            <span id='kind.v' class='invisible'>
                            <code>kind: T</code>
-                           </span></span><span id='structfield.range' class="structfield">
+                           </span></span><div class='docblock'><p>Discriminant describing the type and value of the node.</p>
+</div><span id='structfield.range' class="structfield">
                            <span id='range.v' class='invisible'>
                            <code>range: <a class="struct" href="../../phile/lexer/struct.Range.html" title="struct phile::lexer::Range">Range</a></code>
-                           </span></span><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl&lt;T:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a>&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="../../phile/ast/struct.Node.html" title="struct phile::ast::Node">Node</a>&lt;T&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/phile/ast.rs.html#16' title='goto source code'>[src]</a></span></h3>
+                           </span></span><div class='docblock'><p>Source range that this node was generated from.</p>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl&lt;T:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a>&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="../../phile/ast/struct.Node.html" title="struct phile::ast::Node">Node</a>&lt;T&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/phile/ast.rs.html#21' title='goto source code'>[src]</a></span></h3>
 <div class='impl-items'><h4 id='method.fmt' class="method"><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html" title="type core::fmt::Result">Result</a></code></span></h4>
 <div class='docblock'><p>Formats the value using the given formatter.</p>
-</div></div><h3 class='impl'><span class='in-band'><code>impl&lt;T&gt; <a class="trait" href="../../phile/lexer/trait.Ranged.html" title="trait phile::lexer::Ranged">Ranged</a> for <a class="struct" href="../../phile/ast/struct.Node.html" title="struct phile::ast::Node">Node</a>&lt;T&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/phile/ast.rs.html#250-254' title='goto source code'>[src]</a></span></h3>
+</div></div><h3 class='impl'><span class='in-band'><code>impl&lt;T&gt; <a class="trait" href="../../phile/lexer/trait.Ranged.html" title="trait phile::lexer::Ranged">Ranged</a> for <a class="struct" href="../../phile/ast/struct.Node.html" title="struct phile::ast::Node">Node</a>&lt;T&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/phile/ast.rs.html#373-377' title='goto source code'>[src]</a></span></h3>
 <div class='impl-items'><h4 id='method.range' class="method"><span id='range.v-1' class='invisible'><code>fn <a href='../../phile/lexer/trait.Ranged.html#tymethod.range' class='fnname'>range</a>(&amp;self) -&gt; <a class="struct" href="../../phile/lexer/struct.Range.html" title="struct phile::lexer::Range">Range</a></code></span></h4>
 <div class='docblock'><p>Returns the range <code>self</code> was generated from.</p>
 </div></div></section>

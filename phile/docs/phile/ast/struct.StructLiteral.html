@@ -48,17 +48,20 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../../src/phile/ast.rs.html#189-192' title='goto source code'>[src]</a></span></h1>
+               </span><a class='srclink' href='../../src/phile/ast.rs.html#295-300' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct StructLiteral&lt;'a&gt; {
     pub name: &amp;'a <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
     pub fields: <a class="struct" href="https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html" title="struct collections::vec::Vec">Vec</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a>&amp;'a <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <a class="type" href="../../phile/ast/type.Exp.html" title="type phile::ast::Exp">Exp</a>&lt;'a&gt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>&gt;,
-}</pre><h2 id='fields' class='fields'>Fields</h2><span id='structfield.name' class="structfield">
+}</pre><div class='docblock'><p>A struct literal.</p>
+</div><h2 id='fields' class='fields'>Fields</h2><span id='structfield.name' class="structfield">
                            <span id='name.v' class='invisible'>
                            <code>name: &amp;'a <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a></code>
-                           </span></span><span id='structfield.fields' class="structfield">
+                           </span></span><div class='docblock'><p>Name of the struct type being instantiated.</p>
+</div><span id='structfield.fields' class="structfield">
                            <span id='fields.v' class='invisible'>
                            <code>fields: <a class="struct" href="https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html" title="struct collections::vec::Vec">Vec</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a>&amp;'a <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <a class="type" href="../../phile/ast/type.Exp.html" title="type phile::ast::Exp">Exp</a>&lt;'a&gt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>&gt;</code>
-                           </span></span><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl&lt;'a&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="../../phile/ast/struct.StructLiteral.html" title="struct phile::ast::StructLiteral">StructLiteral</a>&lt;'a&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/phile/ast.rs.html#188' title='goto source code'>[src]</a></span></h3>
+                           </span></span><div class='docblock'><p>The list of fields: <code>(name, value)</code>.</p>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl&lt;'a&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="../../phile/ast/struct.StructLiteral.html" title="struct phile::ast::StructLiteral">StructLiteral</a>&lt;'a&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/phile/ast.rs.html#294' title='goto source code'>[src]</a></span></h3>
 <div class='impl-items'><h4 id='method.fmt' class="method"><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html" title="type core::fmt::Result">Result</a></code></span></h4>
 <div class='docblock'><p>Formats the value using the given formatter.</p>
 </div></div></section>

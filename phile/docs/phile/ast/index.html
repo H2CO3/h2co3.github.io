@@ -48,154 +48,157 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../../src/phile/ast.rs.html#9-266' title='goto source code'>[src]</a></span></h1>
+               </span><a class='srclink' href='../../src/phile/ast.rs.html#9-389' title='goto source code'>[src]</a></span></h1>
 <h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.BinaryOp.html"
                                   title='struct phile::ast::BinaryOp'>BinaryOp</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Any binary operator.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.ClassDecl.html"
                                   title='struct phile::ast::ClassDecl'>ClassDecl</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Definition of a <code>class</code> type.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.CondExp.html"
                                   title='struct phile::ast::CondExp'>CondExp</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>A conditional expression or &#39;Elvis operator&#39;, <code>?:</code>.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.EnumDecl.html"
                                   title='struct phile::ast::EnumDecl'>EnumDecl</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Definition of an <code>enum</code> type.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.Field.html"
                                   title='struct phile::ast::Field'>Field</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>A field specification within a struct or class type definition.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.FuncArg.html"
                                   title='struct phile::ast::FuncArg'>FuncArg</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Declaration of a single function argument.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.FuncCall.html"
                                   title='struct phile::ast::FuncCall'>FuncCall</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>A function call operation.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.Function.html"
                                   title='struct phile::ast::Function'>Function</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>A function definition.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.FunctionTy.html"
                                   title='struct phile::ast::FunctionTy'>FunctionTy</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>A function type.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.If.html"
                                   title='struct phile::ast::If'>If</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>An if statement or expression.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.Impl.html"
                                   title='struct phile::ast::Impl'>Impl</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Implementation of the methods of a user-defined type.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.Match.html"
                                   title='struct phile::ast::Match'>Match</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>A match statement or expression.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.MemberAccess.html"
                                   title='struct phile::ast::MemberAccess'>MemberAccess</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Dot syntax for accessing fields and methods.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.Node.html"
                                   title='struct phile::ast::Node'>Node</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Generic AST node (helper for Exp, Ty, etc.)</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.QualAccess.html"
                                   title='struct phile::ast::QualAccess'>QualAccess</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Namespace-style member access, for e.g. enums.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.RelDecl.html"
                                   title='struct phile::ast::RelDecl'>RelDecl</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Declaration of an explicit relation between two class types.
+A <code>RelDecl</code> node semantically means that the LHS of the
+relation is the class in which the <code>RelDecl</code> is contained,
+while the RHS is the type of the corresponding field.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.StructDecl.html"
                                   title='struct phile::ast::StructDecl'>StructDecl</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Definition of a <code>struct</code> type.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.StructLiteral.html"
                                   title='struct phile::ast::StructLiteral'>StructLiteral</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>A struct literal.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.Subscript.html"
                                   title='struct phile::ast::Subscript'>Subscript</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>An indexing or subscripting operator.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.VarDecl.html"
                                   title='struct phile::ast::VarDecl'>VarDecl</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>A variable declaration statement for locals.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.Variant.html"
                                   title='struct phile::ast::Variant'>Variant</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Definition of one enum variant.</p>
                            </td>
                        </tr></table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
 <table>
@@ -203,21 +206,21 @@
                            <td><a class="enum" href="enum.ExpKind.html"
                                   title='enum phile::ast::ExpKind'>ExpKind</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Type and value of an <code>Exp</code> expression node.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="enum" href="enum.Item.html"
                                   title='enum phile::ast::Item'>Item</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>A top-level source item.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="enum" href="enum.TyKind.html"
                                   title='enum phile::ast::TyKind'>TyKind</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Type and value of a <code>Ty</code> type node.</p>
                            </td>
                        </tr></table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
 <table>
@@ -225,21 +228,22 @@
                            <td><a class="type" href="type.Exp.html"
                                   title='type phile::ast::Exp'>Exp</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>AST node representing an expression.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="type" href="type.Prog.html"
                                   title='type phile::ast::Prog'>Prog</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Root of the AST. A list of top-level items, such as
+type definitions, function definitions, or <code>impl</code>s.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="type" href="type.Ty.html"
                                   title='type phile::ast::Ty'>Ty</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>AST node representing a type annotation.</p>
                            </td>
                        </tr></table></section>
     <section id='search' class="content hidden"></section>

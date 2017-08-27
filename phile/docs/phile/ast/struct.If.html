@@ -48,21 +48,25 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../../src/phile/ast.rs.html#195-199' title='goto source code'>[src]</a></span></h1>
+               </span><a class='srclink' href='../../src/phile/ast.rs.html#304-311' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct If&lt;'a&gt; {
     pub condition: <a class="type" href="../../phile/ast/type.Exp.html" title="type phile::ast::Exp">Exp</a>&lt;'a&gt;,
     pub then_arm: <a class="type" href="../../phile/ast/type.Exp.html" title="type phile::ast::Exp">Exp</a>&lt;'a&gt;,
     pub else_arm: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../phile/ast/type.Exp.html" title="type phile::ast::Exp">Exp</a>&lt;'a&gt;&gt;,
-}</pre><h2 id='fields' class='fields'>Fields</h2><span id='structfield.condition' class="structfield">
+}</pre><div class='docblock'><p>An if statement or expression.</p>
+</div><h2 id='fields' class='fields'>Fields</h2><span id='structfield.condition' class="structfield">
                            <span id='condition.v' class='invisible'>
                            <code>condition: <a class="type" href="../../phile/ast/type.Exp.html" title="type phile::ast::Exp">Exp</a>&lt;'a&gt;</code>
-                           </span></span><span id='structfield.then_arm' class="structfield">
+                           </span></span><div class='docblock'><p>The Boolean condition of the <code>if</code>.</p>
+</div><span id='structfield.then_arm' class="structfield">
                            <span id='then_arm.v' class='invisible'>
                            <code>then_arm: <a class="type" href="../../phile/ast/type.Exp.html" title="type phile::ast::Exp">Exp</a>&lt;'a&gt;</code>
-                           </span></span><span id='structfield.else_arm' class="structfield">
+                           </span></span><div class='docblock'><p>The expression evaulated when the condition is true.</p>
+</div><span id='structfield.else_arm' class="structfield">
                            <span id='else_arm.v' class='invisible'>
                            <code>else_arm: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../phile/ast/type.Exp.html" title="type phile::ast::Exp">Exp</a>&lt;'a&gt;&gt;</code>
-                           </span></span><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl&lt;'a&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="../../phile/ast/struct.If.html" title="struct phile::ast::If">If</a>&lt;'a&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/phile/ast.rs.html#194' title='goto source code'>[src]</a></span></h3>
+                           </span></span><div class='docblock'><p>The expression evaluated when the condition is false.</p>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl&lt;'a&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="../../phile/ast/struct.If.html" title="struct phile::ast::If">If</a>&lt;'a&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/phile/ast.rs.html#303' title='goto source code'>[src]</a></span></h3>
 <div class='impl-items'><h4 id='method.fmt' class="method"><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html" title="type core::fmt::Result">Result</a></code></span></h4>
 <div class='docblock'><p>Formats the value using the given formatter.</p>
 </div></div></section>
