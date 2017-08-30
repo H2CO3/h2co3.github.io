@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="API documentation for the Rust `StructType` struct in crate `phile`.">
-    <meta name="keywords" content="rust, rustlang, rust-lang, StructType">
+    <meta name="description" content="API documentation for the Rust `BranchArm` struct in crate `phile`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, BranchArm">
 
-    <title>phile::sqir::StructType - Rust</title>
+    <title>phile::sqir::BranchArm - Rust</title>
 
     <link rel="stylesheet" type="text/css" href="../../normalize.css">
     <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
@@ -29,7 +29,7 @@
 
     <nav class="sidebar">
         
-        <p class='location'>Struct StructType</p><div class="block items"><ul><li><a href="#fields">Fields</a></li><li><a href="#implementations">Trait Implementations</a></li></ul></div><p class='location'><a href='../index.html'>phile</a>::<wbr><a href='index.html'>sqir</a></p><script>window.sidebarCurrent = {name: 'StructType', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+        <p class='location'>Struct BranchArm</p><div class="block items"><ul><li><a href="#fields">Fields</a></li><li><a href="#implementations">Trait Implementations</a></li></ul></div><p class='location'><a href='../index.html'>phile</a>::<wbr><a href='index.html'>sqir</a></p><script>window.sidebarCurrent = {name: 'BranchArm', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
     </nav>
 
     <nav class="sub">
@@ -44,25 +44,24 @@
     </nav>
 
     <section id='main' class="content">
-<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>phile</a>::<wbr><a href='index.html'>sqir</a>::<wbr><a class="struct" href=''>StructType</a></span><span class='out-of-band'><span id='render-detail'>
+<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>phile</a>::<wbr><a href='index.html'>sqir</a>::<wbr><a class="struct" href=''>BranchArm</a></span><span class='out-of-band'><span id='render-detail'>
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../../src/phile/sqir.rs.html#157-163' title='goto source code'>[src]</a></span></h1>
-<pre class='rust struct'>pub struct StructType {
-    pub name: <a class="struct" href="https://doc.rust-lang.org/nightly/collections/string/struct.String.html" title="struct collections::string::String">String</a>,
-    pub fields: <a class="struct" href="https://doc.rust-lang.org/nightly/collections/btree/map/struct.BTreeMap.html" title="struct collections::btree::map::BTreeMap">BTreeMap</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/collections/string/struct.String.html" title="struct collections::string::String">String</a>, <a class="type" href="../../phile/sqir/type.WkType.html" title="type phile::sqir::WkType">WkType</a>&gt;,
-}</pre><div class='docblock'><p>Describes a structure type.</p>
-</div><h2 id='fields' class='fields'>Fields</h2><span id='structfield.name' class="structfield">
-                           <span id='name.v' class='invisible'>
-                           <code>name: <a class="struct" href="https://doc.rust-lang.org/nightly/collections/string/struct.String.html" title="struct collections::string::String">String</a></code>
-                           </span></span><div class='docblock'><p>The name of the struct type.</p>
-</div><span id='structfield.fields' class="structfield">
-                           <span id='fields.v' class='invisible'>
-                           <code>fields: <a class="struct" href="https://doc.rust-lang.org/nightly/collections/btree/map/struct.BTreeMap.html" title="struct collections::btree::map::BTreeMap">BTreeMap</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/collections/string/struct.String.html" title="struct collections::string::String">String</a>, <a class="type" href="../../phile/sqir/type.WkType.html" title="type phile::sqir::WkType">WkType</a>&gt;</code>
-                           </span></span><div class='docblock'><p>The list of fields: keys are the field names;
-each value is the type of the referred field.</p>
-</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="../../phile/sqir/struct.StructType.html" title="struct phile::sqir::StructType">StructType</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/phile/sqir.rs.html#156' title='goto source code'>[src]</a></span></h3>
+               </span><a class='srclink' href='../../src/phile/sqir.rs.html#472-477' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct BranchArm {
+    pub pattern: <a class="type" href="../../phile/sqir/type.RcExpr.html" title="type phile::sqir::RcExpr">RcExpr</a>,
+    pub value: <a class="type" href="../../phile/sqir/type.RcExpr.html" title="type phile::sqir::RcExpr">RcExpr</a>,
+}</pre><div class='docblock'><p>A match-value pair, representing one possible direction of control flow.</p>
+</div><h2 id='fields' class='fields'>Fields</h2><span id='structfield.pattern' class="structfield">
+                           <span id='pattern.v' class='invisible'>
+                           <code>pattern: <a class="type" href="../../phile/sqir/type.RcExpr.html" title="type phile::sqir::RcExpr">RcExpr</a></code>
+                           </span></span><div class='docblock'><p>The pattern that may match the discriminant.</p>
+</div><span id='structfield.value' class="structfield">
+                           <span id='value.v' class='invisible'>
+                           <code>value: <a class="type" href="../../phile/sqir/type.RcExpr.html" title="type phile::sqir::RcExpr">RcExpr</a></code>
+                           </span></span><div class='docblock'><p>The expression to evaluated when <code>pattern</code> matches.</p>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="../../phile/sqir/struct.BranchArm.html" title="struct phile::sqir::BranchArm">BranchArm</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/phile/sqir.rs.html#471' title='goto source code'>[src]</a></span></h3>
 <div class='impl-items'><h4 id='method.fmt' class="method"><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html" title="type core::fmt::Result">Result</a></code></span></h4>
 <div class='docblock'><p>Formats the value using the given formatter.</p>
 </div></div></section>

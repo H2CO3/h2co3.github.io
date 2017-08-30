@@ -1875,6 +1875,89 @@
 <span id="1830">1830</span>
 <span id="1831">1831</span>
 <span id="1832">1832</span>
+<span id="1833">1833</span>
+<span id="1834">1834</span>
+<span id="1835">1835</span>
+<span id="1836">1836</span>
+<span id="1837">1837</span>
+<span id="1838">1838</span>
+<span id="1839">1839</span>
+<span id="1840">1840</span>
+<span id="1841">1841</span>
+<span id="1842">1842</span>
+<span id="1843">1843</span>
+<span id="1844">1844</span>
+<span id="1845">1845</span>
+<span id="1846">1846</span>
+<span id="1847">1847</span>
+<span id="1848">1848</span>
+<span id="1849">1849</span>
+<span id="1850">1850</span>
+<span id="1851">1851</span>
+<span id="1852">1852</span>
+<span id="1853">1853</span>
+<span id="1854">1854</span>
+<span id="1855">1855</span>
+<span id="1856">1856</span>
+<span id="1857">1857</span>
+<span id="1858">1858</span>
+<span id="1859">1859</span>
+<span id="1860">1860</span>
+<span id="1861">1861</span>
+<span id="1862">1862</span>
+<span id="1863">1863</span>
+<span id="1864">1864</span>
+<span id="1865">1865</span>
+<span id="1866">1866</span>
+<span id="1867">1867</span>
+<span id="1868">1868</span>
+<span id="1869">1869</span>
+<span id="1870">1870</span>
+<span id="1871">1871</span>
+<span id="1872">1872</span>
+<span id="1873">1873</span>
+<span id="1874">1874</span>
+<span id="1875">1875</span>
+<span id="1876">1876</span>
+<span id="1877">1877</span>
+<span id="1878">1878</span>
+<span id="1879">1879</span>
+<span id="1880">1880</span>
+<span id="1881">1881</span>
+<span id="1882">1882</span>
+<span id="1883">1883</span>
+<span id="1884">1884</span>
+<span id="1885">1885</span>
+<span id="1886">1886</span>
+<span id="1887">1887</span>
+<span id="1888">1888</span>
+<span id="1889">1889</span>
+<span id="1890">1890</span>
+<span id="1891">1891</span>
+<span id="1892">1892</span>
+<span id="1893">1893</span>
+<span id="1894">1894</span>
+<span id="1895">1895</span>
+<span id="1896">1896</span>
+<span id="1897">1897</span>
+<span id="1898">1898</span>
+<span id="1899">1899</span>
+<span id="1900">1900</span>
+<span id="1901">1901</span>
+<span id="1902">1902</span>
+<span id="1903">1903</span>
+<span id="1904">1904</span>
+<span id="1905">1905</span>
+<span id="1906">1906</span>
+<span id="1907">1907</span>
+<span id="1908">1908</span>
+<span id="1909">1909</span>
+<span id="1910">1910</span>
+<span id="1911">1911</span>
+<span id="1912">1912</span>
+<span id="1913">1913</span>
+<span id="1914">1914</span>
+<span id="1915">1915</span>
 </pre><pre class="rust ">
 <span class="comment">//</span>
 <span class="comment">// sqirgen.rs</span>
@@ -1883,6 +1966,10 @@
 <span class="comment">// Created by Arpad Goretity (H2CO3)</span>
 <span class="comment">// on 07/04/2017</span>
 <span class="comment">//</span>
+
+<span class="doccomment">//! This module provides functionality to convert an Abstract</span>
+<span class="doccomment">//! Syntax Tree into PHiLe&#39;s intermediate language, SQIR (short</span>
+<span class="doccomment">//! for Schema and Query Intermediate Representation).</span>
 
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">collections</span>::{ <span class="ident">HashMap</span>, <span class="ident">BTreeMap</span> };
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">collections</span>::<span class="ident">btree_map</span>::<span class="ident">Entry</span>::{ <span class="ident">Vacant</span>, <span class="ident">Occupied</span> };
@@ -1987,16 +2074,111 @@
 }
 
 
+<span class="doccomment">/// Takes a borrowed AST, performs various kinds of semantic</span>
+<span class="doccomment">/// analysis on it, and if it represents a correct program,</span>
+<span class="doccomment">/// then outputs the corresponding SQIR code.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// # Arguments:</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// * `program`: the borrowed form of an AST.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// # Return value:</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// * `Ok(Sqir)`, if the program described by the AST was semantically valid.</span>
+<span class="doccomment">/// * `Err(Error)`, if the program contains some sort of a semantic error.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">generate_sqir</span>(<span class="ident">program</span>: <span class="kw-2">&amp;</span>[<span class="ident">Item</span>]) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Sqir</span><span class="op">&gt;</span> {
     <span class="ident">SqirGen</span>::<span class="ident">new</span>().<span class="ident">generate_sqir</span>(<span class="ident">program</span>)
 }
 
-<span class="comment">// This is to be used ONLY when you know you have a Class type</span>
-<span class="kw">fn</span> <span class="ident">unwrap_class_name</span>(<span class="ident">class</span>: <span class="kw-2">&amp;</span><span class="ident">RcType</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
-    <span class="kw">match</span> <span class="kw-2">*</span><span class="ident">class</span>.<span class="ident">borrow</span>()<span class="question-mark">?</span> {
+<span class="comment">// This is to be used ONLY when you _know_</span>
+<span class="comment">// you have an entity (currently, a Class) type</span>
+<span class="kw">fn</span> <span class="ident">unwrap_entity_name</span>(<span class="ident">entity</span>: <span class="kw-2">&amp;</span><span class="ident">RcType</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
+    <span class="kw">match</span> <span class="kw-2">*</span><span class="ident">entity</span>.<span class="ident">borrow</span>()<span class="question-mark">?</span> {
         <span class="ident">Type</span>::<span class="ident">Class</span>(<span class="kw-2">ref</span> <span class="ident">c</span>) <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">c</span>.<span class="ident">name</span>.<span class="ident">clone</span>()),
-        <span class="kw-2">ref</span> <span class="ident">ty</span> <span class="op">=&gt;</span> <span class="macro">bug</span><span class="macro">!</span>(<span class="string">&quot;Non-class class type?! {}&quot;</span>, <span class="ident">ty</span>),
+        <span class="kw-2">ref</span> <span class="ident">ty</span> <span class="op">=&gt;</span> <span class="macro">bug</span><span class="macro">!</span>(<span class="string">&quot;Non-class entity type?! {}&quot;</span>, <span class="ident">ty</span>),
     }
+}
+
+<span class="kw">fn</span> <span class="ident">parse_string_literal</span>(<span class="ident">lexeme</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">range</span>: <span class="ident">Range</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
+    <span class="comment">// TODO(H2CO3): actually unescape string literals</span>
+    <span class="kw">if</span> <span class="ident">lexeme</span>.<span class="ident">contains</span>(<span class="string">&#39;\\&#39;</span>) {
+        <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">Syntax</span> {
+            <span class="ident">message</span>: <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;Parsing nontrivial string literal is unimplemented: {}&quot;</span>, <span class="ident">lexeme</span>),
+            <span class="ident">range</span>: <span class="prelude-val">Some</span>(<span class="ident">range</span>),
+        })
+    } <span class="kw">else</span> {
+        <span class="prelude-val">Ok</span>(<span class="ident">lexeme</span>.<span class="ident">to_owned</span>()) <span class="comment">// TODO(H2CO3): trim delimiters</span>
+    }
+}
+
+<span class="kw">fn</span> <span class="ident">parse_bool_literal</span>(<span class="ident">lexeme</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">range</span>: <span class="ident">Range</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
+    <span class="ident">lexeme</span>.<span class="ident">parse</span>().<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">Error</span>::<span class="ident">Syntax</span> {
+        <span class="ident">message</span>: <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;Invalid boolean literal {}: {}&quot;</span>, <span class="ident">lexeme</span>, <span class="ident">err</span>),
+        <span class="ident">range</span>: <span class="prelude-val">Some</span>(<span class="ident">range</span>),
+    })
+}
+
+<span class="kw">fn</span> <span class="ident">parse_float_literal</span>(<span class="ident">lexeme</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">range</span>: <span class="ident">Range</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span> {
+    <span class="ident">lexeme</span>.<span class="ident">parse</span>().<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">Error</span>::<span class="ident">Syntax</span> {
+        <span class="ident">message</span>: <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;Invalid float literal {}: {}&quot;</span>, <span class="ident">lexeme</span>, <span class="ident">err</span>),
+        <span class="ident">range</span>: <span class="prelude-val">Some</span>(<span class="ident">range</span>),
+    })
+}
+
+<span class="kw">fn</span> <span class="ident">parse_int_literal</span>(<span class="ident">lexeme</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">range</span>: <span class="ident">Range</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="ident">radix_map</span> <span class="op">=</span> [
+        (<span class="string">&quot;0b&quot;</span>,  <span class="number">2</span>),
+        (<span class="string">&quot;0B&quot;</span>,  <span class="number">2</span>),
+        (<span class="string">&quot;0o&quot;</span>,  <span class="number">8</span>),
+        (<span class="string">&quot;0O&quot;</span>,  <span class="number">8</span>),
+        (<span class="string">&quot;0x&quot;</span>, <span class="number">16</span>),
+        (<span class="string">&quot;0X&quot;</span>, <span class="number">16</span>),
+    ];
+
+    <span class="kw">for</span> <span class="kw-2">&amp;</span>(<span class="ident">prefix</span>, <span class="ident">radix</span>) <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">radix_map</span> {
+        <span class="kw">if</span> <span class="ident">lexeme</span>.<span class="ident">starts_with</span>(<span class="ident">prefix</span>) {
+              <span class="kw">return</span> <span class="ident">parse_int_with_radix</span>(<span class="kw-2">&amp;</span><span class="ident">lexeme</span>[<span class="ident">prefix</span>.<span class="ident">len</span>()..], <span class="ident">radix</span>, <span class="ident">range</span>);
+        }
+    }
+
+    <span class="ident">parse_int_with_radix</span>(<span class="ident">lexeme</span>, <span class="number">10</span>, <span class="ident">range</span>)
+}
+
+<span class="comment">// Helper for parse_int_literal()</span>
+<span class="kw">fn</span> <span class="ident">parse_int_with_radix</span>(<span class="ident">lexeme</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">radix</span>: <span class="ident">u32</span>, <span class="ident">range</span>: <span class="ident">Range</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span> {
+    <span class="ident">u64</span>::<span class="ident">from_str_radix</span>(<span class="ident">lexeme</span>, <span class="ident">radix</span>).<span class="ident">map_err</span>(
+        <span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">Error</span>::<span class="ident">Syntax</span> {
+            <span class="ident">message</span>: <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;Invalid base-{} integer {}: {}&quot;</span>, <span class="ident">radix</span>, <span class="ident">lexeme</span>, <span class="ident">err</span>),
+            <span class="ident">range</span>: <span class="prelude-val">Some</span>(<span class="ident">range</span>),
+        }
+    )
+}
+
+<span class="kw">fn</span> <span class="ident">parse_cardinality_op</span>(<span class="ident">op</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">range</span>: <span class="ident">Range</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">Cardinality</span>, <span class="ident">Cardinality</span>)<span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="ident">op_error</span> <span class="op">=</span> <span class="op">||</span> <span class="ident">Error</span>::<span class="ident">Syntax</span> {
+        <span class="ident">message</span>: <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;Invalid cardinality operator: {}&quot;</span>, <span class="ident">op</span>),
+        <span class="ident">range</span>: <span class="prelude-val">Some</span>(<span class="ident">range</span>),
+    };
+
+    <span class="kw">let</span> <span class="ident">cardinality_from_char</span> <span class="op">=</span> <span class="op">|</span><span class="ident">ch</span><span class="op">|</span> <span class="prelude-val">Ok</span>(<span class="kw">match</span> <span class="ident">ch</span> {
+        <span class="string">&#39;&lt;&#39;</span> <span class="op">=&gt;</span> <span class="ident">Cardinality</span>::<span class="ident">One</span>,
+        <span class="string">&#39;&gt;&#39;</span> <span class="op">=&gt;</span> <span class="ident">Cardinality</span>::<span class="ident">One</span>,
+        <span class="string">&#39;?&#39;</span> <span class="op">=&gt;</span> <span class="ident">Cardinality</span>::<span class="ident">ZeroOrOne</span>,
+        <span class="string">&#39;!&#39;</span> <span class="op">=&gt;</span> <span class="ident">Cardinality</span>::<span class="ident">One</span>,
+        <span class="string">&#39;*&#39;</span> <span class="op">=&gt;</span> <span class="ident">Cardinality</span>::<span class="ident">ZeroOrMore</span>,
+        <span class="string">&#39;+&#39;</span> <span class="op">=&gt;</span> <span class="ident">Cardinality</span>::<span class="ident">OneOrMore</span>,
+        _   <span class="op">=&gt;</span> <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">op_error</span>()),
+    });
+
+    <span class="comment">// TODO(H2CO3): &amp;op_error should be op_error once #1369 is</span>
+    <span class="comment">// resolved (https://github.com/rust-lang/rfcs/issues/1369)</span>
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">chars</span> <span class="op">=</span> <span class="ident">op</span>.<span class="ident">chars</span>();
+    <span class="kw">let</span> <span class="ident">first</span> <span class="op">=</span> <span class="ident">chars</span>.<span class="ident">next</span>().<span class="ident">ok_or_else</span>(<span class="kw-2">&amp;</span><span class="ident">op_error</span>)<span class="question-mark">?</span>;
+    <span class="kw">let</span> <span class="ident">last</span> <span class="op">=</span> <span class="ident">chars</span>.<span class="ident">next_back</span>().<span class="ident">ok_or_else</span>(<span class="kw-2">&amp;</span><span class="ident">op_error</span>)<span class="question-mark">?</span>;
+    <span class="kw">let</span> <span class="ident">lhs</span> <span class="op">=</span> <span class="ident">cardinality_from_char</span>(<span class="ident">first</span>)<span class="question-mark">?</span>;
+    <span class="kw">let</span> <span class="ident">rhs</span> <span class="op">=</span> <span class="ident">cardinality_from_char</span>(<span class="ident">last</span>)<span class="question-mark">?</span>;
+
+    <span class="prelude-val">Ok</span>((<span class="ident">lhs</span>, <span class="ident">rhs</span>))
 }
 
 <span class="kw">impl</span> <span class="ident">Ranged</span> <span class="kw">for</span> <span class="ident">TyCtx</span> {
@@ -2124,7 +2306,7 @@
     }
 
     <span class="kw">fn</span> <span class="ident">check_relation_reciprocity</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">lhs_type</span>: <span class="kw-2">&amp;</span><span class="ident">RcType</span>, <span class="ident">lhs_field</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">relation</span>: <span class="kw-2">&amp;</span><span class="ident">Relation</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">rhs_type</span> <span class="op">=</span> <span class="ident">relation</span>.<span class="ident">rhs</span>.<span class="ident">class</span>.<span class="ident">clone</span>();
+        <span class="kw">let</span> <span class="ident">rhs_type</span> <span class="op">=</span> <span class="ident">relation</span>.<span class="ident">rhs</span>.<span class="ident">entity</span>.<span class="ident">clone</span>();
         <span class="kw">let</span> <span class="ident">rhs_field</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">relation</span>.<span class="ident">rhs</span>.<span class="ident">field</span> {
             <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">name</span>) <span class="op">=&gt;</span> <span class="ident">name</span>.<span class="ident">clone</span>(),
             <span class="prelude-val">None</span> <span class="op">=&gt;</span> <span class="kw">return</span> <span class="prelude-val">Ok</span>(()), <span class="comment">// unilateral relations need no reciprocal references</span>
@@ -2136,17 +2318,17 @@
         <span class="kw">match</span> <span class="self">self</span>.<span class="ident">sqir</span>.<span class="ident">relations</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="ident">rhs_key</span>) {
             <span class="prelude-val">None</span> <span class="op">=&gt;</span> <span class="kw">return</span> <span class="macro">reciprocity_error</span><span class="macro">!</span>(
                 <span class="string">&quot;Reciprocity check failed: {}::{} refers to {}::{} which is not a relational field&quot;</span>,
-                <span class="ident">unwrap_class_name</span>(<span class="kw-2">&amp;</span><span class="ident">lhs_type</span>)<span class="question-mark">?</span>,
+                <span class="ident">unwrap_entity_name</span>(<span class="kw-2">&amp;</span><span class="ident">lhs_type</span>)<span class="question-mark">?</span>,
                 <span class="ident">lhs_field</span>,
-                <span class="ident">unwrap_class_name</span>(<span class="kw-2">&amp;</span><span class="ident">rhs_type</span>)<span class="question-mark">?</span>,
+                <span class="ident">unwrap_entity_name</span>(<span class="kw-2">&amp;</span><span class="ident">rhs_type</span>)<span class="question-mark">?</span>,
                 <span class="ident">rhs_field</span>,
             ),
             <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">inverse_relation</span>) <span class="op">=&gt;</span> <span class="kw">if</span> <span class="ident">relation</span> <span class="op">!=</span> <span class="kw-2">*</span><span class="ident">inverse_relation</span> {
                 <span class="kw">return</span> <span class="macro">reciprocity_error</span><span class="macro">!</span>(
                     <span class="string">&quot;Reciprocity check failed: the relations specified by {}::{} and {}::{} have mismatching types, cardinalities or field names&quot;</span>,
-                    <span class="ident">unwrap_class_name</span>(<span class="kw-2">&amp;</span><span class="ident">lhs_type</span>)<span class="question-mark">?</span>,
+                    <span class="ident">unwrap_entity_name</span>(<span class="kw-2">&amp;</span><span class="ident">lhs_type</span>)<span class="question-mark">?</span>,
                     <span class="ident">lhs_field</span>,
-                    <span class="ident">unwrap_class_name</span>(<span class="kw-2">&amp;</span><span class="ident">rhs_type</span>)<span class="question-mark">?</span>,
+                    <span class="ident">unwrap_entity_name</span>(<span class="kw-2">&amp;</span><span class="ident">rhs_type</span>)<span class="question-mark">?</span>,
                     <span class="ident">rhs_field</span>,
                 )
             },
@@ -2569,7 +2751,7 @@
                     <span class="ident">Type</span>::<span class="ident">Placeholder</span> { <span class="ident">kind</span>: <span class="ident">PlaceholderKind</span>::<span class="ident">Class</span>, .. } <span class="op">=&gt;</span> {},
                     _ <span class="op">=&gt;</span> <span class="kw">return</span> <span class="macro">sema_error</span><span class="macro">!</span>(
                         <span class="ident">decl</span>,
-                        <span class="string">&quot;Pointer to non-class type {}&quot;</span>,
+                        <span class="string">&quot;Pointer to non-entity type {}&quot;</span>,
                         <span class="kw-2">*</span><span class="ident">ptr</span>,
                     ),
                 }
@@ -2763,7 +2945,7 @@
 
         <span class="kw">let</span> <span class="ident">class</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">*</span><span class="ident">class_type</span> {
             <span class="ident">Type</span>::<span class="ident">Class</span>(<span class="kw-2">ref</span> <span class="ident">c</span>) <span class="op">=&gt;</span> <span class="ident">c</span>,
-            <span class="kw-2">ref</span> <span class="ident">ty</span> <span class="op">=&gt;</span> <span class="macro">bug</span><span class="macro">!</span>(<span class="string">&quot;Non-class class type?! {}&quot;</span>, <span class="ident">ty</span>),
+            <span class="kw-2">ref</span> <span class="ident">ty</span> <span class="op">=&gt;</span> <span class="macro">bug</span><span class="macro">!</span>(<span class="string">&quot;Non-class entity type?! {}&quot;</span>, <span class="ident">ty</span>),
         };
 
         <span class="kw">let</span> <span class="ident">field_type_rc</span> <span class="op">=</span> <span class="ident">class</span>.<span class="ident">fields</span>[<span class="ident">field</span>.<span class="ident">name</span>].<span class="ident">as_rc</span>()<span class="question-mark">?</span>;
@@ -2813,7 +2995,7 @@
         <span class="ident">range</span>:          <span class="kw-2">&amp;</span><span class="ident">R</span>,
     ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="comment">// Ensure that declared RHS cardinality matches with the field type</span>
-        <span class="kw">let</span> (<span class="ident">lhs_card</span>, <span class="ident">rhs_card</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">cardinalities_from_operator</span>(<span class="ident">relation</span>.<span class="ident">cardinality</span>);
+        <span class="kw">let</span> (<span class="ident">lhs_card</span>, <span class="ident">rhs_card</span>) <span class="op">=</span> <span class="ident">parse_cardinality_op</span>(<span class="ident">relation</span>.<span class="ident">cardinality</span>, <span class="ident">range</span>.<span class="ident">range</span>())<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">rhs_class_type</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">validate_type_cardinality</span>(<span class="ident">lhs_field_type</span>, <span class="ident">rhs_card</span>, <span class="ident">range</span>)<span class="question-mark">?</span>;
 
         <span class="kw">let</span> <span class="ident">rhs_field_name</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">relation</span>.<span class="ident">field</span> {
@@ -2842,7 +3024,7 @@
                     <span class="ident">rhs_field_name</span>,
                 )
             },
-            <span class="kw-2">ref</span> <span class="ident">ty</span> <span class="op">=&gt;</span> <span class="macro">bug</span><span class="macro">!</span>(<span class="string">&quot;Non-class class type?! {}&quot;</span>, <span class="ident">ty</span>),
+            <span class="kw-2">ref</span> <span class="ident">ty</span> <span class="op">=&gt;</span> <span class="macro">bug</span><span class="macro">!</span>(<span class="string">&quot;Non-class entity type?! {}&quot;</span>, <span class="ident">ty</span>),
         }
 
         <span class="comment">// The rest of the validation is a separate task,</span>
@@ -2851,12 +3033,12 @@
         <span class="comment">// to the cache --- if an error is found later,</span>
         <span class="comment">// they&#39;ll be discarded anyway, so this is harmless.</span>
         <span class="kw">let</span> <span class="ident">lhs</span> <span class="op">=</span> <span class="ident">RelationSide</span> {
-            <span class="ident">class</span>:       <span class="ident">lhs_class_type</span>.<span class="ident">clone</span>(),
+            <span class="ident">entity</span>:      <span class="ident">lhs_class_type</span>.<span class="ident">clone</span>(),
             <span class="ident">field</span>:       <span class="prelude-val">Some</span>(<span class="ident">lhs_field_name</span>.<span class="ident">to_owned</span>()),
             <span class="ident">cardinality</span>: <span class="ident">lhs_card</span>,
         };
         <span class="kw">let</span> <span class="ident">rhs</span> <span class="op">=</span> <span class="ident">RelationSide</span> {
-            <span class="ident">class</span>:       <span class="ident">rhs_class_type</span>.<span class="ident">clone</span>(),
+            <span class="ident">entity</span>:      <span class="ident">rhs_class_type</span>.<span class="ident">clone</span>(),
             <span class="ident">field</span>:       <span class="prelude-val">Some</span>(<span class="ident">rhs_field_name</span>.<span class="ident">to_owned</span>()),
             <span class="ident">cardinality</span>: <span class="ident">rhs_card</span>,
         };
@@ -2888,12 +3070,12 @@
         <span class="ident">rhs_cardinality</span>: <span class="ident">Cardinality</span>,
     ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">lhs</span> <span class="op">=</span> <span class="ident">RelationSide</span> {
-            <span class="ident">class</span>:       <span class="ident">lhs_type</span>.<span class="ident">clone</span>(),
+            <span class="ident">entity</span>:      <span class="ident">lhs_type</span>.<span class="ident">clone</span>(),
             <span class="ident">field</span>:       <span class="prelude-val">Some</span>(<span class="ident">lhs_field_name</span>.<span class="ident">to_owned</span>()),
             <span class="ident">cardinality</span>: <span class="ident">lhs_cardinality</span>,
         };
         <span class="kw">let</span> <span class="ident">rhs</span> <span class="op">=</span> <span class="ident">RelationSide</span> {
-            <span class="ident">class</span>:       <span class="ident">rhs_type</span>.<span class="ident">clone</span>(),
+            <span class="ident">entity</span>:      <span class="ident">rhs_type</span>.<span class="ident">clone</span>(),
             <span class="ident">field</span>:       <span class="prelude-val">None</span>,
             <span class="ident">cardinality</span>: <span class="ident">rhs_cardinality</span>,
         };
@@ -2978,12 +3160,12 @@
 
         <span class="comment">// Make the relation</span>
         <span class="kw">let</span> <span class="ident">lhs</span> <span class="op">=</span> <span class="ident">RelationSide</span> {
-            <span class="ident">class</span>:       <span class="ident">class_type</span>.<span class="ident">clone</span>(),
+            <span class="ident">entity</span>:      <span class="ident">class_type</span>.<span class="ident">clone</span>(),
             <span class="ident">field</span>:       <span class="prelude-val">Some</span>(<span class="ident">field_name</span>.<span class="ident">to_owned</span>()),
             <span class="ident">cardinality</span>: <span class="ident">Cardinality</span>::<span class="ident">ZeroOrMore</span>,
         };
         <span class="kw">let</span> <span class="ident">rhs</span> <span class="op">=</span> <span class="ident">RelationSide</span> {
-            <span class="ident">class</span>:       <span class="ident">pointed_type</span>,
+            <span class="ident">entity</span>:      <span class="ident">pointed_type</span>,
             <span class="ident">field</span>:       <span class="prelude-val">None</span>,
             <span class="ident">cardinality</span>: <span class="ident">rhs_card</span>,
         };
@@ -3021,26 +3203,6 @@
         };
 
         <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(<span class="ident">type_and_cardinality</span>))
-    }
-
-    <span class="kw">fn</span> <span class="ident">cardinalities_from_operator</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">op</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> (<span class="ident">Cardinality</span>, <span class="ident">Cardinality</span>) {
-        <span class="kw">let</span> <span class="ident">cardinality_from_char</span> <span class="op">=</span> <span class="op">|</span><span class="ident">ch</span><span class="op">|</span> <span class="kw">match</span> <span class="ident">ch</span> {
-            <span class="string">&#39;&lt;&#39;</span> <span class="op">=&gt;</span> <span class="ident">Cardinality</span>::<span class="ident">One</span>,
-            <span class="string">&#39;&gt;&#39;</span> <span class="op">=&gt;</span> <span class="ident">Cardinality</span>::<span class="ident">One</span>,
-            <span class="string">&#39;?&#39;</span> <span class="op">=&gt;</span> <span class="ident">Cardinality</span>::<span class="ident">ZeroOrOne</span>,
-            <span class="string">&#39;!&#39;</span> <span class="op">=&gt;</span> <span class="ident">Cardinality</span>::<span class="ident">One</span>,
-            <span class="string">&#39;*&#39;</span> <span class="op">=&gt;</span> <span class="ident">Cardinality</span>::<span class="ident">ZeroOrMore</span>,
-            <span class="string">&#39;+&#39;</span> <span class="op">=&gt;</span> <span class="ident">Cardinality</span>::<span class="ident">OneOrMore</span>,
-            _   <span class="op">=&gt;</span> <span class="macro">unreachable</span><span class="macro">!</span>(<span class="string">&quot;invalid cardinality operator &#39;{}&#39;&quot;</span>, <span class="ident">op</span>),
-        };
-
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">chars</span> <span class="op">=</span> <span class="ident">op</span>.<span class="ident">chars</span>();
-        <span class="kw">let</span> <span class="ident">first</span> <span class="op">=</span> <span class="ident">chars</span>.<span class="ident">next</span>().<span class="ident">expect</span>(<span class="string">&quot;cardinality operator too short&quot;</span>);
-        <span class="kw">let</span> <span class="ident">last</span> <span class="op">=</span> <span class="ident">chars</span>.<span class="ident">next_back</span>().<span class="ident">expect</span>(<span class="string">&quot;cardinality operator too short&quot;</span>);
-        <span class="kw">let</span> <span class="ident">lhs</span> <span class="op">=</span> <span class="ident">cardinality_from_char</span>(<span class="ident">first</span>);
-        <span class="kw">let</span> <span class="ident">rhs</span> <span class="op">=</span> <span class="ident">cardinality_from_char</span>(<span class="ident">last</span>);
-
-        (<span class="ident">lhs</span>, <span class="ident">rhs</span>)
     }
 
     <span class="comment">//</span>
@@ -3187,10 +3349,10 @@
 
         <span class="kw">let</span> <span class="ident">tmp</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">node</span>.<span class="ident">kind</span> {
             <span class="ident">ExpKind</span>::<span class="ident">NilLiteral</span>           <span class="op">=&gt;</span> <span class="self">self</span>.<span class="ident">generate_nil_literal</span>(<span class="ident">ctx</span>.<span class="ident">clone</span>()),
-            <span class="ident">ExpKind</span>::<span class="ident">BoolLiteral</span>(<span class="ident">b</span>)       <span class="op">=&gt;</span> <span class="self">self</span>.<span class="ident">generate_bool_literal</span>(<span class="ident">b</span>),
-            <span class="ident">ExpKind</span>::<span class="ident">IntLiteral</span>(<span class="ident">n</span>)        <span class="op">=&gt;</span> <span class="self">self</span>.<span class="ident">generate_int_literal</span>(<span class="ident">ctx</span>.<span class="ident">clone</span>(), <span class="ident">n</span>),
-            <span class="ident">ExpKind</span>::<span class="ident">FloatLiteral</span>(<span class="ident">x</span>)      <span class="op">=&gt;</span> <span class="self">self</span>.<span class="ident">generate_float_literal</span>(<span class="ident">x</span>),
-            <span class="ident">ExpKind</span>::<span class="ident">StringLiteral</span>(<span class="kw-2">ref</span> <span class="ident">s</span>) <span class="op">=&gt;</span> <span class="self">self</span>.<span class="ident">generate_string_literal</span>(<span class="ident">s</span>),
+            <span class="ident">ExpKind</span>::<span class="ident">BoolLiteral</span>(<span class="ident">val</span>)     <span class="op">=&gt;</span> <span class="self">self</span>.<span class="ident">generate_bool_literal</span>(<span class="ident">val</span>, <span class="ident">range</span>),
+            <span class="ident">ExpKind</span>::<span class="ident">IntLiteral</span>(<span class="ident">val</span>)      <span class="op">=&gt;</span> <span class="self">self</span>.<span class="ident">generate_int_literal</span>(<span class="ident">ctx</span>.<span class="ident">clone</span>(), <span class="ident">val</span>, <span class="ident">range</span>),
+            <span class="ident">ExpKind</span>::<span class="ident">FloatLiteral</span>(<span class="ident">val</span>)    <span class="op">=&gt;</span> <span class="self">self</span>.<span class="ident">generate_float_literal</span>(<span class="ident">val</span>, <span class="ident">range</span>),
+            <span class="ident">ExpKind</span>::<span class="ident">StringLiteral</span>(<span class="ident">val</span>)   <span class="op">=&gt;</span> <span class="self">self</span>.<span class="ident">generate_string_literal</span>(<span class="ident">val</span>, <span class="ident">range</span>),
             <span class="ident">ExpKind</span>::<span class="ident">Identifier</span>(<span class="ident">name</span>)     <span class="op">=&gt;</span> <span class="self">self</span>.<span class="ident">generate_name_ref</span>(<span class="ident">name</span>, <span class="ident">range</span>),
             <span class="ident">ExpKind</span>::<span class="ident">VarDecl</span>(<span class="kw-2">ref</span> <span class="ident">decl</span>)    <span class="op">=&gt;</span> <span class="self">self</span>.<span class="ident">generate_var_decl</span>(<span class="ident">ctx</span>.<span class="ident">clone</span>(), <span class="ident">decl</span>),
             <span class="ident">ExpKind</span>::<span class="ident">Empty</span>                <span class="op">=&gt;</span> <span class="self">self</span>.<span class="ident">generate_empty_stmt</span>(<span class="ident">ctx</span>.<span class="ident">clone</span>()),
@@ -3278,37 +3440,41 @@
         <span class="prelude-val">Ok</span>(<span class="ident">RcCell</span>::<span class="ident">new</span>(<span class="ident">Expr</span> { <span class="ident">ty</span>, <span class="ident">value</span>, <span class="ident">id</span> }))
     }
 
-    <span class="kw">fn</span> <span class="ident">generate_bool_literal</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">b</span>: <span class="ident">bool</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">RcExpr</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">generate_bool_literal</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">val</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">range</span>: <span class="ident">Range</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">RcExpr</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">ty</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_bool_type</span>();
+        <span class="kw">let</span> <span class="ident">b</span> <span class="op">=</span> <span class="ident">parse_bool_literal</span>(<span class="ident">val</span>, <span class="ident">range</span>)<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">Value</span>::<span class="ident">BoolConst</span>(<span class="ident">b</span>);
         <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">next_temp_id</span>();
         <span class="prelude-val">Ok</span>(<span class="ident">RcCell</span>::<span class="ident">new</span>(<span class="ident">Expr</span> { <span class="ident">ty</span>, <span class="ident">value</span>, <span class="ident">id</span> }))
     }
 
-    <span class="kw">fn</span> <span class="ident">generate_int_literal</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">ctx</span>: <span class="ident">TyCtx</span>, <span class="ident">n</span>: <span class="ident">u64</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">RcExpr</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">generate_int_literal</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">ctx</span>: <span class="ident">TyCtx</span>, <span class="ident">val</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">range</span>: <span class="ident">Range</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">RcExpr</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">hint</span>) <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">ty</span> {
             <span class="kw">if</span> <span class="kw">let</span> <span class="ident">Type</span>::<span class="ident">Float</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">hint</span>.<span class="ident">borrow</span>()<span class="question-mark">?</span> {
-                <span class="kw">return</span> <span class="self">self</span>.<span class="ident">generate_float_literal</span>(<span class="ident">n</span> <span class="kw">as</span> <span class="ident">f64</span>)
+                <span class="kw">return</span> <span class="self">self</span>.<span class="ident">generate_float_literal</span>(<span class="ident">val</span>, <span class="ident">range</span>)
             }
         }
 
         <span class="kw">let</span> <span class="ident">ty</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_int_type</span>();
+        <span class="kw">let</span> <span class="ident">n</span> <span class="op">=</span> <span class="ident">parse_int_literal</span>(<span class="ident">val</span>, <span class="ident">range</span>)<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">Value</span>::<span class="ident">IntConst</span>(<span class="ident">n</span>);
         <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">next_temp_id</span>();
 
         <span class="prelude-val">Ok</span>(<span class="ident">RcCell</span>::<span class="ident">new</span>(<span class="ident">Expr</span> { <span class="ident">ty</span>, <span class="ident">value</span>, <span class="ident">id</span> }))
     }
 
-    <span class="kw">fn</span> <span class="ident">generate_float_literal</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">x</span>: <span class="ident">f64</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">RcExpr</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">generate_float_literal</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">val</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">range</span>: <span class="ident">Range</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">RcExpr</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">ty</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_float_type</span>();
+        <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">parse_float_literal</span>(<span class="ident">val</span>, <span class="ident">range</span>)<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">Value</span>::<span class="ident">FloatConst</span>(<span class="ident">x</span>);
         <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">next_temp_id</span>();
         <span class="prelude-val">Ok</span>(<span class="ident">RcCell</span>::<span class="ident">new</span>(<span class="ident">Expr</span> { <span class="ident">ty</span>, <span class="ident">value</span>, <span class="ident">id</span> }))
     }
 
-    <span class="kw">fn</span> <span class="ident">generate_string_literal</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">RcExpr</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">generate_string_literal</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">val</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">range</span>: <span class="ident">Range</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">RcExpr</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">ty</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_string_type</span>();
-        <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">Value</span>::<span class="ident">StringConst</span>(<span class="ident">s</span>.<span class="ident">to_owned</span>());
+        <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">parse_string_literal</span>(<span class="ident">val</span>, <span class="ident">range</span>)<span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">Value</span>::<span class="ident">StringConst</span>(<span class="ident">s</span>);
         <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">next_temp_id</span>();
         <span class="prelude-val">Ok</span>(<span class="ident">RcCell</span>::<span class="ident">new</span>(<span class="ident">Expr</span> { <span class="ident">ty</span>, <span class="ident">value</span>, <span class="ident">id</span> }))
     }

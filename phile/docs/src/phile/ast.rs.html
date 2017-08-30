@@ -467,7 +467,7 @@
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">Ty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>   <span class="op">=</span> <span class="ident">Node</span><span class="op">&lt;</span><span class="ident">TyKind</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;&gt;</span>;
 
 <span class="doccomment">/// Generic AST node (helper for Exp, Ty, etc.)</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Node</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Discriminant describing the type and value of the node.</span>
     <span class="kw">pub</span> <span class="ident">kind</span>:  <span class="ident">T</span>,
@@ -476,7 +476,7 @@
 }
 
 <span class="doccomment">/// A top-level source item.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Item</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Definition of a `struct` type.</span>
     <span class="ident">StructDecl</span>(<span class="ident">StructDecl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
@@ -491,7 +491,7 @@
 }
 
 <span class="doccomment">/// Type and value of an `Exp` expression node.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ExpKind</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// `?:`, the Elvis operator.</span>
     <span class="ident">CondExp</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">CondExp</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;&gt;</span>),
@@ -516,14 +516,14 @@
     <span class="doccomment">/// Literal `nil`</span>
     <span class="ident">NilLiteral</span>,
     <span class="doccomment">/// Literal `true` or `false`.</span>
-    <span class="ident">BoolLiteral</span>(<span class="ident">bool</span>),
-    <span class="doccomment">/// A pre-parsed integer literal, without a sign.</span>
-    <span class="ident">IntLiteral</span>(<span class="ident">u64</span>),
-    <span class="doccomment">/// A pre-parsed floating-point literal.</span>
-    <span class="ident">FloatLiteral</span>(<span class="ident">f64</span>),
-    <span class="doccomment">/// An already unescaped &#39;raw&#39; string literal.</span>
-    <span class="ident">StringLiteral</span>(<span class="ident">String</span>),
-    <span class="doccomment">/// The name of an entity, e.g. function, variable or type.</span>
+    <span class="ident">BoolLiteral</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>),
+    <span class="doccomment">/// An unparsed integer literal, without a sign.</span>
+    <span class="ident">IntLiteral</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>),
+    <span class="doccomment">/// An unparsed floating-point literal.</span>
+    <span class="ident">FloatLiteral</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>),
+    <span class="doccomment">/// A still potentially escaped string literal.</span>
+    <span class="ident">StringLiteral</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>),
+    <span class="doccomment">/// The name of an entity, e.g. function, variable, or type.</span>
     <span class="ident">Identifier</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>),
     <span class="doccomment">/// A tuple literal.</span>
     <span class="ident">TupleLiteral</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Exp</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;&gt;</span>),
@@ -548,7 +548,7 @@
 }
 
 <span class="doccomment">/// Type and value of a `Ty` type node.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">TyKind</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// A pointer to the inner type.</span>
     <span class="ident">Pointer</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Ty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;&gt;</span>),
@@ -569,7 +569,7 @@
 <span class="comment">//</span>
 
 <span class="doccomment">/// Definition of a `struct` type.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StructDecl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// The source range of the type definition.</span>
     <span class="kw">pub</span> <span class="ident">range</span>:  <span class="ident">Range</span>,
@@ -580,7 +580,7 @@
 }
 
 <span class="doccomment">/// Definition of a `class` type.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ClassDecl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// The source range of the type definition.</span>
     <span class="kw">pub</span> <span class="ident">range</span>:  <span class="ident">Range</span>,
@@ -594,7 +594,7 @@
 <span class="doccomment">/// A `RelDecl` node semantically means that the LHS of the</span>
 <span class="doccomment">/// relation is the class in which the `RelDecl` is contained,</span>
 <span class="doccomment">/// while the RHS is the type of the corresponding field.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RelDecl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// The cardinality operator.</span>
     <span class="kw">pub</span> <span class="ident">cardinality</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
@@ -605,7 +605,7 @@
 }
 
 <span class="doccomment">/// A field specification within a struct or class type definition.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Field</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// The source range of the field definition.</span>
     <span class="kw">pub</span> <span class="ident">range</span>:    <span class="ident">Range</span>,
@@ -618,7 +618,7 @@
 }
 
 <span class="doccomment">/// Definition of an `enum` type.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">EnumDecl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// The source range of the type definition.</span>
     <span class="kw">pub</span> <span class="ident">range</span>:    <span class="ident">Range</span>,
@@ -629,7 +629,7 @@
 }
 
 <span class="doccomment">/// Definition of one enum variant.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Variant</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Source range of the definition.</span>
     <span class="kw">pub</span> <span class="ident">range</span>: <span class="ident">Range</span>,
@@ -640,7 +640,7 @@
 }
 
 <span class="doccomment">/// A function definition.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Function</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Source range of the function.</span>
     <span class="kw">pub</span> <span class="ident">range</span>:     <span class="ident">Range</span>,
@@ -655,7 +655,7 @@
 }
 
 <span class="doccomment">/// Declaration of a single function argument.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FuncArg</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Source range of the declaration.</span>
     <span class="kw">pub</span> <span class="ident">range</span>: <span class="ident">Range</span>,
@@ -666,7 +666,7 @@
 }
 
 <span class="doccomment">/// Implementation of the methods of a user-defined type.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Source range if the `impl`.</span>
     <span class="kw">pub</span> <span class="ident">range</span>:     <span class="ident">Range</span>,
@@ -681,7 +681,7 @@
 <span class="comment">//</span>
 
 <span class="doccomment">/// A conditional expression or &#39;Elvis operator&#39;, `?:`.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CondExp</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// The LHS is the condition.</span>
     <span class="kw">pub</span> <span class="ident">condition</span>: <span class="ident">Exp</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
@@ -693,7 +693,7 @@
 }
 
 <span class="doccomment">/// Any binary operator.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BinaryOp</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Textual representation of the operator itself.</span>
     <span class="kw">pub</span> <span class="ident">op</span>:  <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
@@ -704,7 +704,7 @@
 }
 
 <span class="doccomment">/// An indexing or subscripting operator.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Subscript</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// The expression being indexed into.</span>
     <span class="kw">pub</span> <span class="ident">base</span>:  <span class="ident">Exp</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
@@ -713,7 +713,7 @@
 }
 
 <span class="doccomment">/// Dot syntax for accessing fields and methods.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">MemberAccess</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// The expression of which a field or method is requested.</span>
     <span class="kw">pub</span> <span class="ident">base</span>:   <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Exp</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;&gt;</span>,
@@ -722,7 +722,7 @@
 }
 
 <span class="doccomment">/// Namespace-style member access, for e.g. enums.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QualAccess</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// The expression of which a member is requested.</span>
     <span class="kw">pub</span> <span class="ident">base</span>:   <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Exp</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;&gt;</span>,
@@ -731,7 +731,7 @@
 }
 
 <span class="doccomment">/// A function call operation.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FuncCall</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// The LHS, that is, the function being called.</span>
     <span class="kw">pub</span> <span class="ident">function</span>:  <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Exp</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;&gt;</span>,
@@ -740,7 +740,7 @@
 }
 
 <span class="doccomment">/// A struct literal.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StructLiteral</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Name of the struct type being instantiated.</span>
     <span class="kw">pub</span> <span class="ident">name</span>:   <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
@@ -749,7 +749,7 @@
 }
 
 <span class="doccomment">/// An if statement or expression.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">If</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// The Boolean condition of the `if`.</span>
     <span class="kw">pub</span> <span class="ident">condition</span>: <span class="ident">Exp</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
@@ -760,7 +760,7 @@
 }
 
 <span class="doccomment">/// A match statement or expression.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Match</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// The value to match.</span>
     <span class="kw">pub</span> <span class="ident">discriminant</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Exp</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;&gt;</span>,
@@ -770,7 +770,7 @@
 }
 
 <span class="doccomment">/// A variable declaration statement for locals.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">VarDecl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// The name of the local variable.</span>
     <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
@@ -785,7 +785,7 @@
 <span class="comment">//</span>
 
 <span class="doccomment">/// A function type.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FunctionTy</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// The list of argument types the function takes, in order.</span>
     <span class="kw">pub</span> <span class="ident">arg_types</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Ty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;&gt;</span>,

@@ -48,126 +48,149 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../../src/phile/sqir.rs.html#9-530' title='goto source code'>[src]</a></span></h1>
-<h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+               </span><a class='srclink' href='../../src/phile/sqir.rs.html#9-745' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p>Defines SQIR, the Schema and Query Intermediate Representation.
+SQIR is the intermediate language of PHiLe, on which optimizations
+are performed. SQIR is also the starting point of code generation
+for database abstraction layers.</p>
+</div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.AttrRef.html"
+                                  title='struct phile::sqir::AttrRef'>AttrRef</a></td>
+                           <td class='docblock-short'>
+                                <p>A reference to 0 or more attributes of a certain entity.
+Used for simple, optimized operations (e.g. projections).</p>
+                           </td>
+                       </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.Branch.html"
                                   title='struct phile::sqir::Branch'>Branch</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>A multi-way branch expression. <em>The</em> way to do control flow.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.BranchArm.html"
+                                  title='struct phile::sqir::BranchArm'>BranchArm</a></td>
+                           <td class='docblock-short'>
+                                <p>A match-value pair, representing one possible direction of control flow.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.BuiltinName.html"
                                   title='struct phile::sqir::BuiltinName'>BuiltinName</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Centralized container for the name of each builtin type.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.Call.html"
                                   title='struct phile::sqir::Call'>Call</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>A function call expression.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.ClassType.html"
                                   title='struct phile::sqir::ClassType'>ClassType</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Describes a class type.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.EnumType.html"
                                   title='struct phile::sqir::EnumType'>EnumType</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Describes an enumerated type.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.Expr.html"
                                   title='struct phile::sqir::Expr'>Expr</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Expression: the core data structure.
+This type is more or less a lambda calculus node on steroids.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.Filter.html"
                                   title='struct phile::sqir::Filter'>Filter</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>A general <code>filter</code> or selection operation.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.Function.html"
                                   title='struct phile::sqir::Function'>Function</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>A function. This is the value of global functions and closures.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.FunctionType.html"
                                   title='struct phile::sqir::FunctionType'>FunctionType</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Describes a function type.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.Group.html"
                                   title='struct phile::sqir::Group'>Group</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>A general grouping operation.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.Map.html"
                                   title='struct phile::sqir::Map'>Map</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>A general <code>map</code> or projection operation.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.Reduce.html"
                                   title='struct phile::sqir::Reduce'>Reduce</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>A general <code>reduce</code> or aggregation operation.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.Relation.html"
                                   title='struct phile::sqir::Relation'>Relation</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>An entity relationship is an <strong>unordered</strong> pair of relation sides.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.RelationSide.html"
                                   title='struct phile::sqir::RelationSide'>RelationSide</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Represents one side of a relationship between two entities.
+A particular <code>RelationSide</code> always describes the relation from
+the point of view of one particular entity type.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.Sort.html"
                                   title='struct phile::sqir::Sort'>Sort</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>A general sorting operation.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.Sqir.html"
                                   title='struct phile::sqir::Sqir'>Sqir</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Top-level type for wrapping SQIR for a complete program.
+Field names are (hopefully) self-explanatory.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.StructType.html"
                                   title='struct phile::sqir::StructType'>StructType</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Describes a structure type.</p>
                            </td>
                        </tr></table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
 <table>
@@ -175,37 +198,46 @@
                            <td><a class="enum" href="enum.Cardinality.html"
                                   title='enum phile::sqir::Cardinality'>Cardinality</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>The cardinality or multiplicity shows how many entities in the
+referred side may be related to each entity in the referring side.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="enum" href="enum.ComplexTypeKind.html"
                                   title='enum phile::sqir::ComplexTypeKind'>ComplexTypeKind</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>A bit of terminology:</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="enum" href="enum.ExprId.html"
                                   title='enum phile::sqir::ExprId'>ExprId</a></td>
                            <td class='docblock-short'>
-                                <p><code>ExprId</code> is deliberately not Clone:
-there should never be any two identical ExprIds.</p>
+                                <p><code>ExprId</code> is deliberately not <code>Clone</code>:
+it should not be copied.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="enum" href="enum.PlaceholderKind.html"
                                   title='enum phile::sqir::PlaceholderKind'>PlaceholderKind</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>The kind of the type a placeholder type stands for.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="enum" href="enum.SortDirection.html"
+                                  title='enum phile::sqir::SortDirection'>SortDirection</a></td>
+                           <td class='docblock-short'>
+                                <p>A flag for indicating the direction of sorting.
+The default is <code>Ascending</code>.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class="enum" href="enum.Type.html"
                                   title='enum phile::sqir::Type'>Type</a></td>
                            <td class='docblock-short'>
-                                <p><code>Type</code> is deliberately not Clone, PartialEq and Eq:
-it is meant to be used only with RcCell/WkCell,
+                                <p><code>Type</code> is deliberately not <code>Clone</code>, <code>PartialEq</code> and <code>Eq</code>:
+it is meant to be used only with <code>RcCell</code>/<code>WkCell</code>,
 and its instances should be compared by address.</p>
                            </td>
                        </tr>
@@ -213,7 +245,7 @@ and its instances should be compared by address.</p>
                            <td><a class="enum" href="enum.Value.html"
                                   title='enum phile::sqir::Value'>Value</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Represents the value of an expression node.</p>
                            </td>
                        </tr></table><h2 id='statics' class='section-header'><a href="#statics">Statics</a></h2>
 <table>
@@ -221,7 +253,7 @@ and its instances should be compared by address.</p>
                            <td><a class="static" href="static.BUILTIN_NAME.html"
                                   title='static phile::sqir::BUILTIN_NAME'>BUILTIN_NAME</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>The &quot;singleton&quot; <code>BuiltinName</code> instance.</p>
                            </td>
                        </tr></table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
 <table>
