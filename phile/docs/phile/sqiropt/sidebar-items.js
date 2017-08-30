@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["optimize_sqir",""]]});
+initSidebarItems({"fn":[["optimize_sqir","Performs optimizations on naively-generated SQIR (as emitted by SQIRGen)."]]});

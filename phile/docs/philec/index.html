@@ -48,8 +48,99 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../src/philec/philec.rs.html#9-281' title='goto source code'>[src]</a></span></h1>
-</section>
+               </span><a class='srclink' href='../src/philec/philec.rs.html#9-364' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p><code>philec</code> is the command-line driver for the PHiLe Compiler.</p>
+
+<h2 id='basic-usage' class='section-header'><a href='#basic-usage'>Basic usage:</a></h2>
+<p><code>philec -d mongodb -l go -o src/dal -n dbwrapper src/User.phi src/Post.phi</code></p>
+
+<p>The absolute minimum of arguments to be provided are:</p>
+
+<ul>
+<li><p><code>-d</code>, <code>--database</code>: the name of the database engine to use.
+Currently, it is one of:</p>
+
+<ul>
+<li><code>sqlite3</code></li>
+<li><code>mongodb</code></li>
+<li><code>mariadb</code></li>
+</ul></li>
+<li><p><code>-l</code>, <code>--language</code>: the programming language in which the
+generated Database Abstraction Layer will be emitted.
+Currently, it is one of:</p>
+
+<ul>
+<li><code>rust</code></li>
+<li><code>c</code></li>
+<li><code>cxx</code></li>
+<li><code>objc</code></li>
+<li><code>swift</code></li>
+<li><code>go</code></li>
+<li><code>js</code></li>
+<li><code>python</code></li>
+<li><code>java</code></li>
+</ul></li>
+<li><p>At least one PHiLe source file, typically with extension <code>.phi</code>.</p></li>
+</ul>
+
+<p>There are more command-line parameters, for greater flexibility:</p>
+
+<ul>
+<li>A namespace can be specified using the <code>-n</code> or <code>--namespace</code>
+argument. Different backends treat it differently, in a way that
+is most idiomatic and most useful for the programming language
+in question. For example, in Go, it will be used for naming the
+package. For this reason, this argument is mandatory for the Go
+backend.</li>
+<li>The output directory of PHiLe is the current directory, <code>.</code>, by
+default. This can be changed via the <code>-o</code> or <code>--outdir</code> option.</li>
+<li>By default, PHiLe generates a DAL that retrieves values using
+POD (Plain Old Data) objects. These are immutable and do not
+automatically reflect changes in the underlying database. If
+you wish to use the Active Record strategy instead, which will
+create &quot;smart&quot; objects which automatically synchronize with the
+underlying storage, then you can pass the <code>-a</code> or <code>--access</code>
+parameter. The supported values for this argument are:
+
+<ul>
+<li><code>pod</code> for Plain Old Data,</li>
+<li><code>acr</code> for Active Record.</li>
+</ul></li>
+<li><p>Since the PHiLe DSL probably has different stylistic conventions
+from those of your programming language of choice (unless that
+language happens to be Rust), names of program entities, such
+as types, functions, and class fields, need to be rewritten
+when generating the actual DAL. PHiLe has built-in defaults that
+are the most idiomatic/correct/useful for each supported
+language, but for maximal flexibility, all of them can be
+overridden. The following command line options are available for
+this purpose:</p>
+
+<ul>
+<li><code>-t</code>, <code>--typexform</code>: applied to user-defined type names (<code>class</code>es, <code>struct</code>s and <code>enum</code>s).</li>
+<li><code>-e</code>, <code>--fieldxform</code>: applied to <code>struct</code> and <code>class</code> field names.</li>
+<li><code>-v</code>, <code>--varxform</code>: applied to <code>enum</code> variant names.</li>
+<li><code>-f</code>, <code>--funcxform</code>: applied to function names.</li>
+<li><code>-s</code>, <code>--nsxform</code>: applied to namespace names.</li>
+</ul>
+
+<p>Each of these parameters may take one of the following values:</p>
+
+<ul>
+<li><code>default</code>: the default transform for the language will be applied.</li>
+<li><code>identity</code>: the name will be copied verbatim into the generated code.</li>
+<li><code>lowsnake</code>: the name will be transformed to <code>lower_snake_case</code>.</li>
+<li><code>upsnake</code>: the name will be transformed to <code>UPPER_SNAKE_CASE</code>.</li>
+<li><code>lowcamel</code>: the name will be transformed to <code>lowerCamelCase</code>.</li>
+<li><code>upcamel</code>: the name will be transformed to <code>UpperCamelCase</code>.</li>
+</ul></li>
+</ul>
+
+<h2 id='exit-status' class='section-header'><a href='#exit-status'>Exit Status</a></h2>
+<p>The command-line compiler exits with status <code>0</code> if the compilation
+succeeds. If the compilation fails, it exits with a non-zero status,
+after having removed all generated temporary files.</p>
+</div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>

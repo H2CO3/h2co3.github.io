@@ -324,6 +324,89 @@
 <span id="279">279</span>
 <span id="280">280</span>
 <span id="281">281</span>
+<span id="282">282</span>
+<span id="283">283</span>
+<span id="284">284</span>
+<span id="285">285</span>
+<span id="286">286</span>
+<span id="287">287</span>
+<span id="288">288</span>
+<span id="289">289</span>
+<span id="290">290</span>
+<span id="291">291</span>
+<span id="292">292</span>
+<span id="293">293</span>
+<span id="294">294</span>
+<span id="295">295</span>
+<span id="296">296</span>
+<span id="297">297</span>
+<span id="298">298</span>
+<span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
+<span id="304">304</span>
+<span id="305">305</span>
+<span id="306">306</span>
+<span id="307">307</span>
+<span id="308">308</span>
+<span id="309">309</span>
+<span id="310">310</span>
+<span id="311">311</span>
+<span id="312">312</span>
+<span id="313">313</span>
+<span id="314">314</span>
+<span id="315">315</span>
+<span id="316">316</span>
+<span id="317">317</span>
+<span id="318">318</span>
+<span id="319">319</span>
+<span id="320">320</span>
+<span id="321">321</span>
+<span id="322">322</span>
+<span id="323">323</span>
+<span id="324">324</span>
+<span id="325">325</span>
+<span id="326">326</span>
+<span id="327">327</span>
+<span id="328">328</span>
+<span id="329">329</span>
+<span id="330">330</span>
+<span id="331">331</span>
+<span id="332">332</span>
+<span id="333">333</span>
+<span id="334">334</span>
+<span id="335">335</span>
+<span id="336">336</span>
+<span id="337">337</span>
+<span id="338">338</span>
+<span id="339">339</span>
+<span id="340">340</span>
+<span id="341">341</span>
+<span id="342">342</span>
+<span id="343">343</span>
+<span id="344">344</span>
+<span id="345">345</span>
+<span id="346">346</span>
+<span id="347">347</span>
+<span id="348">348</span>
+<span id="349">349</span>
+<span id="350">350</span>
+<span id="351">351</span>
+<span id="352">352</span>
+<span id="353">353</span>
+<span id="354">354</span>
+<span id="355">355</span>
+<span id="356">356</span>
+<span id="357">357</span>
+<span id="358">358</span>
+<span id="359">359</span>
+<span id="360">360</span>
+<span id="361">361</span>
+<span id="362">362</span>
+<span id="363">363</span>
+<span id="364">364</span>
 </pre><pre class="rust ">
 <span class="comment">//</span>
 <span class="comment">// philec.rs</span>
@@ -332,6 +415,90 @@
 <span class="comment">// Created by Arpad Goretity (H2CO3)</span>
 <span class="comment">// on 07/04/2017</span>
 <span class="comment">//</span>
+
+<span class="doccomment">//! `philec` is the command-line driver for the PHiLe Compiler.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ## Basic usage:</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! `philec -d mongodb -l go -o src/dal -n dbwrapper src/User.phi src/Post.phi`</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! The absolute minimum of arguments to be provided are:</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! * `-d`, `--database`: the name of the database engine to use.</span>
+<span class="doccomment">//!   Currently, it is one of:</span>
+<span class="doccomment">//!   * `sqlite3`</span>
+<span class="doccomment">//!   * `mongodb`</span>
+<span class="doccomment">//!   * `mariadb`</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! * `-l`, `--language`: the programming language in which the</span>
+<span class="doccomment">//!   generated Database Abstraction Layer will be emitted.</span>
+<span class="doccomment">//!   Currently, it is one of:</span>
+<span class="doccomment">//!   * `rust`</span>
+<span class="doccomment">//!   * `c`</span>
+<span class="doccomment">//!   * `cxx`</span>
+<span class="doccomment">//!   * `objc`</span>
+<span class="doccomment">//!   * `swift`</span>
+<span class="doccomment">//!   * `go`</span>
+<span class="doccomment">//!   * `js`</span>
+<span class="doccomment">//!   * `python`</span>
+<span class="doccomment">//!   * `java`</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! * At least one PHiLe source file, typically with extension `.phi`.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! There are more command-line parameters, for greater flexibility:</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! * A namespace can be specified using the `-n` or `--namespace`</span>
+<span class="doccomment">//!   argument. Different backends treat it differently, in a way that</span>
+<span class="doccomment">//!   is most idiomatic and most useful for the programming language</span>
+<span class="doccomment">//!   in question. For example, in Go, it will be used for naming the</span>
+<span class="doccomment">//!   package. For this reason, this argument is mandatory for the Go</span>
+<span class="doccomment">//!   backend.</span>
+<span class="doccomment">//! * The output directory of PHiLe is the current directory, `.`, by</span>
+<span class="doccomment">//!   default. This can be changed via the `-o` or `--outdir` option.</span>
+<span class="doccomment">//! * By default, PHiLe generates a DAL that retrieves values using</span>
+<span class="doccomment">//!   POD (Plain Old Data) objects. These are immutable and do not</span>
+<span class="doccomment">//!   automatically reflect changes in the underlying database. If</span>
+<span class="doccomment">//!   you wish to use the Active Record strategy instead, which will</span>
+<span class="doccomment">//!   create &quot;smart&quot; objects which automatically synchronize with the</span>
+<span class="doccomment">//!   underlying storage, then you can pass the `-a` or `--access`</span>
+<span class="doccomment">//!   parameter. The supported values for this argument are:</span>
+<span class="doccomment">//!   * `pod` for Plain Old Data,</span>
+<span class="doccomment">//!   * `acr` for Active Record.</span>
+<span class="doccomment">//! * Since the PHiLe DSL probably has different stylistic conventions</span>
+<span class="doccomment">//!   from those of your programming language of choice (unless that</span>
+<span class="doccomment">//!   language happens to be Rust), names of program entities, such</span>
+<span class="doccomment">//!   as types, functions, and class fields, need to be rewritten</span>
+<span class="doccomment">//!   when generating the actual DAL. PHiLe has built-in defaults that</span>
+<span class="doccomment">//!   are the most idiomatic/correct/useful for each supported</span>
+<span class="doccomment">//!   language, but for maximal flexibility, all of them can be</span>
+<span class="doccomment">//!   overridden. The following command line options are available for</span>
+<span class="doccomment">//!   this purpose:</span>
+<span class="doccomment">//!   * `-t`, `--typexform`: applied to user-defined type names (`class`es, `struct`s and `enum`s).</span>
+<span class="doccomment">//!   * `-e`, `--fieldxform`: applied to `struct` and `class` field names.</span>
+<span class="doccomment">//!   * `-v`, `--varxform`: applied to `enum` variant names.</span>
+<span class="doccomment">//!   * `-f`, `--funcxform`: applied to function names.</span>
+<span class="doccomment">//!   * `-s`, `--nsxform`: applied to namespace names.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//!   Each of these parameters may take one of the following values:</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//!   * `default`: the default transform for the language will be applied.</span>
+<span class="doccomment">//!   * `identity`: the name will be copied verbatim into the generated code.</span>
+<span class="doccomment">//!   * `lowsnake`: the name will be transformed to `lower_snake_case`.</span>
+<span class="doccomment">//!   * `upsnake`: the name will be transformed to `UPPER_SNAKE_CASE`.</span>
+<span class="doccomment">//!   * `lowcamel`: the name will be transformed to `lowerCamelCase`.</span>
+<span class="doccomment">//!   * `upcamel`: the name will be transformed to `UpperCamelCase`.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ## Exit Status</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! The command-line compiler exits with status `0` if the compilation</span>
+<span class="doccomment">//! succeeds. If the compilation fails, it exits with a non-zero status,</span>
+<span class="doccomment">//! after having removed all generated temporary files.</span>
+
+<span class="attribute">#<span class="op">!</span>[<span class="ident">deny</span>(<span class="ident">missing_debug_implementations</span>, <span class="ident">missing_copy_implementations</span>,
+        <span class="ident">trivial_casts</span>, <span class="ident">trivial_numeric_casts</span>,
+        <span class="ident">unsafe_code</span>,
+        <span class="ident">unstable_features</span>,
+        <span class="ident">unused_import_braces</span>, <span class="ident">unused_qualifications</span>, <span class="ident">missing_docs</span>)]</span>
 
 <span class="attribute">#[<span class="ident">macro_use</span>]</span>
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">clap</span>;
@@ -351,7 +518,6 @@
 <span class="kw">use</span> <span class="ident">phile</span>::<span class="ident">parser</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">phile</span>::<span class="ident">sqirgen</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">phile</span>::<span class="ident">sqiropt</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">phile</span>::<span class="ident">codegen</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">phile</span>::<span class="ident">dalgen</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">phile</span>::<span class="ident">error</span>::<span class="kw-2">*</span>;
 
@@ -365,11 +531,11 @@
     <span class="ident">sources</span>:          <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
 }
 
-<span class="comment">// TODO(H2CO3): Rewrite this using RcCell once custom smart pointers</span>
-<span class="comment">//              can point to trait objects, i.e. when CoerceUnsized</span>
-<span class="comment">//              and Unsize are stabilized (see issue #27732)</span>
+<span class="comment">// TODO(H2CO3): Rewrite this using `RcCell` once custom smart pointers</span>
+<span class="comment">//              can point to trait objects, i.e. when `CoerceUnsized`</span>
+<span class="comment">//              and `Unsize` are stabilized (see issue #27732).</span>
 <span class="kw">struct</span> <span class="ident">FileWriterProvider</span> {
-    <span class="ident">files</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">PathBuf</span>, <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">io</span>::<span class="ident">Write</span><span class="op">&gt;&gt;</span><span class="op">&gt;</span>,
+    <span class="ident">files</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">PathBuf</span>, <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">Write</span><span class="op">&gt;&gt;</span><span class="op">&gt;</span>,
     <span class="ident">base_path</span>: <span class="ident">PathBuf</span>,
     <span class="ident">outfile_prefix</span>: <span class="ident">String</span>,
 }
@@ -383,7 +549,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">writer_with_name</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">io</span>::<span class="ident">Write</span><span class="op">&gt;&gt;</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">writer_with_name</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">Write</span><span class="op">&gt;&gt;</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">base_path</span>.<span class="ident">join</span>(<span class="self">self</span>.<span class="ident">outfile_prefix</span>.<span class="ident">clone</span>() <span class="op">+</span> <span class="ident">name</span>);
 
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">rc</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">files</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="ident">path</span>) {
@@ -391,7 +557,7 @@
         }
 
         <span class="kw">let</span> <span class="ident">file</span> <span class="op">=</span> <span class="ident">File</span>::<span class="ident">create</span>(<span class="kw-2">&amp;</span><span class="ident">path</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">rc</span> <span class="op">=</span> <span class="ident">Rc</span>::<span class="ident">new</span>(<span class="ident">RefCell</span>::<span class="ident">new</span>(<span class="ident">file</span>)) <span class="kw">as</span> <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">io</span>::<span class="ident">Write</span><span class="op">&gt;&gt;</span>;
+        <span class="kw">let</span> <span class="ident">rc</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">Write</span><span class="op">&gt;&gt;</span> <span class="op">=</span> <span class="ident">Rc</span>::<span class="ident">new</span>(<span class="ident">RefCell</span>::<span class="ident">new</span>(<span class="ident">file</span>));
 
         <span class="self">self</span>.<span class="ident">files</span>.<span class="ident">insert</span>(<span class="ident">path</span>, <span class="ident">rc</span>.<span class="ident">clone</span>());
 
@@ -597,7 +763,7 @@
 
     <span class="comment">// Handle errors by printing them, removing partially-written files, then bailing out</span>
     <span class="ident">result</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="ident">error</span><span class="op">|</span> {
-        <span class="ident">error</span>.<span class="ident">pretty_print</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">io</span>::<span class="ident">stderr</span>(), <span class="kw-2">&amp;</span><span class="ident">args</span>.<span class="ident">sources</span>).<span class="ident">unwrap</span>();
+        <span class="ident">error</span>.<span class="ident">pretty_print</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">stderr</span>(), <span class="kw-2">&amp;</span><span class="ident">args</span>.<span class="ident">sources</span>).<span class="ident">unwrap</span>();
         <span class="ident">wp1</span>.<span class="ident">borrow_mut</span>().<span class="ident">unwrap</span>().<span class="ident">remove_files</span>();
         <span class="ident">std</span>::<span class="ident">process</span>::<span class="ident">exit</span>(<span class="number">1</span>);
     });

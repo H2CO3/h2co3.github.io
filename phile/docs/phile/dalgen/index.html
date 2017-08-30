@@ -29,7 +29,7 @@
 
     <nav class="sidebar">
         
-        <p class='location'>Module dalgen</p><div class="block items"><ul><li><a href="#functions">Functions</a></li></ul></div><p class='location'><a href='../index.html'>phile</a></p><script>window.sidebarCurrent = {name: 'dalgen', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+        <p class='location'>Module dalgen</p><div class="block items"><ul><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#functions">Functions</a></li><li><a href="#types">Type Definitions</a></li></ul></div><p class='location'><a href='../index.html'>phile</a></p><script>window.sidebarCurrent = {name: 'dalgen', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
     </nav>
 
     <nav class="sub">
@@ -48,14 +48,69 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../../src/phile/dalgen/mod.rs.html#9-45' title='goto source code'>[src]</a></span></h1>
-<h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+               </span><a class='srclink' href='../../src/phile/dalgen/mod.rs.html#9-302' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p>DALGen, the backend of the PHiLe compiler. This is the part
+that generates actual code in your programming language of
+choice for a Database Abstraction Layer from optimized SQIR.</p>
+</div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.CodegenParams.html"
+                                  title='struct phile::dalgen::CodegenParams'>CodegenParams</a></td>
+                           <td class='docblock-short'>
+                                <p>A bunch of centralized settings governing the behavior of DALGen.</p>
+                           </td>
+                       </tr></table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class="enum" href="enum.DatabaseAccessMode.html"
+                                  title='enum phile::dalgen::DatabaseAccessMode'>DatabaseAccessMode</a></td>
+                           <td class='docblock-short'>
+                                <p>The strategy with which the generated DAL will query the DB.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="enum" href="enum.DatabaseEngine.html"
+                                  title='enum phile::dalgen::DatabaseEngine'>DatabaseEngine</a></td>
+                           <td class='docblock-short'>
+                                <p>The database engine flavor for which a Database Abstraction Layer will be generated.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="enum" href="enum.Language.html"
+                                  title='enum phile::dalgen::Language'>Language</a></td>
+                           <td class='docblock-short'>
+                                <p>The programming language in which the DAL will be implemented.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="enum" href="enum.NameTransform.html"
+                                  title='enum phile::dalgen::NameTransform'>NameTransform</a></td>
+                           <td class='docblock-short'>
+                                <p>The rewriting strategy applied to various kinds of named program elements,
+such as function, variable, and type names.
+In the <code>CodegenParams</code> struct, optional instances of this transform are
+specified, where <code>None</code> means &quot;default for the programming language&quot;.</p>
+                           </td>
+                       </tr></table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
 <table>
                        <tr class=' module-item'>
                            <td><a class="fn" href="fn.generate_dal.html"
                                   title='fn phile::dalgen::generate_dal'>generate_dal</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>Given the SQIR representation of a program, and some configuration parameters,
+generates a Database Abstraction Layer and writes the code into <code>io::Write</code>s.</p>
+                           </td>
+                       </tr></table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.WriterProvider.html"
+                                  title='type phile::dalgen::WriterProvider'>WriterProvider</a></td>
+                           <td class='docblock-short'>
+                                <p>Functions of this type are expected to yield a (possibly cached)
+<code>io::Write</code> object that DALGen can write to. The cache key,
+specified as the string parameter of the function, is sometimes
+a file name derived from the <code>impl</code> of a user-defined type.</p>
                            </td>
                        </tr></table></section>
     <section id='search' class="content hidden"></section>

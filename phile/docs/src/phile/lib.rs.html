@@ -78,6 +78,20 @@
 <span id="33">33</span>
 <span id="34">34</span>
 <span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
 </pre><pre class="rust ">
 <span class="comment">//</span>
 <span class="comment">// lib.rs</span>
@@ -87,6 +101,22 @@
 <span class="comment">// on 07/04/2017</span>
 <span class="comment">//</span>
 
+<span class="doccomment">//! This library provides the programmatic interface for the PHiLe Compiler</span>
+<span class="doccomment">//! and Domain-Specific Language. The crate is composed of several modules,</span>
+<span class="doccomment">//! each of which roughly corresponds to a single step in the compilation</span>
+<span class="doccomment">//! pipeline:</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! * `lexer` performs lexical analysis and tokenization.</span>
+<span class="doccomment">//! * `parser` performs higher-level syntactic analysis and outputs an...</span>
+<span class="doccomment">//! * `ast`, an Abstract Syntax Tree.</span>
+<span class="doccomment">//! * `sqirgen` takes the AST and typechecks it, then emits...</span>
+<span class="doccomment">//! * `sqir`, the Schema and Query Intermediate Representation, PHiLe IR.</span>
+<span class="doccomment">//! * `sqiropt` will take the raw SQIR and optimize it, so that it can be fed into...</span>
+<span class="doccomment">//! * `dalgen`, which is the back-end that generates the actual DAL code.</span>
+<span class="doccomment">//! * `util` contains miscellaneous helper types and functions.</span>
+<span class="doccomment">//! * `error` contains type definitions for uniformly describing syntactic,</span>
+<span class="doccomment">//!   semantic, and internal compiler errors.</span>
+
 <span class="attribute">#<span class="op">!</span>[<span class="ident">crate_name</span><span class="op">=</span><span class="string">&quot;phile&quot;</span>]</span>
 <span class="attribute">#<span class="op">!</span>[<span class="ident">crate_type</span><span class="op">=</span><span class="string">&quot;rlib&quot;</span>]</span>
 <span class="attribute">#<span class="op">!</span>[<span class="ident">crate_type</span><span class="op">=</span><span class="string">&quot;dylib&quot;</span>]</span>
@@ -95,8 +125,7 @@
         <span class="ident">trivial_casts</span>, <span class="ident">trivial_numeric_casts</span>,
         <span class="ident">unsafe_code</span>,
         <span class="ident">unstable_features</span>,
-        <span class="ident">unused_import_braces</span>, <span class="ident">unused_qualifications</span>
-        <span class="comment">/*, missing_docs */</span>)]</span>
+        <span class="ident">unused_import_braces</span>, <span class="ident">unused_qualifications</span>, <span class="ident">missing_docs</span>)]</span>
 
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">regex</span>;
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">heck</span>;
@@ -112,7 +141,6 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">sqir</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">sqirgen</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">sqiropt</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">codegen</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">dalgen</span>;
 </pre>
 </section>

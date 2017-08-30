@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="API documentation for the Rust `BUILTIN_NAME` static in crate `phile`.">
-    <meta name="keywords" content="rust, rustlang, rust-lang, BUILTIN_NAME">
+    <meta name="description" content="API documentation for the Rust `WriterProvider` type in crate `phile`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, WriterProvider">
 
-    <title>phile::sqir::BUILTIN_NAME - Rust</title>
+    <title>phile::dalgen::WriterProvider - Rust</title>
 
     <link rel="stylesheet" type="text/css" href="../../normalize.css">
     <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
@@ -17,7 +17,7 @@
     
     
 </head>
-<body class="rustdoc static">
+<body class="rustdoc type">
     <!--[if lte IE 8]>
     <div class="warning">
         This old browser is unsupported and will most likely display funky
@@ -29,7 +29,7 @@
 
     <nav class="sidebar">
         
-        <p class='location'><a href='../index.html'>phile</a>::<wbr><a href='index.html'>sqir</a></p><script>window.sidebarCurrent = {name: 'BUILTIN_NAME', ty: 'static', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+        <p class='location'><a href='../index.html'>phile</a>::<wbr><a href='index.html'>dalgen</a></p><script>window.sidebarCurrent = {name: 'WriterProvider', ty: 'type', relpath: ''};</script><script defer src="sidebar-items.js"></script>
     </nav>
 
     <nav class="sub">
@@ -44,18 +44,19 @@
     </nav>
 
     <section id='main' class="content">
-<h1 class='fqn'><span class='in-band'>Static <a href='../index.html'>phile</a>::<wbr><a href='index.html'>sqir</a>::<wbr><a class="static" href=''>BUILTIN_NAME</a></span><span class='out-of-band'><span id='render-detail'>
+<h1 class='fqn'><span class='in-band'>Type Definition <a href='../index.html'>phile</a>::<wbr><a href='index.html'>dalgen</a>::<wbr><a class="type" href=''>WriterProvider</a></span><span class='out-of-band'><span id='render-detail'>
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../../src/phile/sqir.rs.html#47-55' title='goto source code'>[src]</a></span></h1>
-<pre class='rust static'>pub static BUILTIN_NAME: <a class="struct" href="../../phile/sqir/struct.BuiltinName.html" title="struct phile::sqir::BuiltinName">BuiltinName</a><code> = </code><code>BuiltinName{bool_name: &quot;bool&quot;,
-            int_name: &quot;int&quot;,
-            float_name: &quot;float&quot;,
-            decimal_name: &quot;Decimal&quot;,
-            string_name: &quot;String&quot;,
-            blob_name: &quot;Blob&quot;,
-            date_name: &quot;Date&quot;,}</code></pre><div class='docblock'><p>The &quot;singleton&quot; <code>BuiltinName</code> instance.</p>
+               </span><a class='srclink' href='../../src/phile/dalgen/mod.rs.html#127' title='goto source code'>[src]</a></span></h1>
+<pre class='rust typedef'>type WriterProvider = <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/trait.FnMut.html" title="trait core::ops::FnMut">FnMut</a>(&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="type" href="../../phile/error/type.Result.html" title="type phile::error::Result">Result</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/rc/struct.Rc.html" title="struct alloc::rc::Rc">Rc</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/core/cell/struct.RefCell.html" title="struct core::cell::RefCell">RefCell</a>&lt;<a class="trait" href="https://doc.rust-lang.org/nightly/std/io/trait.Write.html" title="trait std::io::Write">Write</a>&gt;&gt;&gt;;</pre><div class='docblock'><p>Functions of this type are expected to yield a (possibly cached)
+<code>io::Write</code> object that DALGen can write to. The cache key,
+specified as the string parameter of the function, is sometimes
+a file name derived from the <code>impl</code> of a user-defined type.</p>
+
+<p>TODO(H2CO3): rewrite this using <code>RcCell</code> once custom smart pointers
+can point to trait objects, i.e. when <code>CoerceUnsized</code> and <code>Unsize</code>
+are stabilized. See <a href="https://github.com/rust-lang/rust/issues/27732">issue #27732</a>.</p>
 </div></section>
     <section id='search' class="content hidden"></section>
 

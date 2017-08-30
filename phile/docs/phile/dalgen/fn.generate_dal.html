@@ -48,8 +48,25 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../../src/phile/dalgen/mod.rs.html#33-45' title='goto source code'>[src]</a></span></h1>
-<pre class='rust fn'>pub fn generate_dal(<br>&nbsp;&nbsp;&nbsp;&nbsp;sqir: &amp;<a class="struct" href="../../phile/sqir/struct.Sqir.html" title="struct phile::sqir::Sqir">Sqir</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;params: &amp;<a class="struct" href="../../phile/codegen/struct.CodegenParams.html" title="struct phile::codegen::CodegenParams">CodegenParams</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;wp: &amp;mut <a class="type" href="../../phile/codegen/type.WriterProvider.html" title="type phile::codegen::WriterProvider">WriterProvider</a><br>) -&gt; <a class="type" href="../../phile/error/type.Result.html" title="type phile::error::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">()</a>&gt;</pre></section>
+               </span><a class='srclink' href='../../src/phile/dalgen/mod.rs.html#154-166' title='goto source code'>[src]</a></span></h1>
+<pre class='rust fn'>pub fn generate_dal(<br>&nbsp;&nbsp;&nbsp;&nbsp;sqir: &amp;<a class="struct" href="../../phile/sqir/struct.Sqir.html" title="struct phile::sqir::Sqir">Sqir</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;params: &amp;<a class="struct" href="../../phile/dalgen/struct.CodegenParams.html" title="struct phile::dalgen::CodegenParams">CodegenParams</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;wp: &amp;mut <a class="type" href="../../phile/dalgen/type.WriterProvider.html" title="type phile::dalgen::WriterProvider">WriterProvider</a><br>) -&gt; <a class="type" href="../../phile/error/type.Result.html" title="type phile::error::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">()</a>&gt;</pre><div class='docblock'><p>Given the SQIR representation of a program, and some configuration parameters,
+generates a Database Abstraction Layer and writes the code into <code>io::Write</code>s.</p>
+
+<h1 id='arguments' class='section-header'><a href='#arguments'>Arguments:</a></h1>
+<ul>
+<li><code>sqir</code>: Optimized SQIR intermediate representation for a PHiLe program.</li>
+<li><code>params</code>: code generation parameters; see the docs for <code>CodegenParams</code>.</li>
+<li><code>wp</code>: a provider of <code>io::Write</code>s that will accumulate generated code.</li>
+</ul>
+
+<h1 id='return-value' class='section-header'><a href='#return-value'>Return value:</a></h1>
+<ul>
+<li><code>Ok(())</code>, if code generation completed successfully.</li>
+<li><code>Err(Error)</code>, if an error occurred. This is typically an I/O error (<code>Error::IO</code>)
+or an <code>Error::Semantic</code> induced by some special requirement of the backend
+(e.g. a missing namespace when generating Go code).</li>
+</ul>
+</div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
