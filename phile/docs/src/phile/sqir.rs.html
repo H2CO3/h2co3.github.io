@@ -786,8 +786,6 @@
 <span id="741">741</span>
 <span id="742">742</span>
 <span id="743">743</span>
-<span id="744">744</span>
-<span id="745">745</span>
 </pre><pre class="rust ">
 <span class="comment">//</span>
 <span class="comment">// sqir.rs</span>
@@ -1461,9 +1459,7 @@
 <span class="doccomment">/// **NOTE:** Since an entity relationship is an **unordered** pair</span>
 <span class="doccomment">/// of two relation sides, `==` has some additional symmetry:</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// Relation { lhs: S1, rhs: S2 } == Relation { lhs: S2, rhs: S1 }</span>
-<span class="doccomment">/// ```</span>
+<span class="doccomment">/// `Relation { lhs: S1, rhs: S2 } == Relation { lhs: S2, rhs: S1 }`</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// yields `true` for any two `RelationSide`s `S1` and `S2`.</span>
 <span class="kw">impl</span> <span class="ident">PartialEq</span> <span class="kw">for</span> <span class="ident">Relation</span> {
