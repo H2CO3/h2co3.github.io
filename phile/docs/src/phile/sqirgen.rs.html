@@ -1983,7 +1983,7 @@
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">struct</span> <span class="ident">TyCtx</span> {
-    <span class="ident">ty</span>:    <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">RcType</span><span class="op">&gt;</span>, <span class="comment">// type hint</span>
+    <span class="ident">ty</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">RcType</span><span class="op">&gt;</span>, <span class="comment">// type hint</span>
     <span class="ident">range</span>: <span class="ident">Range</span>,
 }
 
@@ -1999,14 +1999,14 @@
 <span class="comment">// scope vectors, variable names are stored in order of declaration.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
 <span class="kw">struct</span> <span class="ident">Locals</span> {
-    <span class="ident">var_map</span>:     <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">RcExpr</span><span class="op">&gt;</span>,
+    <span class="ident">var_map</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">RcExpr</span><span class="op">&gt;</span>,
     <span class="ident">scope_stack</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;&gt;</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">struct</span> <span class="ident">SqirGen</span> {
-    <span class="ident">sqir</span>:    <span class="ident">Sqir</span>,
-    <span class="ident">locals</span>:  <span class="ident">RcCell</span><span class="op">&lt;</span><span class="ident">Locals</span><span class="op">&gt;</span>,
+    <span class="ident">sqir</span>: <span class="ident">Sqir</span>,
+    <span class="ident">locals</span>: <span class="ident">RcCell</span><span class="op">&lt;</span><span class="ident">Locals</span><span class="op">&gt;</span>,
     <span class="ident">tmp_idx</span>: <span class="ident">usize</span>,
 }
 

@@ -955,7 +955,7 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">EnumType</span> {
     <span class="doccomment">/// The name of the enum type.</span>
-    <span class="kw">pub</span> <span class="ident">name</span>:     <span class="ident">String</span>,
+    <span class="kw">pub</span> <span class="ident">name</span>: <span class="ident">String</span>,
     <span class="doccomment">/// The list of variants: keys are variant names, each value</span>
     <span class="doccomment">/// is the type of the associated value of the variant.</span>
     <span class="kw">pub</span> <span class="ident">variants</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">WkType</span><span class="op">&gt;</span>,
@@ -965,7 +965,7 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StructType</span> {
     <span class="doccomment">/// The name of the struct type.</span>
-    <span class="kw">pub</span> <span class="ident">name</span>:   <span class="ident">String</span>,
+    <span class="kw">pub</span> <span class="ident">name</span>: <span class="ident">String</span>,
     <span class="doccomment">/// The list of fields: keys are the field names;</span>
     <span class="doccomment">/// each value is the type of the referred field.</span>
     <span class="kw">pub</span> <span class="ident">fields</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">WkType</span><span class="op">&gt;</span>,
@@ -975,7 +975,7 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ClassType</span> {
     <span class="doccomment">/// The name of the class type.</span>
-    <span class="kw">pub</span> <span class="ident">name</span>:   <span class="ident">String</span>,
+    <span class="kw">pub</span> <span class="ident">name</span>: <span class="ident">String</span>,
     <span class="doccomment">/// The list of fields: keys are the field names;</span>
     <span class="doccomment">/// each value is the type of the referred field.</span>
     <span class="kw">pub</span> <span class="ident">fields</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">WkType</span><span class="op">&gt;</span>,
@@ -987,7 +987,7 @@
     <span class="doccomment">/// The list of types of each argument in order.</span>
     <span class="kw">pub</span> <span class="ident">arg_types</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">WkType</span><span class="op">&gt;</span>,
     <span class="doccomment">/// The return type of the function.</span>
-    <span class="kw">pub</span> <span class="ident">ret_type</span>:  <span class="ident">WkType</span>,
+    <span class="kw">pub</span> <span class="ident">ret_type</span>: <span class="ident">WkType</span>,
 }
 
 <span class="comment">//</span>
@@ -1000,9 +1000,9 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RelationSide</span> {
     <span class="doccomment">/// Pointer to the type which forms this side of the relationship.</span>
-    <span class="kw">pub</span> <span class="ident">entity</span>:      <span class="ident">RcType</span>,
+    <span class="kw">pub</span> <span class="ident">entity</span>: <span class="ident">RcType</span>,
     <span class="doccomment">/// Name of the field this side uses to refer to the other side.</span>
-    <span class="kw">pub</span> <span class="ident">field</span>:       <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">field</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Number of instances of this entity that may correspond to</span>
     <span class="doccomment">/// an instance in the other entity.</span>
     <span class="kw">pub</span> <span class="ident">cardinality</span>: <span class="ident">Cardinality</span>,
@@ -1044,11 +1044,11 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Expr</span> {
     <span class="doccomment">/// The type of the expression.</span>
-    <span class="kw">pub</span> <span class="ident">ty</span>:    <span class="ident">RcType</span>, <span class="comment">// can be Rc: no cycles are possible</span>
+    <span class="kw">pub</span> <span class="ident">ty</span>: <span class="ident">RcType</span>, <span class="comment">// can be Rc: no cycles are possible</span>
     <span class="doccomment">/// The value of the expression.</span>
     <span class="kw">pub</span> <span class="ident">value</span>: <span class="ident">Value</span>,
     <span class="doccomment">/// The identifier of the expression, unique within a top-level function.</span>
-    <span class="kw">pub</span> <span class="ident">id</span>:    <span class="ident">ExprId</span>,
+    <span class="kw">pub</span> <span class="ident">id</span>: <span class="ident">ExprId</span>,
 }
 
 <span class="doccomment">/// Represents the value of an expression node.</span>
@@ -1263,7 +1263,7 @@
     <span class="doccomment">/// The function being called.</span>
     <span class="kw">pub</span> <span class="ident">callee</span>: <span class="ident">RcExpr</span>,
     <span class="doccomment">/// The list of actual arguments, in order.</span>
-    <span class="kw">pub</span> <span class="ident">args</span>:   <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">RcExpr</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">args</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">RcExpr</span><span class="op">&gt;</span>,
 }
 
 <span class="doccomment">/// A multi-way branch expression. *The* way to do control flow.</span>
@@ -1273,7 +1273,7 @@
     <span class="kw">pub</span> <span class="ident">discriminant</span>: <span class="ident">RcExpr</span>,
     <span class="doccomment">/// The patterns that match the discriminant, along with their</span>
     <span class="doccomment">/// associated expression that will be evaluated upon match.</span>
-    <span class="kw">pub</span> <span class="ident">arms</span>:         <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">BranchArm</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">arms</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">BranchArm</span><span class="op">&gt;</span>,
 }
 
 <span class="doccomment">/// A match-value pair, representing one possible direction of control flow.</span>
@@ -1291,7 +1291,7 @@
     <span class="doccomment">/// The sequence/collection which is the domain of the projection.</span>
     <span class="kw">pub</span> <span class="ident">domain</span>: <span class="ident">RcExpr</span>,
     <span class="doccomment">/// A unary function applied to every element of `domain`.</span>
-    <span class="kw">pub</span> <span class="ident">op</span>:     <span class="ident">RcExpr</span>,
+    <span class="kw">pub</span> <span class="ident">op</span>: <span class="ident">RcExpr</span>,
 }
 
 <span class="doccomment">/// A general `reduce` or aggregation operation.</span>
@@ -1300,9 +1300,9 @@
     <span class="doccomment">/// The domain of the aggregation (see `Map` too).</span>
     <span class="kw">pub</span> <span class="ident">domain</span>: <span class="ident">RcExpr</span>,
     <span class="doccomment">/// The identity element of the operation.</span>
-    <span class="kw">pub</span> <span class="ident">zero</span>:   <span class="ident">RcExpr</span>,
+    <span class="kw">pub</span> <span class="ident">zero</span>: <span class="ident">RcExpr</span>,
     <span class="doccomment">/// A binary operation on the next element and the previous partial result.</span>
-    <span class="kw">pub</span> <span class="ident">op</span>:     <span class="ident">RcExpr</span>,
+    <span class="kw">pub</span> <span class="ident">op</span>: <span class="ident">RcExpr</span>,
 }
 
 <span class="doccomment">/// A general `filter` or selection operation.</span>
@@ -1311,7 +1311,7 @@
     <span class="doccomment">/// The domain of the selection (see `Map` too).</span>
     <span class="kw">pub</span> <span class="ident">domain</span>: <span class="ident">RcExpr</span>,
     <span class="doccomment">/// The unary, boolean-valued predicate applied to each element of the domain.</span>
-    <span class="kw">pub</span> <span class="ident">pred</span>:   <span class="ident">RcExpr</span>,
+    <span class="kw">pub</span> <span class="ident">pred</span>: <span class="ident">RcExpr</span>,
 }
 
 <span class="doccomment">/// A general sorting operation.</span>
@@ -1320,7 +1320,7 @@
     <span class="doccomment">/// The domain of the sorting operation.</span>
     <span class="kw">pub</span> <span class="ident">domain</span>: <span class="ident">RcExpr</span>,
     <span class="doccomment">/// Binary, boolean-valued comparison function for `LHS &lt; RHS`.</span>
-    <span class="kw">pub</span> <span class="ident">cmp</span>:    <span class="ident">RcExpr</span>,
+    <span class="kw">pub</span> <span class="ident">cmp</span>: <span class="ident">RcExpr</span>,
 }
 
 <span class="doccomment">/// A general grouping operation.</span>
@@ -1329,7 +1329,7 @@
     <span class="doccomment">/// Elements to be grouped.</span>
     <span class="kw">pub</span> <span class="ident">domain</span>: <span class="ident">RcExpr</span>,
     <span class="doccomment">/// A function that returns a key that grouping will be based on.</span>
-    <span class="kw">pub</span> <span class="ident">key</span>:    <span class="ident">RcExpr</span>,
+    <span class="kw">pub</span> <span class="ident">key</span>: <span class="ident">RcExpr</span>,
 }
 
 <span class="doccomment">/// Top-level type for wrapping SQIR for a complete program.</span>
@@ -1354,24 +1354,24 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Sqir</span> {
     <span class="doccomment">/// Stores named builtins and user-defined types.</span>
-    <span class="kw">pub</span> <span class="ident">named_types</span>:    <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">RcType</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">named_types</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">RcType</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Stores decimal types, parametrized by `(integral_digits, fractional_digits)`.</span>
-    <span class="kw">pub</span> <span class="ident">decimal_types</span>:  <span class="ident">HashMap</span><span class="op">&lt;</span>(<span class="ident">usize</span>, <span class="ident">usize</span>), <span class="ident">RcType</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">decimal_types</span>: <span class="ident">HashMap</span><span class="op">&lt;</span>(<span class="ident">usize</span>, <span class="ident">usize</span>), <span class="ident">RcType</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Stores cached optional types. Keys are the inner, wrapped types.</span>
     <span class="kw">pub</span> <span class="ident">optional_types</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">RcType</span>, <span class="ident">RcType</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Stores cached pointer types. Keys are pointed types.</span>
-    <span class="kw">pub</span> <span class="ident">pointer_types</span>:  <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">RcType</span>, <span class="ident">RcType</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">pointer_types</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">RcType</span>, <span class="ident">RcType</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Stores cached array types. Keys are element types.</span>
-    <span class="kw">pub</span> <span class="ident">array_types</span>:    <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">RcType</span>, <span class="ident">RcType</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">array_types</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">RcType</span>, <span class="ident">RcType</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Stores cached tuple types. Keys are the product of contained types.</span>
-    <span class="kw">pub</span> <span class="ident">tuple_types</span>:    <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">RcType</span><span class="op">&gt;</span>, <span class="ident">RcType</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">tuple_types</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">RcType</span><span class="op">&gt;</span>, <span class="ident">RcType</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Stores cached function types. Keys are `([argument_types], return_type)`.</span>
     <span class="kw">pub</span> <span class="ident">function_types</span>: <span class="ident">HashMap</span><span class="op">&lt;</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">RcType</span><span class="op">&gt;</span>, <span class="ident">RcType</span>), <span class="ident">RcType</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Stores relations between entities. Keys are `(referring_entity, referring_field)`.</span>
-    <span class="kw">pub</span> <span class="ident">relations</span>:      <span class="ident">HashMap</span><span class="op">&lt;</span>(<span class="ident">RcType</span>, <span class="ident">String</span>), <span class="ident">Relation</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">relations</span>: <span class="ident">HashMap</span><span class="op">&lt;</span>(<span class="ident">RcType</span>, <span class="ident">String</span>), <span class="ident">Relation</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Stores global values (currently, functions only). Keys are namespace</span>
     <span class="doccomment">/// (`impl`) names; `None` means top-level/free function, not in an `impl`.</span>
-    <span class="kw">pub</span> <span class="ident">globals</span>:        <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>, <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">RcExpr</span><span class="op">&gt;&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">globals</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>, <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">RcExpr</span><span class="op">&gt;&gt;</span>,
 }
 
 

@@ -443,25 +443,25 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CodegenParams</span> {
     <span class="doccomment">/// The database flavor to be targeted. See the docs of `DatabaseEngine`.</span>
-    <span class="kw">pub</span> <span class="ident">database</span>:               <span class="ident">DatabaseEngine</span>,
+    <span class="kw">pub</span> <span class="ident">database</span>: <span class="ident">DatabaseEngine</span>,
     <span class="doccomment">/// The programming language to be targeted. See the docs of `Language`.</span>
-    <span class="kw">pub</span> <span class="ident">language</span>:               <span class="ident">Language</span>,
+    <span class="kw">pub</span> <span class="ident">language</span>: <span class="ident">Language</span>,
     <span class="doccomment">/// Database access strategy. See the docs for `DatabaseAccessMode`.</span>
-    <span class="kw">pub</span> <span class="ident">database_access_mode</span>:   <span class="ident">DatabaseAccessMode</span>,
+    <span class="kw">pub</span> <span class="ident">database_access_mode</span>: <span class="ident">DatabaseAccessMode</span>,
     <span class="doccomment">/// Namespace name. This will be used in different ways for different</span>
     <span class="doccomment">/// programming languages. For example, in Go, it will be the package</span>
     <span class="doccomment">/// name, and is thus **mandatory**.</span>
-    <span class="kw">pub</span> <span class="ident">namespace</span>:              <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">namespace</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
     <span class="doccomment">/// The transform to be applied to names of user-defined types.</span>
-    <span class="kw">pub</span> <span class="ident">type_name_transform</span>:    <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">NameTransform</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">type_name_transform</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">NameTransform</span><span class="op">&gt;</span>,
     <span class="doccomment">/// The transform to be applied to fields of `struct`s and `class`es.</span>
-    <span class="kw">pub</span> <span class="ident">field_name_transform</span>:   <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">NameTransform</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">field_name_transform</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">NameTransform</span><span class="op">&gt;</span>,
     <span class="doccomment">/// The transform to be applied to variants of `enum`s.</span>
     <span class="kw">pub</span> <span class="ident">variant_name_transform</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">NameTransform</span><span class="op">&gt;</span>,
     <span class="doccomment">/// The transform to be applied to names of user-defined functions.</span>
-    <span class="kw">pub</span> <span class="ident">func_name_transform</span>:    <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">NameTransform</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">func_name_transform</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">NameTransform</span><span class="op">&gt;</span>,
     <span class="doccomment">/// The transform to be applied to the name of the namespace.</span>
-    <span class="kw">pub</span> <span class="ident">namespace_transform</span>:    <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">NameTransform</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">namespace_transform</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">NameTransform</span><span class="op">&gt;</span>,
 }
 
 <span class="doccomment">/// Functions of this type are expected to yield a (possibly cached)</span>
