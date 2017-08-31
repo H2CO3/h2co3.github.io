@@ -49,13 +49,13 @@
                        [<span class='inner'>&#x2212;</span>]
                    </a>
                </span><a class='srclink' href='../../src/phile/sqirgen.rs.html#128-130' title='goto source code'>[src]</a></span></h1>
-<pre class='rust fn'>pub fn generate_sqir(program: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;[</a><a class="enum" href="../../phile/ast/enum.Item.html" title="enum phile::ast::Item">Item</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a>) -&gt; <a class="type" href="../../phile/error/type.Result.html" title="type phile::error::Result">Result</a>&lt;<a class="struct" href="../../phile/sqir/struct.Sqir.html" title="struct phile::sqir::Sqir">Sqir</a>&gt;</pre><div class='docblock'><p>Takes a borrowed AST, performs various kinds of semantic
+<pre class='rust fn'>pub fn generate_sqir(program: &amp;<a class="struct" href="../../phile/ast/struct.Prog.html" title="struct phile::ast::Prog">Prog</a>) -&gt; <a class="type" href="../../phile/error/type.Result.html" title="type phile::error::Result">Result</a>&lt;<a class="struct" href="../../phile/sqir/struct.Sqir.html" title="struct phile::sqir::Sqir">Sqir</a>&gt;</pre><div class='docblock'><p>Takes a borrowed AST, performs various kinds of semantic
 analysis on it, and if it represents a correct program,
 then outputs the corresponding SQIR code.</p>
 
 <h1 id='arguments' class='section-header'><a href='#arguments'>Arguments:</a></h1>
 <ul>
-<li><code>program</code>: the borrowed form of an AST.</li>
+<li><code>program</code>: the AST representing the program to be compiled.</li>
 </ul>
 
 <h1 id='return-value' class='section-header'><a href='#return-value'>Return value:</a></h1>

@@ -48,7 +48,7 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../../src/phile/ast.rs.html#9-396' title='goto source code'>[src]</a></span></h1>
+               </span><a class='srclink' href='../../src/phile/ast.rs.html#9-400' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>This module contains types for building Abstract Syntax Trees
 (ASTs). ASTs describe the syntactic structure of PHiLe programs.
 Defined here are various kinds of AST nodes that the <code>parser</code>
@@ -156,6 +156,13 @@ in order to easily map them to the original source code.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Prog.html"
+                                  title='struct phile::ast::Prog'>Prog</a></td>
+                           <td class='docblock-short'>
+                                <p>Root of the AST.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
                            <td><a class="struct" href="struct.QualAccess.html"
                                   title='struct phile::ast::QualAccess'>QualAccess</a></td>
                            <td class='docblock-short'>
@@ -235,14 +242,6 @@ while the RHS is the type of the corresponding field.</p>
                                   title='type phile::ast::Exp'>Exp</a></td>
                            <td class='docblock-short'>
                                 <p>AST node representing an expression.</p>
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="type" href="type.Prog.html"
-                                  title='type phile::ast::Prog'>Prog</a></td>
-                           <td class='docblock-short'>
-                                <p>Root of the AST. A list of top-level items, such as
-type definitions, function definitions, or <code>impl</code>s.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>

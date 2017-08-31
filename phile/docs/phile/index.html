@@ -48,7 +48,7 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../src/phile/lib.rs.html#9-49' title='goto source code'>[src]</a></span></h1>
+               </span><a class='srclink' href='../src/phile/lib.rs.html#9-63' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>This library provides the programmatic interface for the PHiLe Compiler
 and Domain-Specific Language. The crate is composed of several modules,
 each of which roughly corresponds to a single step in the compilation
@@ -56,15 +56,30 @@ pipeline:</p>
 
 <ul>
 <li><code>lexer</code> performs lexical analysis and tokenization.</li>
-<li><code>parser</code> performs higher-level syntactic analysis and outputs an...</li>
+<li><code>parser</code> performs higher-level syntactic analysis and outputs an…</li>
 <li><code>ast</code>, an Abstract Syntax Tree.</li>
-<li><code>sqirgen</code> takes the AST and typechecks it, then emits...</li>
+<li><code>sqirgen</code> takes the AST and typechecks it, then emits…</li>
 <li><code>sqir</code>, the Schema and Query Intermediate Representation, PHiLe IR.</li>
-<li><code>sqiropt</code> will take the raw SQIR and optimize it, so that it can be fed into...</li>
+<li><code>sqiropt</code> will take the raw SQIR and optimize it, so that it can be fed into…</li>
 <li><code>dalgen</code>, which is the back-end that generates the actual DAL code.</li>
 <li><code>util</code> contains miscellaneous helper types and functions.</li>
 <li><code>error</code> contains type definitions for uniformly describing syntactic,
 semantic, and internal compiler errors.</li>
+</ul>
+
+<p>Depending on how you are willing to use PHiLe, you may be looking for…</p>
+
+<ul>
+<li><a href="https://h2co3.github.io/phile/tutorial">The Tutorial</a>. This gets you
+started quickly and painlessly with writing schemas and queries in
+PHiLe&#39;s domain-specific language.</li>
+<li><a href="https://github.com/H2CO3/PHiLe/tree/master/doc/examples">The Examples</a>.
+Check out these code snippets if you learn easier by example.</li>
+<li><a href="https://h2co3.github.io/phile/reference">The Reference</a>.
+Search through this document if you are already familiar with the basics
+and you are now looking for the details of a specific feature.</li>
+<li><a href="https://h2co3.github.io/phile/docs/philec/">Manpage-style docs for <code>philec</code></a>,
+if you want to deep dive into the invocation of the PHiLe CLI compiler.</li>
 </ul>
 </div><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
 <table>
