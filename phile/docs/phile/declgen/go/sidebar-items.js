@@ -1,1 +1,0 @@
-initSidebarItems({"fn":[["escape_string_literal",""],["generate_active_record",""],["generate_pod",""],["write_type",""]]});

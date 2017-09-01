@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["DatabaseAccessMode",""],["DatabaseEngine",""],["Language",""],["NameTransform",""]],"fn":[["transform_field_name",""],["transform_func_name",""],["transform_namespace",""],["transform_type_name",""],["transform_variant_name",""]],"struct":[["CodegenParams",""]],"type":[["WriterProvider",""]]});
