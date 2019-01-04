@@ -1,6 +1,6 @@
 body {
-    color: #3f3f3f;
-    background-color: #f1f1f1;
+    background-color: #272727;
+    color: #f0e7e0;
     font-family: "Helvetica Neue", "Helvetica", sans-serif;
     font-weight: 200;
     width: 640px;
@@ -27,8 +27,26 @@ h4 {
     font-weight: 400;
 }
 
+p, h4, blockquote, li, tt {
+    font-size: 14pt;
+    line-height: 1.325;
+}
+
+blockquote {
+    color: #f7e0b7;
+}
+
+.transcript {
+    font-style: italic;
+}
+
 strong {
     font-weight: 500;
+}
+
+em {
+    font-weight: 300;
+    color: #f0e7e0;
 }
 
 a {
