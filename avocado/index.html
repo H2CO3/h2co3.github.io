@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <title>Avocado, the Strongly-Typed MongoDB Client</title>
+  </head>
+  <body>
+    <h2 class="pagetitle">Avocado</h2>
+    <p class="subtitle" style="font-style: italic; font-size: 13pt; font-weight: 400">The Strongly-Typed MongoDB Driver</p>
+    <br />
+    <p>Avocado is a client library for using MongoDB in Rust with Domain-Driven Design in mind. It is built around the excellent <a href="https://github.com/mongodb-labs/mongo-rust-driver-prototype/" target="_blank">mongodb</a> crate.</p>
+    <p>Avocado is not your average, Node.JS-style "dump a heap of arbitrary JSON into the DB and hope for the best" Mongo driver. Instead, more in line with the spirit of Rust, it encourages:</p>
+    <ul>
+      <li>working directly with domain model objects,</li>
+      <li>the use of homogeneous collections, and</li>
+      <li>extensive static type checking</li>
+    </ul>
+    <p>in order to reduce the possibility of errors.</p>
+    <h3>Quick Start Guide</h3>
+    <p>As usual, the online documentation is hosted on <a href="https://docs.rs/avocado" target="_blank">docs.rs</a>. This includes a tutorial-style introduction to the usage of Avocado.</p>
+    <p>"Batteries included" examples can be found in the <a href="https://github.com/H2CO3/avocado/tree/master/avocado/examples/" target="_blank">Git repository</a>.</p>
+    <p>Avocado is easy to install because it is hosted on <a href="https://crates.io/crates/avocado/" target="_blank">crates.io</a>. Just add this to your Cargo.toml:</p>
+    <tt>
+      [dependencies]
+      <br />
+      avocado = "*"
+    </tt>
+    <h3>Why Avocado?</h3>
+    <p>There are other MongoDB abstractions for Rust providing static type checking. The most notable one is <tt>Wither</tt>. However, Avocado takes a different approach to API design, which, I would like to believe, has more advantages.</p>
+    <h4>More type-safe and more flexible</h4>
+    <ul>
+	  <li>Avocado uses a parametric <tt>Uid</tt> type instead of a raw <tt>ObjectId</tt>, so incorrect code like <tt>user.id == department.id</tt> doesn't compile.</li>
+	  <li>The underlying raw type of UIDs can be changed to anything that implements <tt>Eq</tt> and is (de)serializable; there's built-in support for <tt>ObjectId</tt> (of course) and <tt>Uuid</tt>.</li>
+	  <li>The prelude provides useful literal types for lesser dynamic typing and more expressive code when creating raw BSON literals (e.g. <tt>Order</tt> and <tt>IndexType</tt>.)</li>
+    </ul>
+    <h4>Incremental API</h4>
+    <ul>
+	  <li>If all you want is to insert some entities and executie simple queries on them, it's possible to use raw BSON <tt>Document</tt>s. Methods on <tt>Collection</tt> don't even take an "options" argument because sensible defaults are provided, so you don't have to write <tt>None</tt> or <tt>Default::default()</tt> all the time for what is basically a dummy argument.</li>
+	  <li>If, however, you want to perform more complex manipulations or change the default reading/writing options, then the <tt>Query</tt>, <tt>Pipeline</tt>, <tt>Update</tt>, etc. traits can be implemented and customized manually, in great detail.</li>
+    </ul>
+	<h4>Designed with performance in mind</h4>
+	<p>Avocado supports <tt>Cursor</tt>s, obviating the need for collecting all results in a <tt>Vec</tt>. Useful for incremental retrieval of large result sets.</p>
+    <h4>Great derive macro</h4>
+    <p>The index syntax in <tt>#[derive(Doc)]</tt> is more convenient and more natural for:</p>
+    <ul>
+	  <li>Compound indices</li>
+	  <li>Embedded document fields</li>
+    </ul>
+    <h4>Encourages clean code</h4>
+    <ul>
+	  <li>Documents are grouped into collections, closely mirroring the MongoDB model. You don't have to pass the entire DB handle around (and clone it every time). This aids interface segregation and the <em>principle of least privilege,</em> as it's possible to create "repositories" based on individual types: they only depend on some collections, and they don't need to have access to the entire database.</li>
+	  <li>Collections are the only "active" part. Documents are treated as naive value types for all purposes, so we're not trying to mimic the "active record pattern" &mdash; since that is basically impossible to do 100% correctly.</li>
+    </ul>
+    <h3>How does it work?</h3>
+    <p>Avocado's data model is based closely on MongoDB's collections and documents, but with types. The <tt>Doc</tt> trait is the central element in this: it defines an interface for a type to be considered a top-level entity. Entity types have to be serializable using <tt>Serde</tt>, and anything serializable can go into them. Most notably, this includes <tt>enum</tt> types, which are usually a second-class citizen in the world of ORMs. A <tt>#[derive]</tt> proc-macro aids users in quickly and painlessly implementing this trait with sensible defaults for their own domain model types.</p>
+    <p>A <tt>Collection</tt> is generic over its document type. It has methods for inserting, retrieving, modifying and deleting one or more entities, as well as purging the collection or (re-)creating its indices.</p>
+    <p>Some programmers praise MongoDB and NOSQL in general for its schemaless nature, because it's more convenient to extend and adapt databases that way. If you are one of these programmers, Avocado is probably not for you. In fact, Avocado includes support for run-time schema validation, via the <a href="https://crates.io/crates/magnet_schema/" target="_blank">Magnet</a> crate. As this can be slow if you are performing many insertions, the decision of whether or not to actually apply it is left to the user: collections can be created in either of two ways, one of them includes JSON schema validation, the other one does not.</p>
+    <h3>Reaching Out</h3>
+    <ul>
+      <li>Tweet to me <a href="https://twitter.com/H2CO3_iOS/" target="_blank">@H2CO3_iOS</a></li>
+      <li>Look at the issues on <a href="https://github.com/H2CO3/avocado/" target="_blank">GitHub</a></li>
+    </ul>
+  </body>
+</html>
