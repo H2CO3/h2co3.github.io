@@ -30,6 +30,7 @@
     <p>There are other MongoDB abstractions for Rust providing static type checking. The most notable one is <tt>Wither</tt>. However, Avocado takes a different approach to API design, which, I would like to believe, has more advantages.</p>
     <h4>More type-safe and more flexible</h4>
     <ul>
+      <li>Avocado supports query-like operations of which the result is not a full document. For example, it is possible to retrieve only the name of a person (in a type-safe manner, of course) without the need to go through a <tt>Document</tt>. This includes aggregation pipelines, too.</li>
 	  <li>Avocado uses a parametric <tt>Uid</tt> type instead of a raw <tt>ObjectId</tt>, so incorrect code like <tt>user.id == department.id</tt> doesn't compile.</li>
 	  <li>The underlying raw type of UIDs can be changed to anything that implements <tt>Eq</tt> and is (de)serializable; there's built-in support for <tt>ObjectId</tt> (of course) and <tt>Uuid</tt>.</li>
 	  <li>The prelude provides useful literal types for lesser dynamic typing and more expressive code when creating raw BSON literals (e.g. <tt>Order</tt> and <tt>IndexType</tt>.)</li>
