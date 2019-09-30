@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <title>Patterns Are Not Expressions</title>
+  </head>
+  <body>
+    <h2 class="pagetitle">Patterns Are Not Expressions</h2>
+    <p class="subtitle" style="font-style: italic; font-size: 13pt; font-weight: 400">Because They Are Duals</p>
+    <br />
+    <p>No day can pass on the Rust-Users forum without the ritual of someone asking why <tt>|&foo| { ... }</tt> or <tt>match bar { Some(&foo) => ... } </tt> moves the value following the <tt>&amp;</tt>, whereas we have all been taught that <tt>&amp;</tt> references (creates a pointer) and definitely does not dereference.</p>
+    <p>The background of the confusion is syntactic. Patterns and corresponding expressions have identical or similar syntax. Now you might cry <strong>"design error!!!"</strong> at this point. However, these constructs sharing the same syntax, albeit having the <em>opposite</em> behavior, is <strong>the</strong> right choice. Let me explain why.</p>
+    <p>Expressions are language constructs for <em>building</em> values. You can think of this a bit differently: some of them can be used for <em>wrapping</em> values in other values. For example, given an "atomic" value like the variable <tt>foo</tt> or the literal <tt>42</tt>:</p>
+    <ul>
+      <li><tt>Some(foo)</tt> and <tt>Some(42)</tt> produce the values wrapped inside an <tt>Option&lt;T&gt;</tt>.</li>
+      <li><tt>&foo</tt> and <tt>&42</tt> produce a pointer to the operand, i.e. it is "wrapped" in one level of indirection. (Containing a value and indirectly referring to one are conceptually very similar relations for the purpose of this discussion.)</li>
+      <li><tt>(foo, 42)</tt> packs up the two individual values into a tuple of arity 2, i.e. a pair. Instead of two atomic values, we now wrapped them into a single but compound value containing both.</li>
+      <li><tt>MyStruct { foo }</tt> constructs a struct named <tt>MyStruct</tt> with its field named <tt>foo</tt> taking ownership of the variable <tt>foo</tt>. Thus, the value the variable held is now wrapped in a <tt>struct</tt>.</li>
+    </ul>
+    <p>If we now wish to extract the inner values from the wrappers, there are two possibilities. First off, the most obvious solution is to use different expressions that perform the <strong>inverse</strong> of the wrapping. Namely:
+      <ul>
+        <li><tt>Some(foo).unwrap()</tt> &mdash; we can use a function on the <tt>Option</tt> type that gives us back the contained value (or panicks if there's nothing inside the optional)</li>
+        <li><tt>*&foo</tt> and <tt>*&42</tt> &mdash; we can <em>dereference</em> a reference or pointer in order to get to its "contained" (pointed or referred) value. (This by itself only works with <tt>Copy</tt> types, because references always need to point to valid values, hence moving out of a reference is not allowed.)
+        <li><tt>(foo, 42).0</tt> yields the value of <tt>foo</tt>, likewise <tt>(foo, 42).1</tt> results in the value 42. This indexed field access syntax allows us to access any component of a tuple and disregard the rest.</li>
+        <li><tt>MyStruct { foo }.foo</tt> similarly gives back the value of the field <tt>foo</tt>, in a sense "removing" the wrapper struct from around it.</li>
+      </ul>
+    <p>However, this is not the only way to peel off layers of wrappers from values. The other, maybe less obvious, possibility is to use <strong>pattern matching</strong>.</p>
+    <p>Pattern matching means that given a (wrapped) value, we <strong>describe the shape of the whole (wrapped) value</strong>. We then "give names" (the technical term is to create <strong>bindings</strong>) to only the parts that we are interested in. Concretely, this could look like:</p>
+    <pre>
+    match Some(42) {
+        Some(value) => println!("the value is {}", value),
+        None => println!("no value"),
+    }</pre>
+    <p>for checking an <tt>Option</tt>, or</p>
+    <pre>
+    let MyStruct { foo } = my_struct_value;</pre>
+    <p>for ripping apart a struct, after which you can use the binding <tt>foo</tt> just like any other variable, and it will contain the value of the field <tt>my_struct_value.foo</tt>. Or you could do something similar with tuples, too:</p>
+    <pre>
+    let (_, forty_two) = (foo, 42);</pre>
+    <p>which in turn discards the first tuple field and binds the value of the second field to the variable <tt>forty_two</tt>. Finally, the same works for pointers/references as well:</p>
+    <pre>
+    let &forty_two = &42;</pre>
+    <p>which, again, copies the value 42 to the variable <tt>forty_two</tt>.</p>
+    <p>The point is: when you are using pattern matching:</p>
+    <ul>
+      <li>you describe the overall shape of the value <em>using a pattern</em> on the left-hand-side of the equality or in the "case arms" of a <tt>match</tt> expression;</li>
+      <li>while the right-hand-side of the equality, or the so-called discriminator expression of the <tt>match</tt> will be the <em>value</em> or <em>expression</em> that you are matching against (or, as it's sometimes called, destructuring).</li>
+    </ul>
+    <p>So what I'm trying to say here is that <strong>patterns are not expressions.</strong> Instead, they are a sort of <strong>dual</strong> to expressions (in the <a href="https://math.stackexchange.com/questions/1518509/what-does-dual-mean-exactly-in-mathematics" target="_blank">loose but mathematical sense</a>): they look similar but perform the inverse operation. Or you can think of them as performing the same operation, but "from the inside out."</p>
+    <p>Patterns are everywhere in Rust, so it's important to understand them. In particular, they can occur:</p>
+    <ul>
+      <li>in <tt>let</tt> statements</li>
+      <li>in <tt>if let</tt> expressions</li>
+      <li>in <tt>match</tt> expressions</li>
+      <li>and even in function and closure argument position.</li>
+    </ul>
+    <p>The last one can perhaps be surprising. This means that you can write, for example:</p>
+    <pre>
+    fn function_taking_my_struct(MyStruct { foo }) {
+        println!("foo = {}", foo);
+    }</pre>
+    <p>then call it with a value of type <tt>MyStruct</tt>:</p>
+    <pre>
+    function_taking_my_struct(MyStruct { foo: 1337 });</pre>
+    <p>The same is true for closures; one could create and call them like</p>
+    <pre>
+    let closure_1 = |MyStruct { foo }| {
+        println!("foo = {}", foo);
+    };
+    closure_1(MyStruct { foo: 1337 });
+      
+    let closure_2 = |&forty_two| {
+        println!("forty-two = {}", forty_two);
+    };
+    closure_2(&42);</pre>
+    <p>(Note that while the <tt>|...|</tt> syntax may be similar to the capturing mode syntax of C++ lambda functions, which use <tt>[square brackets]</tt> to specify whether variables in the environment should be captured by value or by reference, the <tt>|...|</tt> part in Rust closures is <strong>not</strong> a capture list. It is merely the regular argument list of the closure.)</p>
+    <p>Furthermore, there are subtypes of patterns called <em>refutable</em> and <em>irrefutable</em>; this relates to whether it is possible to bind a pattern against a value unconditionally, determining the successful pattern match completely at compile time (these are called irrefutable), or it's only conditionally possible to match the pattern, depending on the runtime state of the value being destructured (these patterns are called refutable). However, for understanding what patterns are, this distinction is not essential.</p>
+  </body>
+</html>
