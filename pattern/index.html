@@ -47,7 +47,7 @@
       <li>you describe the overall shape of the value <em>using a pattern</em> on the left-hand-side of the equality or in the "case arms" of a <tt>match</tt> expression;</li>
       <li>while the right-hand-side of the equality, or the so-called discriminator expression of the <tt>match</tt> will be the <em>value</em> or <em>expression</em> that you are matching against (or, as it's sometimes called, destructuring).</li>
     </ul>
-    <p>So what I'm trying to say here is that <strong>patterns are not expressions.</strong> Instead, they are a sort of <strong>dual</strong> to expressions (in the <a href="https://math.stackexchange.com/questions/1518509/what-does-dual-mean-exactly-in-mathematics" target="_blank">loose but mathematical sense</a>): they look similar but perform the inverse operation. Or you can think of them as performing the same operation, but "from the inside out."</p>
+    <p>So what I'm trying to say here is that <strong>patterns are not expressions.</strong> Instead, they are a sort of <strong>dual</strong> to expressions (in the <a href="https://math.stackexchange.com/questions/1518509/what-does-dual-mean-exactly-in-mathematics" target="_blank" rel="noopener noreferrer">loose but mathematical sense</a>): they look similar but perform the inverse operation. Or you can think of them as performing the same operation, but "from the inside out."</p>
     <p>Patterns are everywhere in Rust, so it's important to understand them. In particular, they can occur:</p>
     <ul>
       <li>in <tt>let</tt> statements</li>
@@ -69,7 +69,7 @@
         println!("foo = {}", foo);
     };
     closure_1(MyStruct { foo: 1337 });
-      
+
     let closure_2 = |&forty_two| {
         println!("forty-two = {}", forty_two);
     };
