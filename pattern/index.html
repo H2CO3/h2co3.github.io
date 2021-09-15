@@ -57,7 +57,7 @@
     </ul>
     <p>The last one can perhaps be surprising. This means that you can write, for example:</p>
     <pre>
-    fn function_taking_my_struct(MyStruct { foo }) {
+    fn function_taking_my_struct(MyStruct { foo }: MyStruct) {
         println!("foo = {}", foo);
     }</pre>
     <p>then call it with a value of type <tt>MyStruct</tt>:</p>
