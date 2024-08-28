@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <title>NanoSQL: lightweight data mapper for SQLite</title>
+  </head>
+  <body>
+    <h2 class="pagetitle">NanoSQL: lightweight data mapper for SQLite</h2>
+    <br />
+    <p>NanoSQL is a small data mapper for Rust and SQLite. It allows you to quickly
+    and type-safely define the schema of your database, while giving you full control
+    over the SQL of your queries.</p>
+    <p>It essentially removes the boilerplate associated with:</p>
+    <ul>
+      <li>Defining the types, constraints, and indexes of a table</li>
+      <li>Compiling prepared statements and binding parameters to them</li>
+      <li>Mapping the returned result set (rows) to a collection of domain objects</li>
+      <li>Setting up the generally recommended configuration on an SQLite connection</li>
+    </ul>
+    <p>The library always tries to do the right thing by default. For instance:</p>
+    <ul>
+      <li>Foreign keys are automatically indexed.</li>
+      <li>Batch insertions are automatically wrapped in an <tt>IMMEDIATE</tt> transaction.</li>
+      <li>When you are required to supply bare SQL expressions (for example, in <tt>CHECK</tt>
+      constraints or <tt>GENERATED</tt> columns), derive macros ensure the syntactical validity
+      of those expressions.</li>
+    </ul>
+    <p>While not a full ORM, NanoSQL does provide convenient helper types and functions
+    for the most common tasks, such as creating tables, inserting rows, and looking up
+    records by their primary key.</p>
+    <p>The library is highly specific to SQLite, and as such, it can readily support most
+    of its advanced features. For example, you can declare partial indexes, set WAL mode,
+    and the output of <tt>EXPLAIN QUERY PLAN</tt> is readibly available as a pre-parsed,
+    pretty-printed tree for you to perform debugging and performance optimization.</p>
+    <p>To get started, see the <a href="https://docs.rs/nanosql" target="_blank">official documentation</a>.</p>
+    <p>To contribute, star and fork the project <a href="https://github.com/H2CO3/nanosql" target="_blank">on GitHub</a>.</p>
+  </body>
+</html>

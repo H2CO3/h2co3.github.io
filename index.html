@@ -6,23 +6,40 @@
     <title>H2CO3's Projects</title>
   </head>
   <body>
-    <h2 style="text-align: center"><a href="Arpad_Goretity_CV.pdf">Curriculum Vit&aelig;</a></h2>
+    <h2 style="text-align: center"><a href="Arpad_Goretity_CV.pdf">H2CO3's Curriculum Vit&aelig;</a></h2>
     <br style='width: 1px; line: dotted' />
     <hr style="border: 1px dotted #3f3f3f;" />
-    <h2 class="pagetitle">H2CO3's Rants</h2>
+    <h2 class="pagetitle">H2CO3's Blog</h2>
     <h3><a href="rust2019">The Last Thing Rust Needs</a></h3>
     <p>On the future of Rust, based on musings about programming language design by world-famous C++ expert Scott Meyers.</p>
     <h3><a href="pattern">Patterns Are Not Expressions</a></h3>
     <p>In which I explain the One True Way&trade; you should think about patterns and pattern matching in Rust, because seemingly nobody gets it.</p>
     <h2 class="pagetitle">H2CO3's Projects</h2>
     <p class="subtitle" style="font-style: italic; font-size: 13pt; font-weight: 400">Software I'm proud of</p>
-    <h3><a href="avocado">Avocado</a></h3>
-    <p>Avocado is a statically-typed abstraction layer above MongoDB, which makes it possible to store domain model objects directly in the database.</p>
-    <p>It is built around the Rust MongoDB driver and leverages its power to provide a safe wrapper around documents and homogeneous collections. A flexible, extensible, and intuitive API is provided for maximum productivity.</p>
-    <p>Traits and generics are extensively used as the means of providing type safety and allowing any serializable type to be written to and retrieved from MongoDB. Optional JSON schema validation ensures that all data (even those produced by other clients) conform to the expectations of the document types created in Rust, for seamless interoperation.</p>
-    <h3><a href="sparkling">Sparkling</a></h3>
-    <p>Sparkling is a simple, compact extension language with familiar syntax, dynamic typing, automatic memory management, and safe, sound semantics.</p>
-    <p>Designed to be a modern embeddable scripting language, it provides an easy-to-use C API so that you can write bindings to native code really fast. Its code footprint is small, making it an ideal alternative to e.g. Python and JavaScript, and it runs on a reasonably efficient bytecode interpreter, making its speed comparable to that of Lua.</p>
-    <p>Sparkling also attempts to avoid many design mistakes commonly found in other languages, such as implicit globals or non-obvious implicit type conversions.</p>
+    <h3><a href="nanosql">NanoSQL</a></h3>
+    <p>NanoSQL is a lightweight data mapper for SQLite and Rust.</p>
+    <p>It is not a full-blown ORM or query builder. It does <strong>not</strong> attempt to 
+    typecheck your SQL queries; it only makes sure that serialization of bind parameters and
+    deserialization of result rows is type-safe. It is similar in its spirit to Dapper in the
+    C#/.NET ecosystem.</p>
+    <p>It <strong>does</strong>, however, provide some convenience helpers for frequently
+    needed tasks, such as creating a table (and its indexes), inserting records, and finding
+    or deleting rows by their <tt>PRIMARY KEY</tt>.</p>
+    <p>NanoSQL is built on top of the trusty <tt>rusqlite</tt> library, and it is 100% safe
+    code. We use <tt>#![forbid(unsafe_code)]</tt> to ensure this property going forward.</p>
+    <h3><a href="parsel">Parsel</a></h3>
+    <p>Parsel is a next-generation parser generator library for Rust, inspired by Serde. It
+    allows you to focus on the high-level design of your language, without worrying about
+    writing parsers by hand, or needing to tediously map low-level parse trees to high-level
+    ASTs. It fully preserves source locations and spans, while also providing a means to
+    seamlessly unparse ASTs into source code. No external tools required!</p>
+    <p>It does so by providing <tt>#[derive]</tt> macros that automatically implement the
+    <tt>syn::Parse</tt> and <tt>syn::ToTokens</tt> traits for your custom <tt>struct</tt>
+    and <tt>enum</tt> types. Structs are parsed one field at a time, in sequence, while
+    enums are parsed into the first variant that succeeds. ASTs are returned directly and
+    in a completely automated manner. No manual mapping from the parser output to the AST
+    types is necessary whatsoever. Modifying the AST automatically updates the parser.</p>
+    <p>An extensive set of helper types is available for parsing common constructs, such as
+    repetition, parentheses, and infix operators.</p>
   </body>
 </html>

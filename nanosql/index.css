@@ -27,13 +27,26 @@ h4 {
     font-weight: 400;
 }
 
-p, h4, blockquote, li, tt {
+p, h4, blockquote, li, tt, pre {
     font-size: 14pt;
     line-height: 1.325;
 }
 
+blockquote {
+    color: #f7e0b7;
+}
+
+.transcript {
+    font-style: italic;
+}
+
 strong {
     font-weight: 500;
+}
+
+em {
+    font-weight: 300;
+    color: #f0e7e0;
 }
 
 a {
