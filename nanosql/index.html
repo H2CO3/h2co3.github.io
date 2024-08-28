@@ -25,13 +25,25 @@
       <li>When you are required to supply bare SQL expressions (for example, in <tt>CHECK</tt>
       constraints or <tt>GENERATED</tt> columns), derive macros ensure the syntactical validity
       of those expressions.</li>
+      <li>Identifiers such as table and column names are always quoted in the SQL emitted by
+      helper types provided by the library. You can freely rename tables and columns, it will
+      never cause conflicts with either SQL or Rust keywords.</li>
+      <li>Result columns (of e.g. <tt>SELECT</tt> and <tt>RETURNING</tt> statements) are given
+      explicit aliases: <tt>expression AS 'name'</tt>. This ensures portability and future-proof
+      operation across SQLite versions (because the name of a column without an explicit alias
+      is not guaranteed).</li>
+      <li>Bind parameters and result columns are referenced by name, and not by index, whenever
+      possible. The library supports and encourages the use of named parameters and result columns.
+      The parameter prefix to be used (<tt>$</tt>, <tt>@</tt>, <tt>:</tt> or <tt>?</tt>) can be
+      automatically inferred from the context (e.g., whether a parameter type is a struct with
+      named fields or a tuple) most of the time.</li>
     </ul>
     <p>While not a full ORM, NanoSQL does provide convenient helper types and functions
     for the most common tasks, such as creating tables, inserting rows, and looking up
     records by their primary key.</p>
     <p>The library is highly specific to SQLite, and as such, it can readily support most
     of its advanced features. For example, you can declare partial indexes, set WAL mode,
-    and the output of <tt>EXPLAIN QUERY PLAN</tt> is readibly available as a pre-parsed,
+    and the output of <tt>EXPLAIN QUERY PLAN</tt> is readily available as a pre-parsed,
     pretty-printed tree for you to perform debugging and performance optimization.</p>
     <p>To get started, see the <a href="https://docs.rs/nanosql" target="_blank">official documentation</a>.</p>
     <p>To contribute, star and fork the project <a href="https://github.com/H2CO3/nanosql" target="_blank">on GitHub</a>.</p>
